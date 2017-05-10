@@ -1,0 +1,45 @@
+<ion-view title="登 录">
+    <ion-nav-bar class="bar-assertive">
+        <ion-nav-buttons side="left" ng-click="">
+            <button class="button ion ion-ios-arrow-left" style="font-size: 2em;">
+            </button>
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right" ng-click="">
+            <button class="button">
+                注册
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-content>
+        <div class="app-logo"><img src="img/lottery.png" width="180"></div>
+        <div class="list list-inset">
+            <label class="item item-input">
+                <i class="icon ion-ios-person" style="font-size: 1.5em;"></i>
+                <span class="input-label" style="padding-right: 2px; margin-left: 5px;  width: auto;">手机号
+                        </span>
+                <input type="text" ng-model="user.username" placeholder="请输入用户名" style="border: none;padding-left: 8px;">
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-ios-locked" style="font-size: 1.5em;"></i>
+                <span class="input-label" style="padding-right: 22px; margin-left: 5px; width: auto;"> 密 码</span>
+                <input type="password" ng-model="user.password" placeholder="请输入密码" style="border: none;">
+            </label>
+        </div>
+        <div class="padding">
+            <button class="button button-block button-assertive" ng-click="signIn(user)">
+                登 录
+            </button>
+        </div>
+        <button class="button button-block button-clear" style="color: #d9231c;margin-top: -1em" ng-click="">
+            忘记密码？
+        </button>
+    </ion-content>
+
+    <!--<ion-footer-bar class="bar bar-clear ion-ios-barcode-outline" style="margin-bottom: 15%;">
+       &lt;!&ndash;   <a  class="button button-clear" href="#/register" style="color: #2c2c2c; margin-left: 16%;">
+                注册账号</a>&ndash;&gt;
+          <a  class="button button-clear" href="#/forgot-password" style="color: #2c2c2c; margin-right: 16%;"> 忘记密码
+          </a>
+    </ion-footer-bar>-->
+</ion-view>

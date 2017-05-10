@@ -1,0 +1,400 @@
+
+*{
+    font-family: 新宋体;
+}
+
+a{
+    text-decoration: none;
+}
+/**********登陆页面************/
+
+/*app logo*/
+.app-logo {
+    max-width: 15em;
+    margin: 3em auto 3.5em;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.tab-icon {
+    color: #d9231c;
+}
+/********** tebs 列表************/
+.tabs-stable > .tabs,
+.tabs.tabs-stable {
+    border-color: #a2a2a2;
+    background-color: #f8f8f8;
+    color: #e31120;
+}
+
+/********** 首页************/
+/*start 轮播图*/
+.box img {
+    width: 100%;
+    height: 9rem;
+}
+
+.ion-record:before {
+    color: red;
+}
+
+/*start 竞猜投注*/
+.betHeader {
+    padding: .2em 0 .2em .6em;
+    margin: 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.betHeader i {
+    border-left: 2px solid #d10806;
+    padding-left: 4px;
+    height: 1rem;
+    margin-top: 1px;
+}
+
+.picLsit {
+    display: flex;
+    margin-bottom: 0;
+    overflow: auto;
+}
+
+.picLsit h4 {
+    margin: 8px 0;
+    font-size: 1.1em;
+    text-align: left;
+}
+
+.picLsit .txt {
+    margin-top: -4px;
+    font-size: .3em;
+    color: #999999;
+    letter-spacing: .1em;
+}
+
+.picLsit img {
+    vertical-align: top;
+}
+
+.picLsit i {
+    width: 1px;
+    height: 60px;
+    background: #efefef;
+}
+
+.picLsit dt {
+    float: left;
+}
+
+.picLsit dd {
+    vertical-align: middle;
+    margin-left: .5em;
+    padding: 0 2px;
+    float: right;
+}
+
+.picLsit dd {
+    text-align: center;
+}
+
+/*start 通知公告*/
+.line {
+    width: 100%;
+    height: 8px;
+    background: #f3f3f3;
+}
+
+.notice {
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.notice .noticeText {
+    padding: 3px 6px;
+    color: #d61816;
+}
+
+.notice i {
+    margin-left: 5px;
+    font-size: x-large;
+    color: #d61816;
+}
+
+/*start 中奖新星*/
+.itemFloat {
+    float: left;
+    text-align: center;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.itemFloat img {
+    border-radius: 50%;
+    width: 3rem;
+}
+
+.itemFloat h4 {
+    margin: 0 auto;
+}
+
+.itemFloat p {
+    margin: 0 auto;
+    padding: 0 2px;
+}
+
+.itemFloat .pitch {
+    height: 1.2em;
+    width: 3em;
+    padding: 0;
+    background: #d11a15;
+    color: white;
+    position: relative;
+    line-height: 1.2em;
+}
+
+.itemFloat .pitch i {
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    background: #d11a15;
+    left: -16%;
+    z-index: -999;
+}
+
+.itemFloat .pitch i::after {
+    content: '';
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    background: #d11a15;
+    left: 245%;
+    z-index: -999;
+}
+
+/*start 新闻资讯*/
+.list .listText{
+    overflow: hidden;
+    /*text-overflow: ellipsis;*/
+    /*white-space: normal;*/
+    height: 40px;
+}
+
+.list .dataTime {
+    position: relative;
+}
+
+.list .dataTime i{
+    font-size: .8em;
+    color: #a2a2a2;
+}
+
+/***********************************推荐页面************************************/
+
+/*综合排序*/
+.SortTotal{
+    border-bottom: 1px solid #e9e9e9;
+}
+.popover-arrow{
+    position: absolute;
+    left:0;
+    top:0;
+}
+
+.popover-wrapper{
+    position: absolute;
+    top: 38px;
+    left: -10px;
+}
+
+.popover-wrapper h4{
+    padding:  0px 5px 6px 5px;
+    border-bottom: 1px solid #e9e9e9;
+    color: #5f5f5f;
+    font-size: small;
+}
+
+
+.item-avatar {
+    min-height: 120px;
+    position: relative;
+}
+.orderItem{
+    position: absolute;
+    left: 0;
+    top: 60px;
+}
+
+.orderItem h4{
+    color: #dfae46;
+    font-size: 1em;
+}
+
+.orderItem p{
+    color: #999999;
+    font-size: .5em;
+    padding-top: 6px;
+    letter-spacing: 1px;
+    font-family: '经典标宋简';
+}
+
+.orderItem h5{
+    padding-top: 2px;
+    color: #bd0806;
+    font-size: .3em;
+}
+
+.endData{
+    position: relative;
+    padding: 10px;
+    border-bottom: 1px solid #f3f3f3;
+    color: #a9a9a9;
+}
+.endData .btn{
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    padding: 0 10px;
+    min-width: 30px;
+    min-height: 25px;
+    font-size: 12px;
+    line-height: 25px;
+    cursor: pointer;
+    vertical-align: top;
+    background: #c90000;
+}
+
+/*资讯模块*/
+.bar-assertive .button.button-clear {
+    margin: auto;
+}
+
+.football a > p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    height: 40px;
+}
+
+.longTime{
+    color: #a2a2a2;
+    right:0;
+    line-height: 100%;
+    font-size: .6em;
+    padding: 2px;
+}
+.longTime p{
+    color: #a2a2a2;
+    font-size: .6em;
+}
+.longTime i{
+    margin-left: 1.5em;
+}
+
+.LotteryImg img{
+    width: 60%;
+}
+
+.LotteryImg .col{
+    text-align: center;
+}
+
+.LotteryImg p{
+    color: #6e6e6e;
+    font-family: 新宋体;
+    margin-bottom: 2px;
+}
+
+/*文章详情页面*/
+.infoContent h3{
+    padding: 10px 15px;
+}
+
+.infoContent h5{
+    text-align: center;
+    color: #a2a2a2;
+}
+
+.infoContent p{
+    text-indent: 30px;
+    color: #a2a2a2;
+    font-size: 1.2em;
+    padding: 0 10px;
+}
+
+/*大乐透的下单详情页面*/
+
+.bar.bar-stable .title {
+    color: #d11d1d;
+}
+
+.openTime span,
+.openTime i{
+    color: #838383;
+}
+
+.numSumRed{
+    padding-bottom: 8px;
+    border-bottom: solid 1px #e2e2e2;
+}
+
+.numSumRed i{
+    width: 2.4em;
+    height:2.4em;
+    border: solid 1px #d11d1d;
+    color: #d11d1d;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 2.4em;
+    margin: 4px 0.5%;
+    display: inline-block;
+}
+
+.numSumBlue{
+    padding-top: 8px;
+}
+
+.numSumBlue i{
+    width: 2.4em;
+    height:2.4em;
+    border: solid 1px #3f97d5;
+    color: #3f97d5;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 2.4em;
+    margin: 4px 0.5%;
+    display: inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
