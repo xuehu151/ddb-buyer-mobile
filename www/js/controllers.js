@@ -1,11 +1,11 @@
 angular.module ('starter.controllers', [])
-    
+
     .controller ('SignInCtrl', function ($scope, $state, $ionicPopup, $ionicLoading) {
-        
+
         $scope.signIn = function (user) {
-            
+
             /* if (typeof(user) == 'undefined') {
-             
+
              var alertPopup = $ionicPopup.alert({
              template: '<p style="text-align: center;">请填写登录信息</p>',
              okText: "确定"
@@ -13,23 +13,23 @@ angular.module ('starter.controllers', [])
              return;
              }
              $ionicLoading.show();*/
-            
+
             $state.go ('tab.home');
-            
+
             $ionicLoading.hide ();
-            
+
         };
     })
-    
+
     //首页
     .controller ('HomeCtrl', function ($scope) {
-    
+
     })
-    
+
     //***首页  竞彩足球下单详情
     .controller ('RaceColorFootballCtrl', function ($scope) {
         $scope.groups = [];
-        for (var i = 0; i < 3; i++) {
+        for (var i = 0; i < 3; i++) {//循环列表
             $scope.groups[i] = {
                 name: i,
                 items: []
@@ -38,7 +38,7 @@ angular.module ('starter.controllers', [])
                 $scope.groups[i].items.push (i + '-**-' + j);
             }
         }
-        $scope.toggleGroup = function (group) {
+        $scope.toggleGroup = function (group) {//循环渲染出的列表实现折叠和收缩效果
             if ($scope.isGroupShown (group)) {
                 $scope.shownGroup = null;
             }
@@ -49,14 +49,16 @@ angular.module ('starter.controllers', [])
         $scope.isGroupShown = function (group) {
             return $scope.shownGroup === group;
         };
-        
+
+
+
     })
-    
+
     //***首页  大乐透下单详情
     .controller ('BigLottoCtrl', function ($scope, $ionicPopover) {
         $scope.numDataRed = [];
         $scope.numDataBlue = [];
-        
+
         // Create the red items
         for (var i = 0; i < 35; i++) {
             $scope.numDataRed.push (i + 1);
@@ -65,7 +67,12 @@ angular.module ('starter.controllers', [])
         for (var i = 0; i < 12; i++) {
             $scope.numDataBlue.push (i + 1);
         }
-        
+
+        //添加点击效果
+
+
+
+
         // .fromTemplate() 方法
         var template = '<ion-popover-view style="width: 100px; height: 140px; text-align: center;">' +
             ' <ion-content>' +
@@ -74,11 +81,11 @@ angular.module ('starter.controllers', [])
             '        <h4>玩法说明</h4>' +
             '</ion-content>' +
             '</ion-popover-view>';
-        
+
         $scope.popover = $ionicPopover.fromTemplate (template, {
             scope: $scope
         });
-        
+
         $scope.openPopover = function ($event) {
             $scope.popover.show ($event);
         };
@@ -97,10 +104,10 @@ angular.module ('starter.controllers', [])
         $scope.$on ('popover.removed', function () {
             // 执行代码
         });
-        
-        
+
+
     })
-    
+
     //推荐
     .controller ('RecommendCtrl', function ($scope, $ionicPopover) {
         $scope.popover = $ionicPopover.fromTemplateUrl ('my-popover.html', {
@@ -115,11 +122,11 @@ angular.module ('starter.controllers', [])
             '        <h4>订单金额</h4>' +
             '</ion-content>' +
             '</ion-popover-view>';
-        
+
         $scope.popover = $ionicPopover.fromTemplate (template, {
             scope: $scope
         });
-        
+
         $scope.openPopover = function ($event) {
             $scope.popover.show ($event);
         };
@@ -138,28 +145,28 @@ angular.module ('starter.controllers', [])
         $scope.$on ('popover.removed', function () {
             // 执行代码
         });
-        
-        
-        
+
+
+
     })
-    
+
     //资讯
     .controller ('InformationCtrl', function ($scope) {
-    
+
     })
-    
+
     //资讯   竞彩足球
     .controller ('BiddingFootballCtrl', function ($scope) {
-    
+
     })
-    
+
     //资讯   大乐透
     .controller ('SuperLottoCtrl', function ($scope) {
-    
+
     })
-    
-    
+
+
     //我的
     .controller ('MineCtrl', function ($scope) {
-        /*djfgolsidafjgpon*/
+
     });

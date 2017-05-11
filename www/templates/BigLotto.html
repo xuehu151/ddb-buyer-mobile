@@ -1,12 +1,13 @@
+<ion-view view-title="大乐透">
 
-<ion-view view-title="大乐透" >
-
-    <ion-nav-bar class="bar-stable titles" >
+    <ion-nav-bar class="bar-stable titles">
         <ion-nav-buttons side="left" ng-click="">
-            <a href="#/tab/home" class="button button-icon ion-ios-arrow-left" style="font-size: 2em;color: #d11d1d"></a>
+            <a href="#/tab/home" class="button button-icon ion-ios-arrow-left"
+               style="font-size: 2em;color: #d11d1d"></a>
         </ion-nav-buttons>
         <ion-nav-buttons side="right">
-            <a href="" class="button button-icon ion-navicon-round" style="font-size: 2em;color: #d11d1d"  ng-click="openPopover($event)"></a>
+            <a href="" class="button button-icon ion-navicon-round" style="font-size: 2em;color: #d11d1d"
+               ng-click="openPopover($event)"></a>
         </ion-nav-buttons>
     </ion-nav-bar>
 
@@ -21,7 +22,11 @@
         </div>
 
         <div class="numSumRed">
-            <i ng-repeat="redNumRed in numDataRed">{{redNumRed}}</i>
+            <i
+                ng-repeat="redNumRed in numDataRed"
+                ng-class="">
+                {{redNumRed}}
+            </i>
         </div>
         <div class="numSumBlue">
             <i ng-repeat="redNumBlue in numDataBlue">{{redNumBlue}}</i>
@@ -31,9 +36,11 @@
 
     <div class="bar bar-footer orderBtns">
         <div class="clearBtn">
-            <a href="#" class="button button-light icon ion-ios-trash-outline"  style="color: #db3939;font-size: .6em;" ng-click=""><p>清空</p></a>
-            <a href="#" class="button button-light icon ion-iphone"  style="color: #db3939;font-size: .6em;" ng-click=""><p>机选</p></a>
-            <h1 class="title"><span>0</span>注<span>0</span>元</h1>
+            <a href="#" class="button button-light icon ion-ios-trash-outline" style="color: #db3939;font-size: .6em;"
+               ng-click=""><p>清空</p></a>
+            <a href="#" class="button button-light icon ion-iphone" style="color: #db3939;font-size: .6em;" ng-click="">
+                <p>机选</p></a>
+            <h1 class="title"><span>0</span> 注<span>0</span> 元</h1>
             <a href="#" class="button button-assertive" ng-click="">确定</a>
         </div>
     </div>

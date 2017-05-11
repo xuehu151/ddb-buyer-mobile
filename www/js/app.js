@@ -63,7 +63,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 templateUrl: 'templates/RaceColorFootball.html',
                 controller: 'RaceColorFootballCtrl'
             })
-            
+
             //  ***首页  大乐透下单详情
             .state('BigLotto', {
                 url: '/BigLotto',
