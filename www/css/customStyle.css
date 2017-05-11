@@ -323,8 +323,130 @@ a{
     padding: 0 10px;
 }
 
-/*大乐透的下单详情页面*/
+/*竞彩足球的下单详情页面*/
+.tabs-striped.tabs-stable .tab-item.tab-item-active{
+    border-color: #bf0806;
+    margin-top: 2px;
+}
 
+/*.list .item.item-accordion {
+    transition: 0.09s all linear;
+}*/
+.list .item.item-accordion.ng-hide {
+    line-height: 0;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+    display: block !important;
+}
+.item.active.item-stable{
+    border-color: #ffffff;
+    background-color: #f8f8f8;
+}
+
+.footballListGroup {
+    border-color: #a9a9a9;
+    background-color: #f6f6f6;
+    padding: 10px 6px;
+    /*color: #444;*/
+    /*font-size: 16px;*/
+}
+
+.footballListGroup .row{
+    padding: 0;
+    text-align: center;
+}
+
+.footballListGroup .col-70{
+   margin-left: 10px;
+}
+
+.footballListGroup .tabStatus{
+    position: relative;
+    width:100%;
+    border: solid 1px #c9c9c9;
+    border-bottom: 0;
+}
+
+.footballListGroup > .row > i{
+    display: block;
+    border-width: 1px;
+    border-color: #d11d1d;
+    border-style: solid;
+    opacity: .6;
+}
+
+.footballListGroup .tabStatus > span{
+    display: block;
+    width: 0;
+    height: 0;
+    text-align: center;
+    line-height: 100%;
+    border-top: 28px solid #bf0806;
+    border-right: 28px solid transparent;
+    position: absolute;
+    top:0;
+    left:0;
+}
+
+.footballListGroup .tabStatus > span > i{
+    position: absolute;
+    top: -26px;
+    left: 1px;
+    color: white;
+    font-size: small;
+}
+
+.footballListGroup .tabStatus .pitchStatus{
+    background-color: #d11a15;
+    color: white;
+}
+
+.footballListGroup .col-70 h3{
+    text-align: left;
+    padding: 3px 0;
+}
+
+.footballListGroup .button {
+    min-height: 30px;
+    font-size: .8em;
+    border-radius: 3px;
+    line-height: 30px;
+}
+
+.footballListGroup .button.button-assertive{
+    background-color: #d81b1b;
+}
+
+.head{
+    border-bottom:solid 1px #D1D3D6;
+    border-right:solid 1px #D1D3D6;
+    height:35px;
+    display:flex;
+    align-items:center;
+    width:33.3%;
+    font-size: .8em;
+    color: #a2a2a2;
+    justify-content:center;
+    background-color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*大乐透的下单详情页面*/
 .bar.bar-stable .title {
     color: #d11d1d;
 }
@@ -366,6 +488,42 @@ a{
     margin: 4px 0.5%;
     display: inline-block;
 }
+
+.orderBtns{
+    line-height: 60px;
+    height: 60px;
+}
+
+.orderBtns .button-assertive{
+    height: 30px;
+}
+.clearBtn{
+    height: 60px;
+    line-height: 60px;
+}
+
+.clearBtn p{
+    padding: 0 0;
+}
+
+.clearBtn .button-light{
+    height: 50px;
+    line-height: 6px;
+}
+.clearBtn .button-assertive{
+    margin-top: 12px;
+}
+
+.clearBtn h1{
+    padding: 10px 0;
+}
+
+.pitchOnRed{
+    background: #d11d1d;
+    color: white;
+}
+
+
 
 
 

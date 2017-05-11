@@ -56,6 +56,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 }
             })
 
+            //  ***首页  竞彩足球下单详情
+            .state('RaceColorFootball', {
+                url: '/RaceColorFootball',
+                cache: 'false',
+                templateUrl: 'templates/RaceColorFootball.html',
+                controller: 'RaceColorFootballCtrl'
+            })
+            
             //  ***首页  大乐透下单详情
             .state('BigLotto', {
                 url: '/BigLotto',
