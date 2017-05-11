@@ -1,0 +1,164 @@
+
+
+<ion-view view-title="竞彩足球" >
+
+    <ion-nav-bar class="bar-stable " >
+        <ion-nav-buttons side="left" ng-click="">
+            <a href="#/tab/home" class="button button-icon ion-ios-arrow-left" style="font-size: 2em;color: #d11d1d"></a>
+        </ion-nav-buttons>
+
+        <ion-nav-buttons side="right">
+            <a href="" class="button button-clear ion-funnel" style="font-size: 2em;color: #d11d1d; margin-right: 10px;"  ng-click=""></a>
+            <a href="" class="button button-clear ion-navicon-round" style="font-size: 2em;color: #d11d1d;margin-right: 10px;"  ng-click=""></a>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-tabs class="tabs-stable tabs-striped tabs-top">
+        <ion-tab title="胜平负">
+            <ion-view>
+                <ion-content class="stable-bg">
+                    <ion-list>
+                        <div ng-repeat="group in groups">
+                            <ion-item class="item-stable item-icon-right"
+                                      ng-click="toggleGroup(group)"
+                                      ng-class="{active: isGroupShown(group)}" >
+                                <i class="icon" ng-class="isGroupShown(group) ? 'ion-android-arrow-dropup' : 'ion-android-arrow-dropdown'"></i>
+                                Group {{group.name}}
+                            </ion-item>
+                            <ion-item class="item-accordion footballListGroup"
+                                      ng-repeat="item in group.items"
+                                      ng-show="isGroupShown(group)" >
+                                <!--{{item}}-->
+                                <div class="row">
+                                    <div class="col col-25">
+                                        <p>001</p>
+                                        <a href="" class="button button-assertive">墨西联</a>
+                                        <p>15:30</p>
+                                        <a href="" style="font-size: .9em;color: #d81b1b;">数据推单></a>
+                                    </div>
+                                    <i></i>
+                                    <div class="col col-70">
+                                        <h3>
+                                            <span>广州恒大</span> VS <sapn>广州恒大</sapn>
+                                        </h3>
+                                        <div class="tabStatus" >
+                                            <span><i>单</i></span>
+                                            <div style="display:flex;width:100%;">
+                                                <div class="head ">胜<i>7.5</i></div>
+                                                <div class="head pitchStatus">平<i>7.5</i></div>
+                                                <div class="head " style="border-right:0;">负<i>7.5</i></div>
+                                            </div>
+                                            <div style="display:flex;width:100%;">
+                                                <div class="head">让胜<i>7.5</i></div>
+                                                <div class="head">让胜<i>7.5</i></div>
+                                                <div class="head" style="border-right:0;">让胜<i>7.5</i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ion-item>
+                        </div>
+                    </ion-list>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+
+        <ion-tab title="比分">
+            <ion-view>
+                <ion-content class="balanced-bg">
+                    <ion-list>
+                        <div ng-repeat="group in groups">
+                            <ion-item class="item-stable"
+                                      ng-click="toggleGroup(group)"
+                                      ng-class="{active: isGroupShown(group)}" >
+                                <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
+                                &nbsp;
+                                Group {{group.name}}
+                            </ion-item>
+                            <ion-item class="item-accordion"
+                                      ng-repeat="item in group.items"
+                                      ng-show="isGroupShown(group)" >
+                                {{item}}
+                            </ion-item>
+                        </div>
+                    </ion-list>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+
+        <ion-tab title="进球数">
+            <ion-view>
+                <ion-content class="energized-bg">
+                    <ion-list>
+                        <div ng-repeat="group in groups">
+                            <ion-item class="item-stable"
+                                      ng-click="toggleGroup(group)"
+                                      ng-class="{active: isGroupShown(group)}" >
+                                <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
+                                &nbsp;
+                                Group {{group.name}}
+                            </ion-item>
+                            <ion-item class="item-accordion"
+                                      ng-repeat="item in group.items"
+                                      ng-show="isGroupShown(group)" >
+                                {{item}}
+                            </ion-item>
+                        </div>
+                    </ion-list>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+
+        <ion-tab title="半全场">
+            <ion-view>
+                <ion-content class="energized-bg">
+                    <ion-list>
+                        <div ng-repeat="group in groups">
+                            <ion-item class="item-stable"
+                                      ng-click="toggleGroup(group)"
+                                      ng-class="{active: isGroupShown(group)}" >
+                                <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
+                                &nbsp;
+                                Group {{group.name}}
+                            </ion-item>
+                            <ion-item class="item-accordion"
+                                      ng-repeat="item in group.items"
+                                      ng-show="isGroupShown(group)" >
+                                {{item}}
+                            </ion-item>
+                        </div>
+                    </ion-list>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+
+        <ion-tab title="混合过关">
+            <ion-view>
+                <ion-content class="energized-bg">
+                    <ion-list>
+                        <div ng-repeat="group in groups">
+                            <ion-item class="item-stable"
+                                      ng-click="toggleGroup(group)"
+                                      ng-class="{active: isGroupShown(group)}" >
+                                <i class="icon" ng-class="isGroupShown(group) ? 'ion-arrow-up-b' : 'ion-arrow-down-b'"></i>
+                                &nbsp;
+                                Group {{group.name}}
+                            </ion-item>
+                            <ion-item class="item-accordion"
+                                      ng-repeat="item in group.items"
+                                      ng-show="isGroupShown(group)" >
+                                {{item}}
+                            </ion-item>
+                        </div>
+                    </ion-list>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+
+    </ion-tabs>
+
+</ion-view>
+
+
+
+
