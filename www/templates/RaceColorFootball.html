@@ -41,17 +41,40 @@
                                         <h3>
                                             <span>广州恒大</span> VS <sapn>广州恒大</sapn>
                                         </h3>
-                                        <div class="tabStatus" >
+                                        <div class="tab-status" >
                                             <span><i>单</i></span>
                                             <div style="display:flex;width:100%;">
-                                                <div class="head ">胜<i>7.5</i></div>
-                                                <div class="head pitchStatus">平<i>7.5</i></div>
-                                                <div class="head " style="border-right:0;">负<i>7.5</i></div>
+                                                <div
+                                                    ng-class="footballEyeshowS?'pitchStatus head':'un-pitchStatus head'"
+                                                    ng-click="footballEyeshowS=!footballEyeshowS">
+                                                    胜<i>7.5</i>
+                                                </div>
+                                                <div
+                                                    ng-class="footballEyeshowP?'pitchStatus head':'un-pitchStatus head'"
+                                                    ng-click="footballEyeshowP=!footballEyeshowP">
+                                                    平<i>7.5</i>
+                                                </div>
+                                                <div
+                                                    ng-class="footballEyeshowF?'pitchStatus head':'un-pitchStatus head'"
+                                                    ng-click="footballEyeshowF=!footballEyeshowF"
+                                                    style="border-right:0;">
+                                                    负<i>7.5</i></div>
                                             </div>
                                             <div style="display:flex;width:100%;">
-                                                <div class="head">让胜<i>7.5</i></div>
-                                                <div class="head">让胜<i>7.5</i></div>
-                                                <div class="head" style="border-right:0;">让胜<i>7.5</i></div>
+                                                <div
+                                                    ng-class="AfootballEyeshowS?'pitchStatus head':'un-pitchStatus head'"
+                                                    ng-click="AfootballEyeshowS=!AfootballEyeshowS">
+                                                    让胜<i>7.5</i>
+                                                </div>
+                                                <div
+                                                    ng-class="AfootballEyeshowP?'pitchStatus head':'un-pitchStatus head'"
+                                                    ng-click="AfootballEyeshowP=!AfootballEyeshowP">
+                                                    让平<i>7.5</i>
+                                                </div>
+                                                <div  ng-class="AfootballEyeshowF?'pitchStatus head':'un-pitchStatus head'"
+                                                      ng-click="AfootballEyeshowF=!AfootballEyeshowF"
+                                                      style="border-right:0;">让负<i>7.5</i>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -156,6 +179,41 @@
         </ion-tab>
 
     </ion-tabs>
+
+    <div class="bar bar-footer football-order-btns">
+        <div class="row ensure-btn">
+            <div class="col col-20 select-Several">
+                已选<span>2</span>场
+            </div>
+            <div class="col col-25" >
+                <input type="button" class="button button-clear" value="存至投注单" style="color: #dd2b1c;font-size: .9em;">
+            </div>
+            <div class="col col-25">
+                <div style="line-height: 35px;color: #6e6e6e">金额<span style="color: #d11d1d;padding-left: 2px;">0</span>元</div>
+            </div>
+            <div class="col col-30">
+                <div style="line-height: 35px;color: #6e6e6e">最高奖金<span style="color: #d11d1d;padding-left: 2px;">0.00</span>元</div>
+            </div>
+        </div>
+
+        <div class="row group-btn">
+            <div class="col col-25">
+                <a href="" class="button stable-border">过关方式</a>
+            </div>
+            <div class="col col-20 multiple-input" >
+                <input type="text" class=" stable-border" value="10倍" >
+            </div>
+            <div class="col col-25">
+                <div class="button stable-border" style="line-height: 32px;color: #6e6e6e">奖金优化</div>
+            </div>
+            <div class="col col-30">
+                <a href="" class="button button-assertive" style="line-height: 32px;color: #edece9;width: 90%;">提交彩店 </a>
+            </div>
+        </div>
+    </div>
+
+
+
 
 </ion-view>
 
