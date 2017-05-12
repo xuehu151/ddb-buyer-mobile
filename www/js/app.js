@@ -30,6 +30,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         $ionicConfigProvider.platform.ios.views.transition('ios');
         $ionicConfigProvider.platform.android.views.transition('android');
 
+         //隐藏ion-nav-back-button的文字
+        $ionicConfigProvider.backButton.text("");
+        $ionicConfigProvider.backButton.previousTitleText(false);
+        
         $stateProvider
             //登录tabs  ivew
             .state('signin', {
@@ -70,6 +74,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 cache: 'false',
                 templateUrl: 'templates/BigLotto.html',
                 controller: 'BigLottoCtrl'
+            })
+
+            //***首页   大乐透 投注详情 保存成功
+
+            .state('bettingDetail',{
+                url:'/bettingDetail',
+                cache:'false',
+                templateUrl:'templates/bettingDetail.html',
+                controller:'bettingHaveSaved'
+            })
+
+            //***首页   大乐透 提交成功
+            .state('orderStatus',{
+                url:'/orderStatus',
+                cache:'false',
+                templateUrl:'templates/orderStatus.html'
             })
 
 

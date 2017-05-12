@@ -108,6 +108,30 @@ angular.module ('starter.controllers', [])
 
     })
 
+    //方案保存成功提示
+    .controller('bettingHaveSaved',function($scope, $ionicPopup, $timeout,$state) 
+    {
+    
+             // Triggered on a button click, or some other target
+       $scope.showSaveAlert = function() 
+       {
+           var alertPopup = $ionicPopup.alert({
+               template: '<div style="text-align:center">方案保存成功</div>',
+               title: '<i class="icon ion-ios-checkmark-outline" style="font-size:26px"></i>',
+           });
+       };
+       $scope.showOrderAlert = function() 
+       {
+           var alertPopup = $ionicPopup.alert({
+               template: '<div style="text-align:center">订单提交成功</div>',
+               title: '<i class="icon ion-ios-checkmark-outline" style="font-size:26px"></i>',
+           });
+               alertPopup.then(function () {
+               $state.go ('orderStatus');
+           })
+       };
+    })
+
     //推荐
     .controller ('RecommendCtrl', function ($scope, $ionicPopover) {
         $scope.popover = $ionicPopover.fromTemplateUrl ('my-popover.html', {
