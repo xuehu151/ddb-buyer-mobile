@@ -14,40 +14,41 @@
     <ion-content class="has-header padding">
         <div class="row openTime">
             <div class="col col-50">
-                <span>投注截至:<i>11-29 18:00</i></span>
+                <span>投注截至:<i>{{now|date: 'MM-dd '}}19:30</i></span>
             </div>
             <div class="col col-50">
-                <span>开奖:<i>11-29 18:00</i></span>
+                <span>开奖:<i>{{now|date: 'MM-dd '}}20:30</i></span>
             </div>
         </div>
 
         <div class="num-sum-red">
             <i
                 ng-repeat="redNumRed in numDataRed"
-                ng-class="eyeshow?'red-ball-bg-red':'red-ball-bg-white'"
-                ng-click="eyeshow=!eyeshow">
-                {{redNumRed}}
+                ng-class="{false: 'red-ball-bg-white', true: 'red-ball-bg-red'}[redNumRed.check]"
+                ng-click="addRedClick(redNumRed)">
+                {{redNumRed.num}}
             </i>
         </div>
         <div class="num-sum-blue">
             <i
-                ng-repeat="redNumBlue in numDataBlue"
-                ng-class="eyeshow?'blue-ball-bg-blue':'blue-ball-bg-white'"
-                ng-click="eyeshow=!eyeshow">
-                {{redNumBlue}}
+                ng-repeat="blueNumBlue in numDataBlue"
+                class="blue-ball-bg-white"
+                ng-class="{false: 'blue-ball-bg-white', true: 'blue-ball-bg-blue'}[blueNumBlue.check]"
+                ng-click="addBlueClick(blueNumBlue)">
+                {{blueNumBlue.num}}
             </i>
         </div>
-
     </ion-content>
+
 
     <div class="bar bar-footer order-btns">
         <div class="clearBtn">
-            <a href="#" class="button button-light icon ion-ios-trash-outline" style="color: #db3939;font-size: .6em;"
-               ng-click=""><p>清空</p></a>
-            <a href="#" class="button button-light icon ion-iphone" style="color: #db3939;font-size: .6em;" ng-click="">
+            <a href="" class="button button-light icon ion-ios-trash-outline" style="color: #db3939;font-size: .6em;"
+               ng-click="clearSelected()"><p>清空</p></a>
+            <a href="" class="button button-light icon ion-iphone" style="color: #db3939;font-size: .6em;" ng-click="randomBall()">
                 <p>机选</p></a>
             <h1 class="title"><span>0</span> 注<span>0</span> 元</h1>
-            <a href="#/bettingDetail" class="button button-assertive" ng-click="" >确定</a> 
+            <a href="" class="button button-assertive" ng-click="saveBallSelect()" >确定</a>
         </div>
     </div>
 </ion-view>
