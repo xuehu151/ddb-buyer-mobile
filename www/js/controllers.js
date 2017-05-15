@@ -1,3 +1,4 @@
+var jsonWrap = [];//存放所有的注数
 angular.module ('starter.controllers', [])
     
     .controller ('SignInCtrl', function ($scope, $state, $ionicPopup, $ionicLoading) {
@@ -60,6 +61,7 @@ angular.module ('starter.controllers', [])
         $scope.numDataBlue = [];
         var filterDataRed = [];//存放选中后的红色号码
         var filterDataBlue = [];//存放选中后的蓝色号码
+        
         
         //时间获取
         $scope.now = new Date;
@@ -225,7 +227,8 @@ angular.module ('starter.controllers', [])
          $scope.Note = 1;
          }*/
         
-        var jsonWrap = [];//存放所有的注数
+        var filterDataRed1=[];
+        var filterDataBlue1=[];
         //确认提交按钮
         $scope.saveBallSelect = function () {
             var alertPopup = $ionicPopup.alert ({
@@ -234,10 +237,28 @@ angular.module ('starter.controllers', [])
             })
                 
                 .then (function () {
+                    for (var i = 0; i < 12; i++) 
+                    {
+                        if ($scope.numDataBlue[i].check == true) 
+                        {
+                            filterDataBlue1.push($scope.numDataBlue[i])
+                           
+                        }
+                    }
+
+                    for (var i = 0; i < 35; i++) 
+                    {
+                        if ($scope.numDataRed[i].check == true) 
+                        {
+                            filterDataRed1.push($scope.numDataRed[i])
+
+                        }
+                    }
+                    
                     //以对象的方式存放每一注的  红篮球 的数据
-                    var jsonInner = {red: filterDataRed, blue: filterDataBlue};
+                    var jsonInner = {red: filterDataRed1, blue: filterDataBlue1};
                     jsonWrap.push (jsonInner);
-                    console.log(jsonWrap);
+                    console.log(jsonWrap)
                     var sessionJsonWarp = JSON.stringify (jsonWrap);//解析数组
                     sessionStorage.jsonWrap = sessionJsonWarp;//保存解析后的数组
                     
@@ -287,7 +308,7 @@ angular.module ('starter.controllers', [])
     .controller ('bettingHaveSaved', function ($scope, $ionicPopup, $timeout, $state) {
         
         $scope.sessionJsonWarp = JSON.parse (sessionStorage.jsonWrap);//反解析
-//        console.log ($scope.sessionJsonWarp);
+        console.log ($scope.sessionJsonWarp);
         
         
         
