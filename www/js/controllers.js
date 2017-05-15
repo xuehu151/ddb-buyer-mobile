@@ -58,6 +58,8 @@ angular.module ('starter.controllers', [])
         //设置红球和篮球号码
         $scope.numDataRed = [];
         $scope.numDataBlue = [];
+        var filterDataRed = [];//存放选中后的红色号码
+        var filterDataBlue = [];//存放选中后的蓝色号码
         
         //时间获取
         $scope.now = new Date;
@@ -66,9 +68,9 @@ angular.module ('starter.controllers', [])
         }, 1000);
         
         // Create the red items   红球
-        for (var j = 1; j <= 35; j++) {
+        for (var j = 0; j < 35; j++) {
             var itemsRed = {
-                num: j,
+                num: j + 1,
                 check: false
             };
             $scope.numDataRed.push (itemsRed);
@@ -76,7 +78,7 @@ angular.module ('starter.controllers', [])
         
         //给红色球添加点击事件
         $scope.addRedClick = function (item) {
-            var filterDataRed = [];//存放选中后的号码
+            filterDataRed = [];
             //先看选中了几个
             for (var i = 0; i < $scope.numDataRed.length; i++) {
                 if ($scope.numDataRed[i].check == true) {
@@ -95,7 +97,7 @@ angular.module ('starter.controllers', [])
             else {
                 selectedRedBallNum ();
             }
-            //console.log(filterDataRed);
+            console.log (filterDataRed);
             /*封装选择后的红色号码数*/
             function selectedRedBallNum () {
                 item.check = !item.check;
@@ -109,9 +111,9 @@ angular.module ('starter.controllers', [])
         };
         
         // Create the blue items  篮球
-        for (var i = 1; i <= 12; i++) {
+        for (var i = 0; i < 12; i++) {
             var itemsBlue = {
-                num: i,
+                num: i + 1,
                 check: false
             };
             $scope.numDataBlue.push (itemsBlue);
@@ -119,7 +121,7 @@ angular.module ('starter.controllers', [])
         
         //给蓝色球添加点击事件
         $scope.addBlueClick = function (item) {
-            var filterDataBlue = [];//存放选中后的号码
+            filterDataBlue = [];
             //先看选中了几个
             for (var i = 0; i < $scope.numDataBlue.length; i++) {
                 if ($scope.numDataBlue[i].check == true) {
@@ -151,7 +153,6 @@ angular.module ('starter.controllers', [])
             }
         };
         
-        
         //清空已选中的红蓝色球
         $scope.clearSelected = function () {
             filterDataRed = [];//清空选中后的红色号码数据
@@ -169,53 +170,84 @@ angular.module ('starter.controllers', [])
                     $scope.numDataBlue[i].check = !$scope.numDataBlue[i].check;
                 }
             }
-            //console.log(filterDataBlue);
-            //console.log(filterDataRed);
+            console.log (filterDataBlue);
+            console.log (filterDataRed);
         };
-       
+        
         //随机选择   红蓝  色球
         $scope.randomBall = function () {
-            var randomBlueBall = [];
-            for (var k = 0; k < 2; k++) {//获得两个随机数并进行保存
-                var randomBlue = Math.ceil (Math.random () * 12);
-                randomBlueBall.push (randomBlue);
+            
+            //处理随机选取红色球***********************
+            for (var i = 0; i < 35; i++) {//首先清空选中的号码效果
+                $scope.numDataRed[i].check = false;
+                filterDataRed = [];
+            }
+            var randomRed = [];//原数组
+            //给原数组randomBlue赋值
+            for (var i = 1; i <= 35; i++) {
+                randomRed[i] = i;
+            }
+            randomRed.sort (function () {
+                return 0.5 - Math.random ();
+            });
+            //随机打撒
+            for (var i = 0; i < 5; i++) {
+                console.log (randomRed[i]);
+                $scope.numDataRed[randomRed[i] - 1].check = true;
+                filterDataRed.push (randomRed[i]);
             }
             
-            //添加随机选中后的蓝色号码效果
-            for (var i = 0; i < randomBlueBall.length; i++) {
-                
-                console.log (randomBlueBall[i]);
-                for (var j = 0; j < 12; j++){
-                    if (randomBlueBall[i] == j)
-                    {
-                        $scope.numDataBlue[j].check = !$scope.numDataBlue[j].check;
-                    }
-                }
-                
+            //处理随机选取蓝色球***********************
+            for (var i = 0; i < 12; i++) {//首先清空选中的号码效果
+                $scope.numDataBlue[i].check = false;
+                filterDataBlue = [];
             }
-            
-            console.log (randomBlueBall);
-            
-            
-            
-            
+            var randomBlue = [];//原数组
+            //给原数组randomBlue赋值
+            for (var i = 1; i <= 12; i++) {
+                randomBlue[i] = i;
+            }
+            randomBlue.sort (function () {
+                return 0.5 - Math.random ();
+            });
+            //随机打撒
+            for (var i = 0; i < 2; i++) {
+                console.log (randomBlue[i]);
+                $scope.numDataBlue[randomBlue[i] - 1].check = true;
+                filterDataBlue.push (randomBlue[i]);
+            }
+            console.log (filterDataRed);
+            console.log (filterDataBlue);
         };
         
+        /*//根据选中的多少注来确定  注数和金额数；
+         if (filterDataRed.length == 5 && filterDataBlue.length == 2) {
+         $scope.Note = 1;
+         }*/
         
-        
-        
+        var jsonWrap = [];//存放所有的注数
         //确认提交按钮
         $scope.saveBallSelect = function () {
             var alertPopup = $ionicPopup.alert ({
                 template: '<p style="text-align: center; letter-spacing: 2px;">订单已提交到我的订单</p>',
                 okText: "确定"
-            });
-            
-            alertPopup.then (function () {
-                $state.go ('bettingDetail');
-            });
-            
+            })
+                
+                .then (function () {
+                    //以对象的方式存放每一注的  红篮球 的数据
+                    var jsonInner = {red: filterDataRed, blue: filterDataBlue};
+                    jsonWrap.push (jsonInner);
+                    console.log(jsonWrap);
+                    var sessionJsonWarp = JSON.stringify (jsonWrap);//解析数组
+                    sessionStorage.jsonWrap = sessionJsonWarp;//保存解析后的数组
+                    
+                    console.log(sessionStorage.jsonWrap);
+                    
+                    $state.go ('bettingDetail');
+                });
         };
+        
+        
         
         
         // .fromTemplate() 方法
@@ -249,14 +281,18 @@ angular.module ('starter.controllers', [])
         $scope.$on ('popover.removed', function () {
             // 执行代码
         });
-        
-        
     })
     
     //方案保存成功提示
     .controller ('bettingHaveSaved', function ($scope, $ionicPopup, $timeout, $state) {
         
-        // Triggered on a button click, or some other target
+        $scope.sessionJsonWarp = JSON.parse (sessionStorage.jsonWrap);//反解析
+//        console.log ($scope.sessionJsonWarp);
+        
+        
+        
+        
+        // 方案保存成功提示框
         $scope.showSaveAlert = function () {
             var alertPopup = $ionicPopup.alert ({
                 template: '<div style="text-align:center">方案保存成功</div>',
