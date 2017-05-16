@@ -248,7 +248,7 @@ angular.module ('starter.controllers', [])
             for (var i = 0; i < 5; i++)
             {
                 $scope.numDataRed[changeToArray1.red[i].num-1].check=true
-            };
+            }
             
             for (var i = 0; i < 2; i++)
             {
@@ -284,7 +284,7 @@ angular.module ('starter.controllers', [])
                                 filterDataBlue1.push ($scope.numDataBlue[i]);
                             }
                         }
-                        console.log(filterDataBlue1)
+                        console.log(filterDataBlue1);
                         //以对象的方式存放每一注的  红篮球 的数据
                         var jsonInner = {red: filterDataRed1, blue: filterDataBlue1};
                         jsonWrap.push (jsonInner);
