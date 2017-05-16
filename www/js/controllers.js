@@ -156,6 +156,7 @@ angular.module ('starter.controllers', [])
                     }
                 }
             }
+            
             noteCount ();//调取多少注以及多少钱函数
         };
         
@@ -232,11 +233,13 @@ angular.module ('starter.controllers', [])
             if (filterDataRed.length == 5 && filterDataBlue.length == 2) {
                 $scope.Note = '1';
                 $scope.NoteMoney = '2';
-            }else {
+            }
+            else {
                 $scope.Note = '0';
                 $scope.NoteMoney = '0';
             }
         }
+        
         /* console.log(filterDataRed.length);
          console.log(filterDataBlue.length);*/
         
@@ -244,18 +247,16 @@ angular.module ('starter.controllers', [])
          * 1.此if是用来判断是不是在投注详情页面点击修改后跳转过来的
          * 2.如果是点击修改后跳转过来的需要渲染红篮球
          */
-        if (sessionStorage.editThisOrderData) 
-        {
-            var changeToArray1=JSON.parse(sessionStorage.editThisOrderData);
+        if (sessionStorage.editThisOrderData) {
+            var changeToArray1 = JSON.parse (sessionStorage.editThisOrderData);
             
-            for (var i = 0; i < 5; i++)
-            {
-                $scope.numDataRed[changeToArray1.red[i].num-1].check=true
-            };
+            for (var i = 0; i < 5; i++) {
+                $scope.numDataRed[changeToArray1.red[i].num - 1].check = true
+            }
+            ;
             
-            for (var i = 0; i < 2; i++)
-            {
-                $scope.numDataBlue[changeToArray1.blue[i].num-1].check=true
+            for (var i = 0; i < 2; i++) {
+                $scope.numDataBlue[changeToArray1.blue[i].num - 1].check = true
             }
             
         }
@@ -273,11 +274,12 @@ angular.module ('starter.controllers', [])
                     .then (function () {
                         if (sessionStorage.jsonWrap)    //判断是否第一次点击确定
                         {
-                            var changeToArray=JSON.parse(sessionStorage.jsonWrap)
-
-        //把controller(bettingHaveSaved)中获取的sessionStorage.jsonWrap放到此controller中来，在这个pushWrap上push新号码
-                            jsonWrap = changeToArray;      
-                        };
+                            var changeToArray = JSON.parse (sessionStorage.jsonWrap)
+                            
+                            //把controller(bettingHaveSaved)中获取的sessionStorage.jsonWrap放到此controller中来，在这个pushWrap上push新号码
+                            jsonWrap = changeToArray;
+                        }
+                        ;
                         
                         //如果红篮球就添加进数组
                         for (var i = 0; i < 35; i++) {
@@ -320,9 +322,7 @@ angular.module ('starter.controllers', [])
             '</ion-content>' +
             '</ion-popover-view>';
         
-        $scope.popover = $ionicPopover.fromTemplate (template, {
-        
-        });
+        $scope.popover = $ionicPopover.fromTemplate (template, {});
         
         $scope.openPopover = function ($event) {
             $scope.popover.show ($event);
@@ -351,39 +351,36 @@ angular.module ('starter.controllers', [])
         // console.log ($scope.sessionJsonWarp);
         
         //手动添加一组，返回大乐透选中页面
-        $scope.manualAdd=function ()
-        {   
+        $scope.manualAdd = function () {
             $state.go ('BigLotto');
-            sessionStorage.editThisOrderData='';  //清除点击修改后保存在session.editThisOrderData中的数据
+            sessionStorage.editThisOrderData = '';  //清除点击修改后保存在session.editThisOrderData中的数据
         };
-
+        
         
         //点击删除一组
-        $scope.deleteRow=function ($index)
-        {
-            $scope.sessionJsonWarp.splice($index,1);   //点击删除本行
-
+        $scope.deleteRow = function ($index) {
+            $scope.sessionJsonWarp.splice ($index, 1);   //点击删除本行
+            
             //删除本行后的数据保存到sessionStorage
-            var changeToStr=JSON.stringify($scope.sessionJsonWarp);     
-            sessionStorage.jsonWrap=changeToStr;
+            var changeToStr = JSON.stringify ($scope.sessionJsonWarp);
+            sessionStorage.jsonWrap = changeToStr;
             // console.log(sessionStorage.jsonWrap);
         };
         
-        $scope.editThisOrder=function ($index)
-        {
+        $scope.editThisOrder = function ($index) {
             /**
              * 1.先转成数组
              * 2.数组中获取当前修改的一组
              * 3.sessionStorage保存当前修改的一组
              */
-            var changeToArr=JSON.parse(sessionStorage.jsonWrap);
-            var thisIndexOrder=changeToArr[$index];
+            var changeToArr = JSON.parse (sessionStorage.jsonWrap);
+            var thisIndexOrder = changeToArr[$index];
             
-            var changeToArr1=JSON.stringify(thisIndexOrder);
-            sessionStorage.editThisOrderData=changeToArr1;
+            var changeToArr1 = JSON.stringify (thisIndexOrder);
+            sessionStorage.editThisOrderData = changeToArr1;
             // console.log(thisIndexOrder);
-            $state.go('BigLotto');
-            $scope.deleteRow($index);
+            $state.go ('BigLotto');
+            $scope.deleteRow ($index);
         };
         
         // 方案保存成功提示框
