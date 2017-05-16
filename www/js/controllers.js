@@ -249,16 +249,24 @@ angular.module ('starter.controllers', [])
          */
         if (sessionStorage.editThisOrderData) {
             var changeToArray1 = JSON.parse (sessionStorage.editThisOrderData);
-            
+             filterDataRed1 = changeToArray1.red;
+             filterDataBlue1 = changeToArray1.blue;
+    
             for (var i = 0; i < 5; i++) {
-                $scope.numDataRed[changeToArray1.red[i].num - 1].check = true
+                $scope.numDataRed[changeToArray1.red[i].num - 1].check = true;
             }
-            ;
             
             for (var i = 0; i < 2; i++) {
-                $scope.numDataBlue[changeToArray1.blue[i].num - 1].check = true
+                $scope.numDataBlue[changeToArray1.blue[i].num - 1].check = true;
             }
-            
+            if (changeToArray1.red.length == 5 && changeToArray1.blue.length == 2) {
+                $scope.Note = '1';
+                $scope.NoteMoney = '2';
+            }
+            else {
+                $scope.Note = '0';
+                $scope.NoteMoney = '0';
+            }
         }
         
         //确认提交按钮
@@ -274,13 +282,10 @@ angular.module ('starter.controllers', [])
                     .then (function () {
                         if (sessionStorage.jsonWrap)    //判断是否第一次点击确定
                         {
-                            var changeToArray = JSON.parse (sessionStorage.jsonWrap)
-                            
+                            var changeToArray = JSON.parse (sessionStorage.jsonWrap);
                             //把controller(bettingHaveSaved)中获取的sessionStorage.jsonWrap放到此controller中来，在这个pushWrap上push新号码
-                            jsonWrap = changeToArray;
+                            jsonWrap = changeToArray;//将转化来的数组赋值到最外层的数组里面
                         }
-                        ;
-                        
                         //如果红篮球就添加进数组
                         for (var i = 0; i < 35; i++) {
                             if ($scope.numDataRed[i].check == true) {
@@ -297,8 +302,8 @@ angular.module ('starter.controllers', [])
                         var jsonInner = {red: filterDataRed1, blue: filterDataBlue1};
                         jsonWrap.push (jsonInner);
                         // console.log (jsonWrap);
-                        var sessionJsonWarp = JSON.stringify (jsonWrap);//解析数组
-                        sessionStorage.jsonWrap = sessionJsonWarp;//保存解析后的数组
+                        var sessionJsonWarp = JSON.stringify (jsonWrap);//解析数组为字符串
+                        sessionStorage.jsonWrap = sessionJsonWarp;//保存解析后的字符串
                         
                         // console.log (sessionStorage.jsonWrap);
                         $state.go ('bettingDetail');
@@ -356,7 +361,6 @@ angular.module ('starter.controllers', [])
             sessionStorage.editThisOrderData = '';  //清除点击修改后保存在session.editThisOrderData中的数据
         };
         
-        
         //点击删除一组
         $scope.deleteRow = function ($index) {
             $scope.sessionJsonWarp.splice ($index, 1);   //点击删除本行
@@ -367,6 +371,7 @@ angular.module ('starter.controllers', [])
             // console.log(sessionStorage.jsonWrap);
         };
         
+        //点击右边三角返回到大乐透的投注页面
         $scope.editThisOrder = function ($index) {
             /**
              * 1.先转成数组
@@ -376,11 +381,11 @@ angular.module ('starter.controllers', [])
             var changeToArr = JSON.parse (sessionStorage.jsonWrap);
             var thisIndexOrder = changeToArr[$index];
             
-            var changeToArr1 = JSON.stringify (thisIndexOrder);
-            sessionStorage.editThisOrderData = changeToArr1;
-            // console.log(thisIndexOrder);
+            var changeToStr1 = JSON.stringify (thisIndexOrder);
+            sessionStorage.editThisOrderData = changeToStr1;
+//             console.log(thisIndexOrder);
             $state.go ('BigLotto');
-            $scope.deleteRow ($index);
+//            $scope.deleteRow ($index);
         };
         
         // 方案保存成功提示框
@@ -456,7 +461,6 @@ angular.module ('starter.controllers', [])
     .controller ('SuperLottoCtrl', function ($scope) {
     
     })
-    
     
     //我的
     .controller ('MineCtrl', function ($scope) {
