@@ -8,14 +8,14 @@
 
     <ion-content class="bg-grey">
         <div class="row h50">
-            <a class="button icon icon-left ion-ios-plus-empty button-light col btn-30 ">手动添加</a>
+            <a class="button icon icon-left ion-ios-plus-empty button-light col btn-30 " ng-click="manualAdd()">手动添加</a>
             <a class="button icon icon-left ion-ios-plus-empty button-light col btn-30">店主机选</a>
         </div>
 
         <div>
             <ul class="list betting-detail-ul">
                 <li class="item item-button-left item-button-right" ng-repeat="liItem in sessionJsonWarp">
-                    <a class="button button-clear ">
+                    <a class="button button-clear " ng-click="deleteRow($index)">
                         <i class="icon ion-android-close dark"></i>
                     </a>
                     <div class="betting-num num-bg-red">
@@ -24,7 +24,7 @@
                     <div class="betting-num num-bg-blue">
                         <i ng-repeat="blueItem in liItem.blue" ng-bind="blueItem.num"></i>
                     </div>
-                    <a class="button button-clear" href="#/BigLotto">
+                    <a class="button button-clear" href="" ng-click="editThisOrder($index)">
                         <i class="icon ion-ios-arrow-right dark"></i>
                     </a>
                 </li>

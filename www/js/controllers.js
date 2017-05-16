@@ -199,7 +199,7 @@ angular.module ('starter.controllers', [])
             });
             //随机打撒
             for (var i = 0; i < 5; i++) {
-                console.log (randomRed[i]);
+                // console.log (randomRed[i]);
                 $scope.numDataRed[randomRed[i] - 1].check = true;
                 filterDataRed.push (randomRed[i]);
             }
@@ -219,12 +219,12 @@ angular.module ('starter.controllers', [])
             });
             //随机打撒
             for (var i = 0; i < 2; i++) {
-                console.log (randomBlue[i]);
+                // console.log (randomBlue[i]);
                 $scope.numDataBlue[randomBlue[i] - 1].check = true;
                 filterDataBlue.push (randomBlue[i]);
             }
-            console.log (filterDataRed);
-            console.log (filterDataBlue);
+            // console.log (filterDataRed);
+            // console.log (filterDataBlue);
             noteCount ();//调取多少注以及多少钱
         };
         //根据选中的多少注来确定  注数和金额数；
@@ -239,16 +239,42 @@ angular.module ('starter.controllers', [])
         }
         /* console.log(filterDataRed.length);
          console.log(filterDataBlue.length);*/
-        var filterDataRed1 = [];
-        var filterDataBlue1 = [];
+        
+         if (sessionStorage.editThisOrderData) 
+         {
+            var changeToArray1=JSON.parse(sessionStorage.editThisOrderData);
+            console.log(changeToArray1);
+
+            for (var i = 0; i < 5; i++) 
+            {
+                $scope.numDataRed[changeToArray1.red[i].num-1].check=true
+            };
+
+            for (var i = 0; i < 2; i++) 
+            {
+                $scope.numDataBlue[changeToArray1.blue[i].num-1].check=true
+            }
+            
+         }
+
+
         //确认提交按钮
         $scope.saveBallSelect = function () {
+            var filterDataRed1 = [];
+            var filterDataBlue1 = [];
+
             if (filterDataRed.length == 5 && filterDataBlue.length == 2) {//判断用户未选择号码时点击确定无效
                 var alertPopup = $ionicPopup.alert ({
                     template: '<p style="text-align: center; letter-spacing: 2px;">订单已提交到我的订单</p>',
                     okText: "确定"
                 })
                     .then (function () {
+                        if (sessionStorage.jsonWrap) 
+                        {
+                            var changeToArray=JSON.parse(sessionStorage.jsonWrap)
+                            jsonWrap = changeToArray;
+                        };
+
                         for (var i = 0; i < 35; i++) {
                             if ($scope.numDataRed[i].check == true) {
                                 filterDataRed1.push ($scope.numDataRed[i]);
@@ -259,14 +285,15 @@ angular.module ('starter.controllers', [])
                                 filterDataBlue1.push ($scope.numDataBlue[i]);
                             }
                         }
+                        console.log(filterDataBlue1)
                         //以对象的方式存放每一注的  红篮球 的数据
                         var jsonInner = {red: filterDataRed1, blue: filterDataBlue1};
                         jsonWrap.push (jsonInner);
-                        console.log (jsonWrap);
+                        // console.log (jsonWrap);
                         var sessionJsonWarp = JSON.stringify (jsonWrap);//解析数组
                         sessionStorage.jsonWrap = sessionJsonWarp;//保存解析后的数组
                         
-                        console.log (sessionStorage.jsonWrap);
+                        // console.log (sessionStorage.jsonWrap);
                         $state.go ('bettingDetail');
                     });
             }
@@ -318,6 +345,34 @@ angular.module ('starter.controllers', [])
         
         $scope.sessionJsonWarp = JSON.parse (sessionStorage.jsonWrap);//反解析
         console.log ($scope.sessionJsonWarp);
+
+         //手动添加一组，返回大乐透选中页面
+        $scope.manualAdd=function () 
+        {
+            $state.go ('BigLotto');
+        };
+
+        //点击删除一组
+        $scope.deleteRow=function ($index) 
+        {
+            $scope.sessionJsonWarp.splice($index,1);
+            var changeToStr=JSON.stringify($scope.sessionJsonWarp)
+            sessionStorage.jsonWrap=changeToStr;
+            console.log(sessionStorage.jsonWrap);
+        }
+
+        $scope.editThisOrder=function ($index) 
+        {
+
+            var changeToArr=JSON.parse(sessionStorage.jsonWrap);
+            var thisIndexOrder=changeToArr[$index];
+
+            var changeToArr1=JSON.stringify(thisIndexOrder);
+            sessionStorage.editThisOrderData=changeToArr1;
+            // console.log(thisIndexOrder);
+            $state.go('BigLotto');
+            $scope.deleteRow($index);
+        }
         
         // 方案保存成功提示框
         $scope.showSaveAlert = function () {
