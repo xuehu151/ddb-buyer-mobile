@@ -61,8 +61,8 @@ angular.module ('starter.controllers', [])
         $scope.numDataBlue = [];
         var filterDataRed = [];//存放选中后的红色号码
         var filterDataBlue = [];//存放选中后的蓝色号码
-        $scope.Note = '0';  //初始化多少注
-        $scope.NoteMoney = '0';//初始化多少钱
+        $scope.Note = '0';  //初始化注数
+        $scope.NoteMoney = '0';//初始化钱数
         
         //时间获取
         $scope.now = new Date;
@@ -146,7 +146,7 @@ angular.module ('starter.controllers', [])
                 selectedBlueBallNum ();
             }
             console.log (filterDataBlue);
-            /*封装选择后的号码数*/
+            /*放置选择后的号码数 函数 */
             function selectedBlueBallNum () {
                 item.check = !item.check;
                 filterDataBlue = [];
@@ -156,8 +156,7 @@ angular.module ('starter.controllers', [])
                     }
                 }
             }
-            
-            noteCount ();//调取多少注以及多少钱
+            noteCount ();//调取多少注以及多少钱函数
         };
         
         //清空已选中的红蓝色球
@@ -177,6 +176,7 @@ angular.module ('starter.controllers', [])
                     $scope.numDataBlue[i].check = !$scope.numDataBlue[i].check;
                 }
             }
+            noteCount ();//调取多少注以及多少钱函数
             console.log (filterDataBlue);
             console.log (filterDataRed);
         };
@@ -232,42 +232,51 @@ angular.module ('starter.controllers', [])
             if (filterDataRed.length == 5 && filterDataBlue.length == 2) {
                 $scope.Note = '1';
                 $scope.NoteMoney = '2';
+            }else {
+                $scope.Note = '0';
+                $scope.NoteMoney = '0';
             }
         }
-        
         /* console.log(filterDataRed.length);
          console.log(filterDataBlue.length);*/
-        
         var filterDataRed1 = [];
         var filterDataBlue1 = [];
         //确认提交按钮
         $scope.saveBallSelect = function () {
-            var alertPopup = $ionicPopup.alert ({
-                template: '<p style="text-align: center; letter-spacing: 2px;">订单已提交到我的订单</p>',
-                okText: "确定"
-            })
-                .then (function () {
-                    for (var i = 0; i < 35; i++) {
-                        if ($scope.numDataRed[i].check == true) {
-                            filterDataRed1.push ($scope.numDataRed[i])
+            if (filterDataRed.length == 5 && filterDataBlue.length == 2) {//判断用户未选择号码时点击确定无效
+                var alertPopup = $ionicPopup.alert ({
+                    template: '<p style="text-align: center; letter-spacing: 2px;">订单已提交到我的订单</p>',
+                    okText: "确定"
+                })
+                    .then (function () {
+                        for (var i = 0; i < 35; i++) {
+                            if ($scope.numDataRed[i].check == true) {
+                                filterDataRed1.push ($scope.numDataRed[i]);
+                            }
                         }
-                    }
-                    
-                    for (var i = 0; i < 12; i++) {
-                        if ($scope.numDataBlue[i].check == true) {
-                            filterDataBlue1.push ($scope.numDataBlue[i])
+                        for (var i = 0; i < 12; i++) {
+                            if ($scope.numDataBlue[i].check == true) {
+                                filterDataBlue1.push ($scope.numDataBlue[i]);
+                            }
                         }
-                    }
-                    //以对象的方式存放每一注的  红篮球 的数据
-                    var jsonInner = {red: filterDataRed1, blue: filterDataBlue1};
-                    jsonWrap.push (jsonInner);
-                    console.log (jsonWrap);
-                    var sessionJsonWarp = JSON.stringify (jsonWrap);//解析数组
-                    sessionStorage.jsonWrap = sessionJsonWarp;//保存解析后的数组
-                    
-                    console.log (sessionStorage.jsonWrap);
-                    $state.go ('bettingDetail');
+                        //以对象的方式存放每一注的  红篮球 的数据
+                        var jsonInner = {red: filterDataRed1, blue: filterDataBlue1};
+                        jsonWrap.push (jsonInner);
+                        console.log (jsonWrap);
+                        var sessionJsonWarp = JSON.stringify (jsonWrap);//解析数组
+                        sessionStorage.jsonWrap = sessionJsonWarp;//保存解析后的数组
+                        
+                        console.log (sessionStorage.jsonWrap);
+                        $state.go ('bettingDetail');
+                    });
+            }
+            else {
+                var alertPopup = $ionicPopup.alert ({
+                    template: '<p style="text-align: center; letter-spacing: 2px;">你还未选择号码，请正确选择号码！</p>',
+                    okText: "确定"
                 });
+                return
+            }
         };
         
         
@@ -281,7 +290,7 @@ angular.module ('starter.controllers', [])
             '</ion-popover-view>';
         
         $scope.popover = $ionicPopover.fromTemplate (template, {
-            scope: $scope
+        
         });
         
         $scope.openPopover = function ($event) {
@@ -309,7 +318,6 @@ angular.module ('starter.controllers', [])
         
         $scope.sessionJsonWarp = JSON.parse (sessionStorage.jsonWrap);//反解析
         console.log ($scope.sessionJsonWarp);
-        
         
         // 方案保存成功提示框
         $scope.showSaveAlert = function () {
