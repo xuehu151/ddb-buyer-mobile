@@ -8,8 +8,8 @@
 
     <ion-content class="bg-grey">
         <div class="row h50">
-            <a class="button icon icon-left ion-ios-plus-empty button-light col btn-30 " ng-click="manualAdd()">手动添加</a>
-            <a class="button icon icon-left ion-ios-plus-empty button-light col btn-30">店主机选</a>
+            <a class="button icon icon-left ion-ios-plus-empty button-light col btn-30 " href="" ng-click="manualAdd()">手动添加</a>
+            <a class="button icon icon-left ion-ios-plus-empty button-light col btn-30" href="" ng-click=autoAdd()>店主机选</a>
         </div>
 
         <div>
@@ -32,7 +32,7 @@
                     <a class="button button-clear ">
                         <i class="icon ion-android-close dark"></i>
                     </a>
-                    <div style="line-height: 28px">店主机选 <span>1</span>注</div>
+                    <div style="line-height: 28px">店主机选 <span ng-bind="autoBetNum">1</span>注</div>
                     <a class="button button-clear " href="#/BigLotto">
                         <i class="icon ion-ios-arrow-right dark"></i>
                     </a>
