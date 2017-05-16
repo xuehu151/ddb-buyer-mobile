@@ -156,14 +156,15 @@ angular.module ('starter.controllers', [])
                     }
                 }
             }
-            
             noteCount ();//调取多少注以及多少钱函数
         };
+
         
         //清空已选中的红蓝色球
+        filterDataRed = [];//清空选中后的红色号码数据
+        filterDataBlue = [];//清空选中后的蓝色号码数据
         $scope.clearSelected = function () {
-            filterDataRed = [];//清空选中后的红色号码数据
-            filterDataBlue = [];//清空选中后的蓝色号码数据
+            
             
             //清空选中后的红色号码
             for (var i = 0; i < $scope.numDataRed.length; i++) {
@@ -233,13 +234,11 @@ angular.module ('starter.controllers', [])
             if (filterDataRed.length == 5 && filterDataBlue.length == 2) {
                 $scope.Note = '1';
                 $scope.NoteMoney = '2';
-            }
-            else {
+            }else {
                 $scope.Note = '0';
                 $scope.NoteMoney = '0';
             }
         }
-        
         /* console.log(filterDataRed.length);
          console.log(filterDataBlue.length);*/
         
@@ -247,33 +246,35 @@ angular.module ('starter.controllers', [])
          * 1.此if是用来判断是不是在投注详情页面点击修改后跳转过来的
          * 2.如果是点击修改后跳转过来的需要渲染红篮球
          */
-        if (sessionStorage.editThisOrderData) {
-            var changeToArray1 = JSON.parse (sessionStorage.editThisOrderData);
-             filterDataRed1 = changeToArray1.red;
-             filterDataBlue1 = changeToArray1.blue;
-    
-            for (var i = 0; i < 5; i++) {
-                $scope.numDataRed[changeToArray1.red[i].num - 1].check = true;
-            }
+        if (sessionStorage.editThisOrderData) 
+        {   
+            var changeToArray1=JSON.parse(sessionStorage.editThisOrderData);
+            filterDataBlue=changeToArray1.blue;
+            filterDataRed=changeToArray1.red;
+
+            for (var i = 0; i < 5; i++)
+            {
+                $scope.numDataRed[changeToArray1.red[i].num-1].check=true
+            };
             
-            for (var i = 0; i < 2; i++) {
-                $scope.numDataBlue[changeToArray1.blue[i].num - 1].check = true;
+            for (var i = 0; i < 2; i++)
+            {
+                $scope.numDataBlue[changeToArray1.blue[i].num-1].check=true
             }
-            if (changeToArray1.red.length == 5 && changeToArray1.blue.length == 2) {
-                $scope.Note = '1';
-                $scope.NoteMoney = '2';
-            }
-            else {
-                $scope.Note = '0';
-                $scope.NoteMoney = '0';
-            }
+
+
+            
         }
-        
+        var filterDataRed1 = [];        //用来保存本次点击确定后的红球
+        var filterDataBlue1 = [];       //用来保存本次点击确定后的蓝球
         //确认提交按钮
         $scope.saveBallSelect = function () {
             var filterDataRed1 = [];        //用来保存本次点击确定后的红球
             var filterDataBlue1 = [];       //用来保存本次点击确定后的蓝球
             
+
+
+
             if (filterDataRed.length == 5 && filterDataBlue.length == 2) {//判断用户未选择号码时点击确定无效
                 var alertPopup = $ionicPopup.alert ({
                     template: '<p style="text-align: center; letter-spacing: 2px;">订单已提交到我的订单</p>',
@@ -282,10 +283,12 @@ angular.module ('starter.controllers', [])
                     .then (function () {
                         if (sessionStorage.jsonWrap)    //判断是否第一次点击确定
                         {
-                            var changeToArray = JSON.parse (sessionStorage.jsonWrap);
-                            //把controller(bettingHaveSaved)中获取的sessionStorage.jsonWrap放到此controller中来，在这个pushWrap上push新号码
-                            jsonWrap = changeToArray;//将转化来的数组赋值到最外层的数组里面
-                        }
+                            var changeToArray=JSON.parse(sessionStorage.jsonWrap)
+
+        //把controller(bettingHaveSaved)中获取的sessionStorage.jsonWrap放到此controller中来，在这个pushWrap上push新号码
+                            jsonWrap = changeToArray;      
+                        };
+                        
                         //如果红篮球就添加进数组
                         for (var i = 0; i < 35; i++) {
                             if ($scope.numDataRed[i].check == true) {
@@ -302,8 +305,8 @@ angular.module ('starter.controllers', [])
                         var jsonInner = {red: filterDataRed1, blue: filterDataBlue1};
                         jsonWrap.push (jsonInner);
                         // console.log (jsonWrap);
-                        var sessionJsonWarp = JSON.stringify (jsonWrap);//解析数组为字符串
-                        sessionStorage.jsonWrap = sessionJsonWarp;//保存解析后的字符串
+                        var sessionJsonWarp = JSON.stringify (jsonWrap);//解析数组
+                        sessionStorage.jsonWrap = sessionJsonWarp;//保存解析后的数组
                         
                         // console.log (sessionStorage.jsonWrap);
                         $state.go ('bettingDetail');
@@ -327,7 +330,9 @@ angular.module ('starter.controllers', [])
             '</ion-content>' +
             '</ion-popover-view>';
         
-        $scope.popover = $ionicPopover.fromTemplate (template, {});
+        $scope.popover = $ionicPopover.fromTemplate (template, {
+        
+        });
         
         $scope.openPopover = function ($event) {
             $scope.popover.show ($event);
@@ -356,36 +361,56 @@ angular.module ('starter.controllers', [])
         // console.log ($scope.sessionJsonWarp);
         
         //手动添加一组，返回大乐透选中页面
-        $scope.manualAdd = function () {
+        $scope.manualAdd=function ()
+        {   
             $state.go ('BigLotto');
-            sessionStorage.editThisOrderData = '';  //清除点击修改后保存在session.editThisOrderData中的数据
+            sessionStorage.editThisOrderData='';  //清除点击修改后保存在session.editThisOrderData中的数据
         };
+
+        //点击店家机选，添加机选一注
+        $scope.liAutoAdds=[{num:1}];   //初始化
+        $scope.autoAdd=function () 
+        {   
+            if ($scope.liAutoAdds[$scope.liAutoAdds.length-1].num>=5)  //当最后一个对象的num>=5时，push一个新对象
+            {
+                $scope.liAutoAdds.push({num:1})
+                // $scope.liAutoAdds[$scope.liAutoAdds.length].num=1;
+                
+            }
+            else
+            {
+                $scope.liAutoAdds[$scope.liAutoAdds.length-1].num++;
+            }
+            
+        };
+
         
         //点击删除一组
-        $scope.deleteRow = function ($index) {
-            $scope.sessionJsonWarp.splice ($index, 1);   //点击删除本行
-            
+        $scope.deleteRow=function ($index)
+        {
+            $scope.sessionJsonWarp.splice($index,1);   //点击删除本行
+
             //删除本行后的数据保存到sessionStorage
-            var changeToStr = JSON.stringify ($scope.sessionJsonWarp);
-            sessionStorage.jsonWrap = changeToStr;
+            var changeToStr=JSON.stringify($scope.sessionJsonWarp);     
+            sessionStorage.jsonWrap=changeToStr;
             // console.log(sessionStorage.jsonWrap);
         };
         
-        //点击右边三角返回到大乐透的投注页面
-        $scope.editThisOrder = function ($index) {
+        $scope.editThisOrder=function ($index)
+        {
             /**
              * 1.先转成数组
              * 2.数组中获取当前修改的一组
              * 3.sessionStorage保存当前修改的一组
              */
-            var changeToArr = JSON.parse (sessionStorage.jsonWrap);
-            var thisIndexOrder = changeToArr[$index];
+            var changeToArr=JSON.parse(sessionStorage.jsonWrap);
+            var thisIndexOrder=changeToArr[$index];
             
-            var changeToStr1 = JSON.stringify (thisIndexOrder);
-            sessionStorage.editThisOrderData = changeToStr1;
-//             console.log(thisIndexOrder);
-            $state.go ('BigLotto');
-//            $scope.deleteRow ($index);
+            var changeToArr1=JSON.stringify(thisIndexOrder);
+            sessionStorage.editThisOrderData=changeToArr1;
+            // console.log(thisIndexOrder);
+            $state.go('BigLotto');
+            $scope.deleteRow($index);
         };
         
         // 方案保存成功提示框
@@ -461,6 +486,7 @@ angular.module ('starter.controllers', [])
     .controller ('SuperLottoCtrl', function ($scope) {
     
     })
+    
     
     //我的
     .controller ('MineCtrl', function ($scope) {
