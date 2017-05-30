@@ -53,7 +53,7 @@ angular.module ('starter.controllers', [])
     })
     
     //***首页  大乐透下单详情
-    .controller ('BigLottoCtrl', function ($scope, $state, $ionicPopover, $interval, $ionicPopup) {
+    .controller ('BigLottoCtrl', function ($scope,$rootScope, $state, $ionicPopover, $interval, $ionicPopup) {
         //设置红球和篮球号码
         $scope.numDataRed = [];
         $scope.numDataBlue = [];
@@ -292,8 +292,20 @@ angular.module ('starter.controllers', [])
                         // console.log(filterDataBlue1)
                         //以对象的方式存放每一注的  红篮球 的数据
                         var jsonInner = {red: filterDataRed1, blue: filterDataBlue1};
-                        jsonWrap.push (jsonInner);
-                        // console.log (jsonWrap);
+
+
+                        /**
+                         * 1.如果是在bettingDetail中点击修改订单过来的,则把这个序号的内容变成本次确定的号码
+                         * 2.如果不是则push新的号码
+                         */
+                        if ($rootScope.editIndex) 
+                        {
+                            jsonWrap[$rootScope.editIndex]=jsonInner;
+                        }
+                        else
+                        {
+                            jsonWrap.push (jsonInner);
+                        };
                         var sessionJsonWarp = JSON.stringify (jsonWrap);//解析数组
                         sessionStorage.jsonWrap = sessionJsonWarp;//保存解析后的数组
                         
@@ -342,7 +354,7 @@ angular.module ('starter.controllers', [])
     })
     
     //方案保存成功提示
-    .controller ('bettingHaveSaved', function ($scope, $ionicPopup, $timeout, $state) {
+    .controller ('bettingHaveSaved', function ($scope,$rootScope, $ionicPopup, $timeout, $state) {
         
         $scope.sessionJsonWarp = JSON.parse (sessionStorage.jsonWrap);//反解析
         // console.log ($scope.sessionJsonWarp);
@@ -389,8 +401,9 @@ angular.module ('starter.controllers', [])
             sessionStorage.editThisOrderData = changeToArr1;
             
             // console.log(thisIndexOrder);
-            $state.go ('BigLotto');
-            $scope.deleteRow ($index);
+            $rootScope.editIndex=$index;
+            $state.go('BigLotto');
+            // $scope.deleteRow($index);
         };
         
         // 方案保存成功提示框
