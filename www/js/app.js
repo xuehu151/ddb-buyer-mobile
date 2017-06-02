@@ -127,7 +127,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             .state('tab.information.SuperLotto', {
                 url: '/SuperLotto',
                 cache: 'false',
-                templateUrl: 'templates/SuperLotto.html',
+                templateUrl: 'templates/account.html',
                 controller: 'SuperLottoCtrl'
             })
 
