@@ -833,7 +833,15 @@ input.bigLotto-input2:checked:before {
     padding: 5px 0!important;
 }
 
-
+.titleText{
+    position: absolute;
+    z-index: 9999;
+    top: 3.5%;
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%,0);
+    color: #d11d1d;
+}
 
 
 

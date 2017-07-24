@@ -4,7 +4,7 @@
         <ion-nav-buttons side="left" ng-click="">
             <a href="#/tab/home" class="button button-icon ion-ios-arrow-left" style="font-size: 2em;color: #d11d1d"></a>
         </ion-nav-buttons>
-
+        <h4 class="titleText" >大乐透</h4>
         <ion-nav-buttons side="right">
             <a href="" class="button button-icon ion-navicon-round" style="font-size: 2em;color: #d11d1d" ng-click="openPopover($event)"></a>
         </ion-nav-buttons>
@@ -22,7 +22,7 @@
 
         <div class="num-sum-red">
             <i
-                ng-repeat="redNumRed in numDataRed"
+                ng-repeat="redNumRed in numDataRed track by $index"
                 ng-class="{false: 'red-ball-bg-white', true: 'red-ball-bg-red'}[redNumRed.check]"
                 ng-click="addRedClick(redNumRed)">
                 {{redNumRed.num}}
@@ -30,7 +30,7 @@
         </div>
         <div class="num-sum-blue">
             <i
-                ng-repeat="blueNumBlue in numDataBlue"
+                ng-repeat="blueNumBlue in numDataBlue track by $index"
                 class="blue-ball-bg-white"
                 ng-class="{false: 'blue-ball-bg-white', true: 'blue-ball-bg-blue'}[blueNumBlue.check]"
                 ng-click="addBlueClick(blueNumBlue)">
@@ -47,12 +47,12 @@
             <a href="" class="button button-light icon ion-iphone" style="color: #db3939;font-size: .6em;" ng-click="randomBall()">
                 <p>机选</p></a>
             <h1 class="title"><span>{{Note}}</span> 注<span>{{NoteMoney}}</span> 元</h1>
-            <a href="" class="button button-assertive" ng-click="saveBallSelect()" >确定</a>
+            <a href="" class="button button-assertive" ng-click="saveBallSelect()">确定</a>
         </div>
     </div>
 </ion-view>
 
-<script id = "popover.html" type = "text/ng-template">
+<script id="popover.html" type="text/ng-template">
     <ion-popover-view class="popover">
         <ion-content>
             <h5>走势图</h5>
