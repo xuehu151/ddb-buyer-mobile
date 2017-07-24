@@ -1,6 +1,7 @@
 // Ionic Starter App
+var jsonWrap = [];//存放所有的注数
 
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.util', 'starter.SignInCtrl', 'starter.RaceColorFootballCtrl', 'starter.BigLottoCtrl', 'starter.bettingDetailCtrl', 'starter.RecommendCtrl', 'starter.InformationCtrl', 'starter.BiddingFootballCtrl', 'starter.MineCtrl'])
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -8,7 +9,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
                 cordova.plugins.Keyboard.disableScroll(true);
-
             }
             if (window.StatusBar) {
                 // org.apache.cordova.statusbar required
@@ -17,7 +17,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         });
     })
     .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-    //解决tabs在Android下局域顶部的方法
+        //解决tabs在Android下局域顶部的方法
         $ionicConfigProvider.platform.ios.tabs.style('standard');
         $ionicConfigProvider.platform.ios.tabs.position('bottom');
         $ionicConfigProvider.platform.android.tabs.style('standard');
@@ -33,13 +33,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
          //隐藏ion-nav-back-button的文字
         $ionicConfigProvider.backButton.text("");
         $ionicConfigProvider.backButton.previousTitleText(false);
+    
+        // if none of the above states are matched, use this as the fallback
+        $urlRouterProvider.when('','/sign-in');
         
         $stateProvider
             //登录tabs  ivew
             .state('signin', {
                 url: '/sign-in',
-                templateUrl: 'templates/sign-in.html',
                 cache: 'false',
+                templateUrl: 'templates/sign-in.html',
                 controller: 'SignInCtrl'
             })
             //tabs导航路由
@@ -52,6 +55,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             //首页
             .state('tab.home', {
                 url: '/home',
+                cache:'false',
+                prefetchTemplate:false,
                 views: {
                     'tab-home': {
                         templateUrl: 'templates/home.html',
@@ -63,7 +68,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             //  ***首页  竞彩足球下单详情
             .state('RaceColorFootball', {
                 url: '/RaceColorFootball',
-                cache: 'false',
+                cache:'false',
+                prefetchTemplate:false,
                 templateUrl: 'templates/RaceColorFootball.html',
                 controller: 'RaceColorFootballCtrl'
             })
@@ -71,7 +77,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             //  ***首页  大乐透下单详情
             .state('BigLotto', {
                 url: '/BigLotto',
-                cache: 'false',
+                cache:'false',
+                prefetchTemplate:false,
                 templateUrl: 'templates/BigLotto.html',
                 controller: 'BigLottoCtrl'
             })
@@ -81,14 +88,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             .state('bettingDetail',{
                 url:'/bettingDetail',
                 cache:'false',
+                prefetchTemplate:false,
                 templateUrl:'templates/bettingDetail.html',
-                controller:'bettingHaveSaved'
+                controller:'bettingDetailCtrl'
             })
 
             //***首页   大乐透 提交成功
             .state('orderStatus',{
                 url:'/orderStatus',
                 cache:'false',
+                prefetchTemplate:false,
                 templateUrl:'templates/orderStatus.html'
             })
 
@@ -96,6 +105,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             //推荐
             .state('tab.recommend', {
                 url: '/recommend',
+                cache: 'false',
+                prefetchTemplate:false,
                 views: {
                     'tab-recommend': {
                         templateUrl: 'templates/recommend.html',
@@ -107,6 +118,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             //资讯
             .state('tab.information', {
                 url: '/information',
+                cache: 'false',
+                prefetchTemplate:false,
                 views: {
                     'tab-information': {
                         templateUrl: 'templates/information.html',
@@ -119,6 +132,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             .state('tab.information.BiddingFootball', {
                 url: '/BiddingFootball',
                 cache: 'false',
+                prefetchTemplate:false,
                 templateUrl: 'templates/BiddingFootball.html',
                 controller: 'BiddingFootballCtrl'
             })
@@ -127,6 +141,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             .state('tab.information.SuperLotto', {
                 url: '/SuperLotto',
                 cache: 'false',
+                prefetchTemplate:false,
                 templateUrl: 'templates/SuperLotto.html',
                 controller: 'SuperLottoCtrl'
             })
@@ -135,12 +150,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             .state('tab.information.articleDetails', {
                 url: '/articleDetails',
                 cache: 'false',
+                prefetchTemplate:false,
                 templateUrl: 'templates/articleDetails.html'
             })
 
             //我的
             .state('tab.mine', {
                 url: '/mine',
+                cache: 'false',
+                prefetchTemplate:false,
                 views: {
                     'tab-mine': {
                         templateUrl: 'templates/mine.html',
@@ -148,9 +166,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                     }
                 }
             });
-
-        // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/sign-in');
     });
 
 

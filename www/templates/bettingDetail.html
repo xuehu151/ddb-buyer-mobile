@@ -6,16 +6,18 @@
         </ion-nav-buttons>
     </ion-nav-bar>
 
-    <ion-content class="bg-grey">
+    <div class="bar has-header addHeader50">
         <div class="row h50">
-            <a class="button icon icon-left ion-ios-plus-empty button-light col btn-30 " href="" ng-click="manualAdd()">手动添加</a>
+            <a class="button icon icon-left ion-ios-plus-empty button-light col btn-30" href="" ng-click="manualAdd()">手动添加</a>
             <a class="button icon icon-left ion-ios-plus-empty button-light col btn-30" href="" ng-click=autoAdd()>店主机选</a>
         </div>
+    </div>
 
+    <ion-content class="bg-grey ">
         <div>
             <ul class="list betting-detail-ul">
                 <li class="item item-button-left item-button-right" ng-repeat="liItem in sessionJsonWarp">
-                    <a class="button button-clear " ng-click="deleteRow($index)">
+                    <a class="button button-clear deleteIcon" ng-click="deleteRow($index)">
                         <i class="icon ion-android-close dark"></i>
                     </a>
                     <div class="betting-num num-bg-red">
@@ -24,12 +26,12 @@
                     <div class="betting-num num-bg-blue">
                         <i ng-repeat="blueItem in liItem.blue" ng-bind="blueItem.num"></i>
                     </div>
-                    <a class="button button-clear" href="" ng-click="editThisOrder($index)">
+                    <a class="button button-clear " href="" ng-click="editThisOrder($index)">
                         <i class="icon ion-ios-arrow-right dark"></i>
                     </a>
                 </li>
                 <li class="item item-button-left item-button-right" ng-repeat="liAutoAdd in liAutoAdds">
-                    <a class="button button-clear ">
+                    <a class="button button-clear deleteIconGroup">
                         <i class="icon ion-android-close dark"></i>
                     </a>
                     <div style="line-height: 28px">店主机选 <span ng-bind="liAutoAdd.num"></span>注</div>
@@ -44,29 +46,20 @@
             <p>
                 投注
                 <label class="padding-left">
-                    <input class="bigLotto-input1 " type="text" placeholder="1" />
+                    <input class="bigLotto-input1 " type="text" placeholder="1"/>
                 </label> 倍
             </p>
             <p>
                 金额：
                 <span class="font-red">2</span> 元 &nbsp
                 <label class="checkbox ">
-                    <input class="bigLotto-input2" type="checkbox" />
+                    <input class="bigLotto-input2" type="checkbox"/>
                 </label>追加 (每注3元)
             </p>
-            <button class="button button-block button-assertive" ng-click="showOrderAlertCms()" style="font-size: 16px;">
+            <button class="button button-block button-assertive submitBtn" ng-click="showOrderAlertCms()" style="font-size: 16px;">
                 提交彩店
             </button>
-
         </div>
-        <!--
-              <div class="item item-input-inset">
-                <span>Submit</span>
-                <label class="item-input-wrapper">
-                  <input type="text" placeholder="Email">
-                </label>
-              </div> -->
-
 
     </ion-footer-bar>
 </ion-view>

@@ -471,12 +471,16 @@ a{
 }
 
     /*大乐透的下单详情页面*/
-.bar.bar-stable .title {
+.bar.bar-light .title {
     color: #d11d1d;
 }
 
-.openTime span,
-.openTime i{
+.PickAreaContent{
+    background-color: #f6f6f6;
+}
+
+.drawTime span,
+.drawTime i{
     color: #838383;
 }
 
@@ -489,7 +493,7 @@ a{
     width: 2.9em;
     height:2.9em;
     border: solid 1px #d11d1d;
-    background-color: #fff4fb;
+    background-color: #ffffff;
     color: #d11d1d;
     border-radius: 50%;
     text-align: center;
@@ -520,7 +524,7 @@ a{
     width: 2.9em;
     height:2.9em;
     border: solid 1px #3f97d5;
-    background-color: #fff4fb;
+    background-color: #ffffff;
     color: #3f97d5;
     border-radius: 50%;
     text-align: center;
@@ -545,6 +549,7 @@ a{
 .order-btns{
     line-height: 60px;
     height: 60px;
+    border-top: 1px solid rgba(160, 160, 160, 0.3);
 }
 
 .order-btns .button-assertive{
@@ -560,12 +565,15 @@ a{
     padding: 0 0;
 }
 
-.clearBtn .button-light{
+.clearBtn .button-light {
     height: 50px;
     line-height: 6px;
 }
-.clearBtn .button-assertive{
+
+.clearBtn .button-assertive {
     margin-top: 12px;
+    padding: 8px 20px;
+    line-height: 15px;
 }
 
 .clearBtn h1{
@@ -576,7 +584,254 @@ a{
     background: #d11d1d;
     color: white;
 }
+/*popover 弹出框*/
+.popover{
+    top: 38px!important;
+    width: 100px;
+    height: 120px;
+    padding: 2px 5px;
+    border-radius: 2px!important;
+}
 
+.popover h5{
+    padding: 0 0 5px 0;
+    border-bottom: 1px solid #b7b7b7;
+    text-align: center;
+    line-height: 15px;
+}
+
+.popover h5:last-child{
+    border-bottom: 0;
+}
+
+/**********订单状态************/
+.clearfix:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.order-status-wrap {
+    height: 100%;
+    background: #f6f6f6
+}
+
+.order-status-ul {
+    padding: 10px 10px 0 8px;
+}
+
+/*每个li分left（图标）、right（信息）两边*/
+.order-status-left {
+    position: relative;
+    float: left;
+    width: 16%;
+    height: 95px;
+    box-sizing: border-box;
+    /*padding: 0 20px 0 15px;*/
+}
+
+.order-start-icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 30px;
+    height: 40px;
+    margin-left: -15px;
+    margin-top: -20px;
+    z-index: 2;
+}
+
+.order-status-bg1 {
+    background: #f6f6f6 url('../img/orderStatusBg.png') no-repeat 0 5px;
+}
+
+.order-status-bg2 {
+    background: #f6f6f6 url('../img/orderStatusBg.png') no-repeat 0 -35px;
+}
+
+.order-status-bg3 {
+    background: #f6f6f6 url('../img/orderStatusBg.png') no-repeat 0 -75px;
+}
+
+.order-status-bg4 {
+    background: #f6f6f6 url('../img/orderStatusBg.png') no-repeat 0 -115px;
+}
+
+.order-status-bg5 {
+    background: #f6f6f6 url('../img/orderStatusBg.png') no-repeat 0 -155px;
+}
+
+.order-status-left .order-status-line {
+    position: absolute;
+    left: 50%;
+    width: 1px;
+    height: 95px;
+    display: block;
+    background: #e42112;
+    z-index: 1;
+}
+
+.order-status-right {
+    float: left;
+    width: 84%;
+    height: 85px;
+    margin: 5px 0 5px;
+    padding: 5px;
+    background: #fff;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.order-status-content h3 {
+    display: inline-block;
+    font-size: 1rem;
+}
+
+.order-status-content span {
+    margin-top: 12px;
+    font-size: 1rem;
+}
+
+/*投注详情页面*/
+.bg-grey {
+    padding-top: 51px;
+    background: #f5f5f5;
+}
+
+.bg-grey .deleteIcon{
+    margin-left: -5px;
+}
+
+.bg-grey .deleteIconGroup{
+    margin-top: -5px;
+    margin-left: -5px;
+}
+
+.h50 {
+    height: 50px;
+    background-color: #f5f5f5;
+}
+
+.btn-30 {
+    margin: 0 15px;
+    /*	min-height: 30px;
+        height: 30px;
+        line-height: 30px*/
+}
+
+.addHeader50{
+    height: 50px;
+    padding: 0;
+}
+
+.h50 a {
+    min-height: 40px;
+    line-height: 40px;
+    padding: 0;
+}
+
+.h50 a.button.icon:before,
+.betting-detail-ul a.button .icon:before {
+    margin-top: 3px;
+    padding-left: 15%;
+    font-size: 30px;
+}
+
+.h50 a.btn-30:before {
+    line-height: 40px;
+    padding-left: 16%;
+}
+
+.h50 .button.button-light{
+    line-height: 40px;
+}
+
+.betting-detail-ul li {
+    padding: 8px 40px;
+}
+
+.betting-num i {
+    width: 1.8em;
+    height: 1.8em;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 1.8em;
+    margin: 3px 0.5%;
+    display: inline-block;
+    float: left;
+}
+
+.num-bg-red i {
+    background: #e42112;
+}
+
+.num-bg-blue i {
+    background: #3f97d5;
+}
+
+/*投注详情的footer*/
+.betting-detail-footer {
+    background: #fff;
+    color: #000;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    border-top: #c9c9c9 1px solid;
+}
+
+.betting-detail-footer div {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.betting-detail-footer div p:first-child {
+    margin: 13px 0 0 0;
+    height: 30px;
+    line-height: 30px;
+}
+
+.betting-detail-footer .bigLotto-input1 {
+    width: 4rem;
+    border: 1px solid #ccc;
+    display: inline-block;
+    background: transparent;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 16px;
+    line-height: 30px;
+}
+
+.betting-detail-footer .bigLotto-input2 {
+    width: 18px;
+    height: 18px;
+    top: 10px;
+}
+
+input.bigLotto-input2:checked:before {
+    background: #e42112;
+    border-color: #e42112;
+}
+
+.checkbox input:after {
+    top: 20%;
+    left: 15%;
+}
+
+.font-red {
+    color: red;
+}
+
+.submitBtn{
+    padding: 5px 0!important;
+}
 
 
 
