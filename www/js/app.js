@@ -1,7 +1,7 @@
 // Ionic Starter App
 var jsonWrap = [];//存放所有的注数
 
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.util', 'starter.SignInCtrl', 'starter.RaceColorFootballCtrl', 'starter.BigLottoCtrl', 'starter.bettingDetailCtrl', 'starter.RecommendCtrl', 'starter.InformationCtrl', 'starter.BiddingFootballCtrl', 'starter.MineCtrl'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.util', 'starter.SignInCtrl', 'starter.RaceColorFootballCtrl', 'starter.BigLottoCtrl', 'starter.bettingDetailCtrl', 'starter.RecommendCtrl', 'starter.InformationCtrl', 'starter.BiddingFootballCtrl', 'starter.MineCtrl', 'starter.registerCtrl'])
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -38,6 +38,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         $urlRouterProvider.when('','/sign-in');
         
         $stateProvider
+            //注册
+            .state('register', {
+                url: '/register',
+                cache: 'false',
+                templateUrl: 'templates/register.html',
+                controller: 'registerCtrl'
+            })
             //登录tabs  ivew
             .state('signin', {
                 url: '/sign-in',

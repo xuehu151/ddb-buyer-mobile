@@ -1,1 +1,156 @@
 /* Empty. Add your own CSS if you like */
+/*字体库*/
+@font-face {
+    font-family: 'iconddb';
+    src:  url('../lib/ionic/fonts/iconddb.eot?sartr8');
+    src:  url('../lib/ionic/fonts/iconddb.eot?sartr8#iefix') format('embedded-opentype'),
+    url('../lib/ionic/fonts/iconddb.ttf?sartr8') format('truetype'),
+    url('../lib/ionic/fonts/iconddb.woff?sartr8') format('woff'),
+    url('../lib/ionic/fonts/iconddb.svg?sartr8#iconddb') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'iconddb' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-drawer:before {
+    content: "\e924";
+}
+.icon-message:before {
+    content: "\e916";
+    color: #d11d1d;
+}
+.icon-message-outline:before {
+    content: "\e91a";
+}
+.icon-recommend-outline:before {
+    content: "\e922";
+}
+.icon-recommend:before {
+    content: "\e923";
+    color: #d11d1d;
+}
+.icon-winning-red:before {
+    content: "\e910";
+    color: #d11d1d;
+}
+.icon-home-outline:before {
+    content: "\e913";
+}
+.icon-mine:before {
+    content: "\e91b";
+    color: #d11d1d;
+}
+.icon-mine-outline:before {
+    content: "\e91c";
+}
+.icon-home:before {
+    content: "\e91d";
+    color: #d11d1d;
+}
+.icon-color-shop:before {
+    content: "\e91e";
+    color: #de732d;
+}
+.icon-order:before {
+    content: "\e91f";
+    color: #ffaf03;
+}
+.icon-PushSingle:before {
+    content: "\e920";
+    color: #f69679;
+}
+.icon-setting:before {
+    content: "\e921";
+    color: #07d6ba;
+}
+.icon-drawer-failure:before {
+    content: "\e903";
+}
+.icon-payment:before {
+    content: "\e904";
+}
+.icon-checkNumber:before {
+    content: "\e905";
+    color: #d81e06;
+}
+.icon-limit:before {
+    content: "\e906";
+    color: #008bf4;
+}
+.icon-minus:before {
+    content: "\e907";
+    color: #d81e06;
+}
+.icon-corner-leftTop:before {
+    content: "\e908";
+    color: #d81e06;
+}
+.icon-corner-rightbottomGrey:before {
+    content: "\e909";
+}
+.icon-corner-rightBottom:before {
+    content: "\e90a";
+    color: #d81e06;
+}
+.icon-corner-rightTop:before {
+    content: "\e901";
+}
+.icon-record:before {
+    content: "\e90b";
+}
+.icon-bubble:before {
+    content: "\e90c";
+    color: #707070;
+}
+.icon-voucher:before {
+    content: "\e90d";
+}
+.icon-calendar:before {
+    content: "\e90e";
+}
+.icon-clock:before {
+    content: "\e90f";
+    color: #d81e06;
+}
+.icon-withdraw:before {
+    content: "\e911";
+    color: #f50;
+}
+.icon-withdraw-grey:before {
+    content: "\e912";
+}
+.icon-oval:before {
+    content: "\e914";
+}
+.icon-question:before {
+    content: "\e915";
+}
+.icon-winning-grey:before {
+    content: "\e902";
+}
+.icon-RoundPoor:before {
+    content: "\e917";
+    color: #d81e06;
+}
+.icon-Stick:before {
+    content: "\e918";
+    color: #d81e06;
+}
+.icon-freeze:before {
+    content: "\e919";
+}
