@@ -1,7 +1,7 @@
 // Ionic Starter App
 var jsonWrap = [];//存放所有的注数
 
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.util', 'starter.SignInCtrl', 'starter.RaceColorFootballCtrl', 'starter.BigLottoCtrl', 'starter.bettingDetailCtrl', 'starter.RecommendCtrl', 'starter.InformationCtrl', 'starter.BiddingFootballCtrl', 'starter.MineCtrl', 'starter.registerCtrl'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.util', 'starter.SignInCtrl', 'starter.RaceColorFootballCtrl', 'starter.BigLottoCtrl', 'starter.bettingDetailCtrl', 'starter.RecommendCtrl', 'starter.InformationCtrl', 'starter.BiddingFootballCtrl', 'starter.MineCtrl', 'starter.registerCtrl', 'starter.verifyCtrl', 'starter.forgetPasswordCtrl', 'starter.allOrdersCtrl'])
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -44,6 +44,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                 cache: 'false',
                 templateUrl: 'templates/register.html',
                 controller: 'registerCtrl'
+            })
+            //手机验证
+            .state('verify', {
+                url: '/verify',
+                cache: 'false',
+                templateUrl: 'templates/verify.html',
+                controller: 'verifyCtrl'
+            })
+            //忘记密码
+            .state('forgetPassword', {
+                url: '/forgetPassword',
+                cache: 'false',
+                templateUrl: 'templates/forgetPassword.html',
+                controller: 'forgetPasswordCtrl'
             })
             //登录tabs  ivew
             .state('signin', {
@@ -172,6 +186,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                         controller: 'MineCtrl'
                     }
                 }
+            })
+
+            //全部订单
+            .state('allOrders', {
+                url: '/allOrders',
+                cache: 'false',
+                prefetchTemplate:false,
+                templateUrl: 'templates/allOrders.html',
+                controller: 'allOrdersCtrl'
             });
     });
 

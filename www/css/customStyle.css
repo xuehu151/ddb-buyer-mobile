@@ -1,10 +1,11 @@
-*{
+* {
     font-family: 新宋体;
 }
 
-a{
+a {
     text-decoration: none;
 }
+
 /**********登陆页面************/
 
 /*app logo*/
@@ -22,12 +23,51 @@ a{
     font-size: 28px;
 }
 
-/*登录*/
-.borderTop{
+/*登录 注册 验证*/
+.marginLeft-6 a.button {
+    margin-left: 10px !important;
+    line-height: 40px;
+}
+
+.marginLeft-6 .title {
+    padding-top: 6px;
+}
+
+.borderTop {
     border: none;
     border-bottom: solid 1px #cecece;
     margin-top: 5px;
     padding: 6px 0 5px 4px;
+}
+
+.borderTop .input-label {
+    max-width: 70px;
+    margin-left: 5px;
+}
+
+.deal {
+    line-height: 35px;
+    margin: 0 auto;
+}
+
+.deal span {
+    color: #a4a4a4;
+}
+
+.deal i {
+    color: #c7221b;
+}
+
+.deal span,
+.deal i {
+    font-size: 13px;
+}
+
+.borderTop button {
+    margin-right: 10%;
+    border: 1px solid #e9eaec;
+    background: none;
+    padding: 3px 5px;
 }
 
 /********** 首页************/
@@ -45,8 +85,6 @@ a{
 .betHeader {
     padding: .2em 0 .2em .6em;
     margin: 0;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #f1f1f1;
 }
 
 .betHeader i {
@@ -135,50 +173,31 @@ a{
     width: 3rem;
 }
 
-.itemFloat h4 {
+.itemFloat h6 {
     margin: 0 auto;
 }
 
 .itemFloat p {
     margin: 0 auto;
     padding: 0 2px;
+    font-size: 10px;
 }
 
 .itemFloat .pitch {
-    height: 1.2em;
-    width: 3em;
-    padding: 0;
+    height: 16px;
+    width: 3.5em;
+    padding: 2px 0;
     background: #d11a15;
     color: white;
     position: relative;
-    line-height: 1.2em;
-}
-
-.itemFloat .pitch i {
-    width: 1.2em;
-    height: 1.2em;
-    border-radius: 50%;
-    position: absolute;
-    top: 0;
-    background: #d11a15;
-    left: -16%;
-    z-index: -999;
-}
-
-.itemFloat .pitch i::after {
-    content: '';
-    width: 1.2em;
-    height: 1.2em;
-    border-radius: 50%;
-    position: absolute;
-    top: 0;
-    background: #d11a15;
-    left: 245%;
-    z-index: -999;
+    line-height: 12px;
+    display: inline-block;
+    margin: 0 auto;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
 }
 
 /*start 新闻资讯*/
-.list .listText{
+.list .listText {
     overflow: hidden;
     /*text-overflow: ellipsis;*/
     /*white-space: normal;*/
@@ -189,7 +208,7 @@ a{
     position: relative;
 }
 
-.list .dataTime i{
+.list .dataTime i {
     font-size: .8em;
     color: #a2a2a2;
 }
@@ -197,64 +216,66 @@ a{
 /***********************************推荐页面************************************/
 
 /*综合排序*/
-.SortTotal{
+.SortTotal {
     border-bottom: 1px solid #e9e9e9;
 }
-.popover-arrow{
+
+.popover-arrow {
     position: absolute;
-    left:0;
-    top:0;
+    left: 0;
+    top: 0;
 }
 
-.popover-wrapper{
+.popover-wrapper {
     position: absolute;
     top: 38px;
     left: -10px;
 }
 
-.popover-wrapper h4{
-    padding:  0px 5px 6px 5px;
+.popover-wrapper h4 {
+    padding: 0px 5px 6px 5px;
     border-bottom: 1px solid #e9e9e9;
     color: #5f5f5f;
     font-size: small;
 }
 
-
 .item-avatar {
     min-height: 120px;
     position: relative;
 }
-.orderItem{
+
+.orderItem {
     position: absolute;
     left: 0;
     top: 60px;
 }
 
-.orderItem h4{
+.orderItem h4 {
     color: #dfae46;
     font-size: 1em;
 }
 
-.orderItem p{
+.orderItem p {
     color: #999999;
     font-size: .5em;
     padding-top: 6px;
     letter-spacing: 1px;
 }
 
-.orderItem h5{
+.orderItem h5 {
     padding-top: 2px;
     color: #bd0806;
     font-size: .3em;
 }
 
-.endData{
+.endData {
     position: relative;
     padding: 10px;
     border-bottom: 1px solid #f3f3f3;
     color: #a9a9a9;
 }
-.endData .btn{
+
+.endData .btn {
     position: absolute;
     top: 7px;
     right: 10px;
@@ -273,53 +294,55 @@ a{
     margin: auto;
 }
 
-.football a > p{
+.football a > p {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
     height: 40px;
 }
 
-.longTime{
+.longTime {
     color: #a2a2a2;
-    right:0;
+    right: 0;
     line-height: 100%;
     font-size: .6em;
     padding: 2px;
 }
-.longTime p{
+
+.longTime p {
     color: #a2a2a2;
     font-size: .6em;
 }
-.longTime i{
+
+.longTime i {
     margin-left: 1.5em;
 }
 
-.LotteryImg img{
+.LotteryImg img {
     width: 60%;
 }
 
-.LotteryImg .col{
+.LotteryImg .col {
     text-align: center;
 }
 
-.LotteryImg p{
+.LotteryImg p {
     color: #6e6e6e;
     font-family: 新宋体;
     margin-bottom: 2px;
 }
 
 /*文章详情页面*/
-.infoContent h3{
+.infoContent h3 {
     padding: 10px 15px;
 }
 
-.infoContent h5{
+.infoContent h5 {
     text-align: center;
     color: #a2a2a2;
 }
 
-.infoContent p{
+.infoContent p {
     text-indent: 30px;
     color: #a2a2a2;
     font-size: 1.2em;
@@ -327,7 +350,7 @@ a{
 }
 
 /*竞彩足球的下单详情页面*/
-.tabs-striped.tabs-stable .tab-item.tab-item-active{
+.tabs-striped.tabs-stable .tab-item.tab-item-active {
     border-color: #bf0806;
     margin-top: 2px;
 }
@@ -338,11 +361,13 @@ a{
 .list .item.item-accordion.ng-hide {
     line-height: 0;
 }
+
 .list .item.item-accordion.ng-hide-add,
 .list .item.item-accordion.ng-hide-remove {
     display: block !important;
 }
-.item.active.item-stable{
+
+.item.active.item-stable {
     background-color: #f8f8f8;
 }
 
@@ -352,23 +377,23 @@ a{
     padding: 10px 6px;
 }
 
-.footballListGroup .row{
+.footballListGroup .row {
     padding: 0;
     text-align: center;
 }
 
-.footballListGroup .col-70{
-   margin-left: 10px;
+.footballListGroup .col-70 {
+    margin-left: 10px;
 }
 
-.footballListGroup .tab-status{
+.footballListGroup .tab-status {
     position: relative;
-    width:100%;
+    width: 100%;
     border: solid 1px #c9c9c9;
     border-bottom: 0;
 }
 
-.footballListGroup > .row > i{
+.footballListGroup > .row > i {
     display: block;
     border-width: 1px;
     border-color: #d11d1d;
@@ -376,7 +401,7 @@ a{
     opacity: .6;
 }
 
-.footballListGroup .tab-status > span{
+.footballListGroup .tab-status > span {
     display: block;
     width: 0;
     height: 0;
@@ -385,11 +410,11 @@ a{
     border-top: 28px solid #bf0806;
     border-right: 28px solid transparent;
     position: absolute;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
 }
 
-.footballListGroup .tab-status > span > i{
+.footballListGroup .tab-status > span > i {
     position: absolute;
     top: -26px;
     left: 1px;
@@ -397,17 +422,17 @@ a{
     font-size: small;
 }
 
-.pitchStatus{
+.pitchStatus {
     background-color: #d11a15;
     color: white;
 }
 
-.un-pitchStatus{
+.un-pitchStatus {
     background-color: white;
     color: #a2a2a2;
 }
 
-.footballListGroup .col-70 h3{
+.footballListGroup .col-70 h3 {
     text-align: left;
     padding: 3px 0;
 }
@@ -419,35 +444,35 @@ a{
     line-height: 30px;
 }
 
-.footballListGroup .button.button-assertive{
+.footballListGroup .button.button-assertive {
     background-color: #d81b1b;
 }
 
-.head{
-    border-bottom:solid 1px #D1D3D6;
-    border-right:solid 1px #D1D3D6;
-    height:35px;
-    display:flex;
-    align-items:center;
-    width:33.3%;
+.head {
+    border-bottom: solid 1px #D1D3D6;
+    border-right: solid 1px #D1D3D6;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    width: 33.3%;
     font-size: .8em;
-    justify-content:center;
+    justify-content: center;
 }
 
 /*足球 底部按钮*/
-.football-order-btns{
+.football-order-btns {
     height: 110px;
     padding: 0 0;
 }
 
-.ensure-btn{
+.ensure-btn {
     width: 100%;
     height: 45px;
     padding: 0 0;
     border-bottom: 1px solid #c8c8c8;
 }
 
-.select-Several{
+.select-Several {
     background-color: #d11d1d;
     color: #ffffff;
     line-height: 35px;
@@ -455,15 +480,15 @@ a{
     letter-spacing: 1px;
 }
 
-.group-btn{
+.group-btn {
     position: absolute;
-    left:0;
+    left: 0;
     bottom: 10px;
     height: 45px;
     line-height: 45px;
 }
 
-.multiple-input input[type = 'text']{
+.multiple-input input[type = 'text'] {
     color: #dd2b1c;
     font-size: .9em;
     border: solid 1px #6e6e6e;
@@ -473,28 +498,28 @@ a{
     line-height: 100%;
 }
 
-    /*大乐透的下单详情页面*/
+/*大乐透的下单详情页面*/
 .bar.bar-light .title {
     color: #d11d1d;
 }
 
-.PickAreaContent{
+.PickAreaContent {
     background-color: #f6f6f6;
 }
 
 .drawTime span,
-.drawTime i{
+.drawTime i {
     color: #838383;
 }
 
-.num-sum-red{
+.num-sum-red {
     padding-bottom: 8px;
     border-bottom: solid 1px #e2e2e2;
 }
 
-.red-ball-bg-white{
+.red-ball-bg-white {
     width: 2.9em;
-    height:2.9em;
+    height: 2.9em;
     border: solid 1px #d11d1d;
     background-color: #ffffff;
     color: #d11d1d;
@@ -505,9 +530,9 @@ a{
     display: inline-block;
 }
 
-.red-ball-bg-red{
+.red-ball-bg-red {
     width: 2.9em;
-    height:2.9em;
+    height: 2.9em;
     border: solid 1px #d11d1d;
     background-color: #d11d1d;
     color: #fff4fb;
@@ -518,14 +543,13 @@ a{
     display: inline-block;
 }
 
-.num-sum-blue{
+.num-sum-blue {
     padding-top: 8px;
 }
 
-
-.blue-ball-bg-white{
+.blue-ball-bg-white {
     width: 2.9em;
-    height:2.9em;
+    height: 2.9em;
     border: solid 1px #3f97d5;
     background-color: #ffffff;
     color: #3f97d5;
@@ -536,9 +560,9 @@ a{
     display: inline-block;
 }
 
-.blue-ball-bg-blue{
+.blue-ball-bg-blue {
     width: 2.9em;
-    height:2.9em;
+    height: 2.9em;
     border: solid 1px #3f97d5;
     background-color: #3f97d5;
     color: #fff4fb;
@@ -549,22 +573,22 @@ a{
     display: inline-block;
 }
 
-.order-btns{
+.order-btns {
     line-height: 60px;
     height: 60px;
     border-top: 1px solid rgba(160, 160, 160, 0.3);
 }
 
-.order-btns .button-assertive{
+.order-btns .button-assertive {
     height: 30px;
 }
 
-.clearBtn{
+.clearBtn {
     height: 60px;
     line-height: 60px;
 }
 
-.clearBtn p{
+.clearBtn p {
     padding: 0 0;
 }
 
@@ -579,31 +603,32 @@ a{
     line-height: 15px;
 }
 
-.clearBtn h1{
+.clearBtn h1 {
     padding: 10px 0;
 }
 
-.pitchOnRed{
+.pitchOnRed {
     background: #d11d1d;
     color: white;
 }
+
 /*popover 弹出框*/
-.popover{
-    top: 38px!important;
+.popover {
+    top: 38px !important;
     width: 100px;
     height: 120px;
     padding: 2px 5px;
-    border-radius: 2px!important;
+    border-radius: 2px !important;
 }
 
-.popover h5{
+.popover h5 {
     padding: 0 0 5px 0;
     border-bottom: 1px solid #b7b7b7;
     text-align: center;
     line-height: 15px;
 }
 
-.popover h5:last-child{
+.popover h5:last-child {
     border-bottom: 0;
 }
 
@@ -704,7 +729,7 @@ a{
 
 /*投注详情页面*/
 
-.title-marginTop{
+.title-marginTop {
     margin-top: 10px;
 }
 
@@ -713,16 +738,16 @@ a{
     background: #f5f5f5;
 }
 
-.bg-grey .deleteIcon{
+.bg-grey .deleteIcon {
     margin-left: -5px;
 }
 
-.bg-grey .deleteIconGroup{
+.bg-grey .deleteIconGroup {
     margin-top: -5px;
     margin-left: -5px;
 }
 
-.bg-grey .betting-detail-ul{
+.bg-grey .betting-detail-ul {
     padding-bottom: 60px;
 }
 
@@ -738,7 +763,7 @@ a{
         line-height: 30px*/
 }
 
-.addHeader50{
+.addHeader50 {
     height: 50px;
     padding: 0;
 }
@@ -761,7 +786,7 @@ a{
     padding-left: 16%;
 }
 
-.h50 .button.button-light{
+.h50 .button.button-light {
     line-height: 40px;
 }
 
@@ -841,75 +866,74 @@ input.bigLotto-input2:checked:before {
     color: red;
 }
 
-.submitBtn{
-    padding: 5px 0!important;
+.submitBtn {
+    padding: 5px 0 !important;
 }
 
-.titleText{
+.titleText {
     position: absolute;
     z-index: 9999;
     top: 3.5%;
     text-align: center;
     left: 50%;
-    transform: translate(-50%,0);
+    transform: translate(-50%, 0);
     color: #d11d1d;
 }
 
 /*我的*/
-.user{
+.user {
     width: 100%;
     height: 200px;
     background-size: contain;
     background: url("../img/userBg.png") center center no-repeat;
 }
 
-.user .user-top{
+.user .user-top {
     height: 70%;
 }
 
-.user .col-40{
+.user .col-40 {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.user .col-60{
+.user .col-60 {
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
-.user .user-portrait{
-    width:70px;
+.user .user-portrait {
+    width: 70px;
     height: 70px;
-    margin:auto;
+    margin: auto;
     border-radius: 50%;
     border: solid 2px #FFF;
     overflow: hidden;
 }
 
-.user .user-portrait img{
+.user .user-portrait img {
     width: 100%;
 }
 
 .user .user-info,
-.user .user-info h4{
+.user .user-info h4 {
     color: #fffefb;
 }
 
-
-.user .user-bottom{
+.user .user-bottom {
     height: 30%;
     background: rgba(0, 0, 0, 0.15);
     margin-top: 0;
     padding: 8px 0;
 }
 
-.user .user-bottom .col-33:first-child{
+.user .user-bottom .col-33:first-child {
     border-left: none;
 }
 
-.user .user-bottom .col-33{
+.user .user-bottom .col-33 {
     border-left: #fffefb 1px solid;
     text-align: center;
     color: #fffefb;
@@ -917,61 +941,166 @@ input.bigLotto-input2:checked:before {
     font-family: "Liberation Mono";
 }
 
-.user .user-bottom .col-33 p{
+.user .user-bottom .col-33 p {
     margin: 2px 0;
 }
 
-.account{
+.account {
     background: #fffefb;
 }
 
-.account .col-33{
+.account .col-33 {
     text-align: center;
 }
 
-.account .col-33 img{
+.account .col-33 img {
     width: 60%;
 }
 
-.account .col-33 p{
+.account .col-33 p {
     color: #999999;
     margin: 2px 0;
 }
 
-.orders{
+.orders {
     margin-top: 5px;
 }
 
-.all-orders{
+.all-orders {
     height: 100px;
     background: white;
     border-top: solid 1px #ededed;
 }
 
-.all-orders .col-25{
+.all-orders .col-25 {
     text-align: center;
     padding: 15px 0;
 }
 
-.all-orders .col-25 i{
+.all-orders .col-25 i {
     font-size: 20px;
     font-weight: 600;
 }
 
-.all-orders .col-25 a{
+.all-orders .col-25 a {
     color: #555555;
 }
 
-.all-orders .col-25 p{
+.all-orders .col-25 p {
     padding: 10px 3px;
 }
 
-.margin-5{
+.margin-5 {
     margin-top: 5px;
     margin-bottom: 0;
 }
 
+/*全部订单页面*/
+.all-orders-list .font-style5,
+.order-detail-list .font-style5 {
+    font-weight: bold;
+    color: #d11d1d;
+}
 
+.order-detail-list .explain-info {
+    color: #d11d1d;
+    font-size: 12px;
+    line-height: 25px;
+    margin-left: 20px;
+}
+
+.allorders-scroll {
+    top: 10px;
+    width: 100%;
+    height: 90%;
+}
+
+.all-orders .tab-toselect {
+    display: flex;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: solid 1px #a4a4a4;
+}
+
+.all-orders .tab_default {
+    border: none;
+    height: 24px;
+    line-height: 24px;
+    padding: 0;
+    margin: 8px 0;
+    font-size: 13px;
+    color: #999;
+    border-right: 1px solid #c8c8c8;
+    text-align: center;
+    flex: 1;
+}
+
+.all-orders .tab_select {
+    color: #0e3bad;
+    font-size: 15px;
+
+}
+
+.all-orders .tab_default:last-child {
+    border-right: none;
+}
+
+.all-orders-list .each-order {
+    position: relative;
+    margin-top: 11px;
+}
+
+.all-orders-list .each-order:first-child {
+    margin-top: 0;
+}
+
+.all-orders .padding-h8 {
+    padding: 8px 16px;
+    color: #333;
+}
+
+.all-orders .lt-style {
+    color: #333
+}
+
+.all-orders-list .font-style3 {
+    color: #333;
+    font-size: 11px;
+}
+
+.all-orders-list .font-style1,
+.order-detail-list .font-style1 {
+    color: #d11d1d;
+    font-size: 13px;
+}
+
+.all-orders-list .font-style2 {
+    font-size: 11px;
+    color: #999;
+}
+
+.all-orders-list .font-style4 {
+    font-size: 10px;
+    color: #0055ff;
+}
+
+.all-orders-list .font-style6 {
+    font-size: 11px;
+    color: #d11d1d;
+}
+
+.all-orders-list .font-style7 {
+    color: #333;
+    font-size: 13px;
+}
+
+.all-orders-list .prize-img {
+    position: absolute;
+    z-index: 3;
+    top: 20%;
+    left: 52%;
+    width: 70px;
+}
 
 
 

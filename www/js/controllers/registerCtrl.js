@@ -3,6 +3,8 @@
  */
 angular.module ('starter.registerCtrl', [])
     //注册
-    .controller ('registerCtrl', function ($scope) {
-    
+    .controller ('registerCtrl', function ($scope, $state) {
+        $scope.sureNextStep = function () {
+            $state.go('verify');
+        }
     });
