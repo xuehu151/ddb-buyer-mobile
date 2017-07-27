@@ -1,0 +1,39 @@
+<ion-view view-title="提现">
+     <ion-nav-bar class="bar bar-assertive">
+        <ion-nav-buttons ng-click="" side="left">
+            <a class="button button-icon ion-ios-arrow-left light" href="#/tab/mine" style="font-size: 1.5em;line-height: 31px;">
+            </a>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-content style="background: #f7f5f5;">
+        <div class="getMoney">
+            <p class="withDrawMoney"> 提现金额:</p>
+            <div class="money-input">
+                <i>￥</i>
+                <input
+                    type="number"
+                    ng-model="widthdrawMoney.money"
+                    ng-change="whetherOK()" >
+            </div>
+            <div class="tips-area">
+                <p class="money-tips" ng-cloak  ng-show="whetherShow1" >
+                    可提现金额{{widthdrawAble}}元
+                    <a href="" style="color: #0098ff" ng-click="widthdrawAll()">
+                        全部提现
+                    </a>
+                </p>
+                <p class="cant-widthdraw">{{cantWidthdraw}}</p>
+            </div>
+            <div class="padding">
+                <a href=""
+                   class=" button button-block"
+                   ng-class="{true:'widthdraw-btn-grey',false:'widthdraw-btn-red'}[whetherShow2]"
+                   ng-click="whetherShow2 || confirmWidthdraw(widthdrawMoney)"
+                   ng-disable="whetherShow2">
+                    确 认
+                </a>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -984,10 +984,26 @@ input.bigLotto-input2:checked:before {
 
 .mine-all-orders .col-25 a {
     color: #555555;
+    display: inline-block;
 }
 
 .mine-all-orders .col-25 p {
     padding: 10px 3px;
+}
+
+.red-point{
+    font-size: 12px!important;
+    border-radius: 50%;
+    padding: 4px;
+    border: solid 1px #d11d1d;
+    z-index: 99;
+    text-decoration: none;
+    display: inline-block;
+    color: #d11d1d;
+    line-height: 7px;
+    position: relative;
+    top: -13px;
+    left: -3px;
 }
 
 .margin-5 {
@@ -996,6 +1012,10 @@ input.bigLotto-input2:checked:before {
 }
 
 /*全部订单页面*/
+.all-orders-title .title{
+    margin: 4px 10px;
+}
+
 .all-orders-list .font-style5,
 .order-detail-list .font-style5 {
     font-weight: bold;
@@ -1178,18 +1198,140 @@ input.bigLotto-input2:checked:before {
     width: 70px;
 }
 
+/*上拉菜单*/
+.action-sheet-group{
+    border-radius: 15px;
+}
 
+.action-sheet .button{
+    color: #999999;
+    padding: 5px 0;
+    font-size: 15px;
+}
 
+.action-sheet .button.active,
+.action-sheet .button.activated{
+    color: #d11d1d;
+}
 
+/*提现*/
+.getMoney .withDrawMoney{
+    margin: 20px 0 5px 0;
+    padding: 8px 50px;
+    font-size: 18px;
+    color: #363535;
+}
 
+.getMoney .money-input{
+    width: 90%;
+    margin: 20px auto 0;
+    padding: 0 30px;
+    display: flex;
+    vertical-align: bottom;
+    border-bottom: solid 1px  #cececf;
+}
 
+.money-input i{
+    font-size: x-large;
+    font-weight: 600;
+}
 
+.getMoney input[type=number]{
+    width: 90%;
+    padding: 20px 10px 30px 5px;
+    font-size: x-large;
+    background: none;
+}
 
+.money-tips{
+    margin: 10px auto;
+    padding: 10px 5px;
+    width: 80%;
+    text-align: left;
+}
 
+.widthdraw-btn-red{
+    color: #fff;
+    background: #d11d1d;
+}
 
+.widthdraw-btn-grey {
+    color: #fff;
+    background: #ccc;
+}
 
+.tips-area{
+    height: 60px;
+    margin-top: 5px;
+}
 
+.cant-widthdraw{
+    color: #d11d1d;
+    margin: 10px auto;
+    padding: 10px 5px;
+    width: 80%;
+    text-align: left;
+}
 
+/*提现失败*/
+.drawFailed{
+    width: 100%;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.drawFailed .icon-RoundPoor{
+    font-size: 7em;
+}
+
+.drawFailed p{
+    margin: 20px 0;
+    color: #1a1a1a;
+}
+
+.drawFailed .button{
+    background: #d11d1d;
+    color: white;
+}
+
+.proof{
+    margin-top: 15px;
+    background: white;
+}
+
+.proof .item-area{
+    height: 100%;
+    background: white;
+}
+
+.proof .item-area textarea{
+    width: 100%;
+    resize: none;
+    height: 100%;
+    color: #999999;
+    text-align: start;
+    padding: 5px 6px;
+}
+
+.proof .item-stable{
+    border-top: 0;
+    background: white;
+    border-bottom: solid 1px #f7f5f5;
+    color: #d21e1e;
+    font-weight: 600;
+}
+
+.proof .item-stable i{
+    color: #999999;
+}
+
+.proof .active{
+    background: #fff!important;
+}
+
+.item-accordion{
+    padding: 10px 10px;
+}
 
 
 

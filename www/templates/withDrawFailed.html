@@ -1,0 +1,37 @@
+<ion-view view-title="提现">
+    <ion-nav-bar class="bar bar-assertive">
+        <ion-nav-buttons ng-click="" side="left">
+            <a class="button button-icon ion-ios-arrow-left light" href="#withdraw" style="font-size: 1.5em;line-height: 31px;">
+            </a>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-content style="background: #f7f5f5;">
+        <div class="drawFailed">
+            <i class="icon-RoundPoor"></i>
+            <p>申请未通过审核，请重新申请</p>
+            <div class="padding">
+                <a href="" class="button button-block">确 定</a>
+            </div>
+        </div>
+        <div class="proof">
+            <ion-list>
+                <div ng-repeat="group in groups">
+                    <ion-item class="item-stable item-icon-right"
+                              ng-click="toggleGroup(group)"
+                              ng-class="{active: isGroupShown(group)}" >
+                        <i class="icon" ng-class="isGroupShown(group) ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+                        查看凭证
+                    </ion-item>
+                    <ion-item class="item-accordion"
+                              ng-repeat="item in group.items"
+                              ng-show="isGroupShown(group)" >
+                        <div class="item-area">
+                            <textarea rows="6" cols="50" placeholder="提现失败的原因......"></textarea>
+                        </div>
+                    </ion-item>
+                </div>
+            </ion-list>
+        </div>
+    </ion-content>
+</ion-view>

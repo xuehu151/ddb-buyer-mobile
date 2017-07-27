@@ -1,11 +1,11 @@
-<ion-view view-title = "全部订单">
-    <ion-nav-bar class="bar bar-assertive ">
+<ion-view view-title = "{{viewList}}">
+    <ion-nav-bar class="bar bar-assertive all-orders-title">
         <ion-nav-buttons side="left">
             <a class="button button-icon ion-ios-arrow-left" href="#/tab/mine" style="font-size: 1.5em;line-height: 31px;">
             </a>
         </ion-nav-buttons>
         <ion-nav-buttons  side="right">
-            <button class="button button-icon ion ion-android-arrow-dropdown" style="position: fixed; left: 57%;">
+            <button class="button button-icon ion ion-android-arrow-dropdown" style="position: fixed; left: 57%;margin-top: px;"  ng-click="show()">
             </button>
         </ion-nav-buttons>
     </ion-nav-bar>
@@ -25,7 +25,7 @@
                                 <i>待付款</i>
                             </div>
                             <div class="col col-right">
-                                <h3><span>23</span>小时候截止购买</h3>
+                                <h3><span>23</span>小时后截止购买</h3>
                                 <ins>￥<span>15.00</span>元</ins>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                                 <i>待付款</i>
                             </div>
                             <div class="col col-right">
-                                <h3><span>23</span>小时候截止购买</h3>
+                                <h3><span>23</span>小时后截止购买</h3>
                                 <ins>￥<span>15.00</span>元</ins>
                             </div>
                         </div>

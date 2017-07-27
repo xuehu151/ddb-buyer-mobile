@@ -32,22 +32,28 @@
         <div class="account">
             <div class="row">
                 <div class="col col-33">
-                    <img src="./img/pay.png" alt="">
-                    <p>充值</p>
+                    <a href="">
+                        <img src="./img/pay.png" alt="">
+                        <p>充值</p>
+                    </a>
                 </div>
                 <div class="col col-33">
-                    <img src="./img/withdraw.png" alt="">
-                    <p>提现</p>
+                    <a href="#withdraw">
+                        <img src="./img/withdraw.png" alt="">
+                        <p>提现</p>
+                    </a>
                 </div>
                 <div class="col col-33">
-                    <img src="./img/detail.png" alt="">
-                    <p>明细</p>
+                    <a href="">
+                        <img src="./img/pay.png" alt="">
+                        <p>充值</p>
+                    </a>
                 </div>
             </div>
         </div>
         <div class="orders">
             <div class="list">
-                <a class="item item-icon-left item-icon-right" href="#allOrders">
+                <a class="item item-icon-left item-icon-right" href="" ng-click="allListOrder(0)">
                     <i class="icon icon-order"></i>
                     全部订单
                     <i class="icon ion-ios-arrow-right"></i>
@@ -55,26 +61,26 @@
                 <div class="mine-all-orders">
                     <div class="row">
                         <div class="col col-25">
-                            <a href="#">
-                                <i class="icon icon-payment"></i>
+                            <a href="" ng-click="allListOrder(0)">
+                                <i class="icon icon-payment"><ins class="red-point" ng-show="bragePayment?true:false">2</ins></i>
                                 <p>待付款</p>
                             </a>
                         </div>
                         <div class="col col-25">
-                            <a href="#">
-                                <i class="icon icon-drawer" style="font-weight: lighter;"></i>
+                            <a href="" ng-click="allListOrder(1)">
+                                <i class="icon icon-drawer" style="font-weight: lighter;"><ins class="red-point" ng-show="brageDrawer?true:false">1</ins></i>
                                 <p>待出票</p>
                             </a>
                         </div>
                         <div class="col col-25">
-                            <a href="#">
-                                <i class="icon icon-drawer-failure"></i>
+                            <a href="" ng-click="allListOrder(0)">
+                                <i class="icon icon-drawer-failure"><ins class="red-point" ng-show="brageDrawerFail?true:false">5</ins></i>
                                 <p>未出票</p>
                             </a>
                         </div>
                         <div class="col col-25">
-                            <a href="#">
-                                <i class="icon icon-record"></i>
+                            <a href="" ng-click="allListOrder(2)">
+                                <i class="icon icon-record"><ins class="red-point" ng-show="brageRecord?true:false">3</ins></i>
                                 <p>待开奖</p>
                             </a>
                         </div>
