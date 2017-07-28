@@ -1,0 +1,57 @@
+<ion-view view-title="充 值">
+    <ion-nav-bar class="bar bar-assertive">
+        <ion-nav-buttons ng-click="" side="left">
+            <a class="button button-icon ion-ios-arrow-left light" href="#/tab/mine" style="font-size: 1.5em;line-height: 31px;">
+            </a>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-content style="background: #f7f5f5;">
+        <div class="getMoney">
+            <p class="withDrawMoney"> 充值金额:</p>
+            <div class="money-input">
+                <i>￥</i>
+                <input
+                    type="number"
+                    ng-model="RechargeMoney.money"
+                    ng-change="RechargeOK()" >
+            </div>
+            <div class="padding">
+                <a href=""
+                   class=" button button-block"
+                   ng-class="{true:'widthdraw-btn-grey',false:'widthdraw-btn-red'}[Recharge]"
+                   ng-click="Recharge || RechargeSure()"
+                   ng-disable="Recharge">
+                    确 认
+                </a>
+            </div>
+
+            <div class="proof">
+                <ion-list>
+                    <div ng-repeat="group in groups">
+                        <ion-item class="item-stable item-icon-right"
+                                  ng-click="toggleGroup(group)"
+                                  ng-class="{active: isGroupShown(group)}" >
+                            <i class="icon" ng-class="isGroupShown(group) ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+                            上传凭证？
+                        </ion-item>
+                        <ion-item class="item-accordion"
+                                  ng-show="isGroupShown(group)" >
+                            <div class="item-area">
+                                <textarea rows="6" cols="50" placeholder="提现失败的原因......"></textarea>
+                                <div class="add-img">
+                                    <i class="add-img-icon ion-android-add"></i>
+                                </div>
+                                <p>*注:凭证保存时效为1个月。已上传凭证可在账单明细详情中查看;</p>
+                            </div>
+                        </ion-item>
+                    </div>
+                </ion-list>
+            </div>
+        </div>
+    </ion-content>
+
+
+</ion-view>
+
+

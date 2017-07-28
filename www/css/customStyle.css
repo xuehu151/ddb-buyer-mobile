@@ -1273,7 +1273,7 @@ input.bigLotto-input2:checked:before {
     text-align: left;
 }
 
-/*提现失败*/
+/*   提现  充值 */
 .drawFailed{
     width: 100%;
     text-align: center;
@@ -1281,6 +1281,10 @@ input.bigLotto-input2:checked:before {
 }
 
 .drawFailed .icon-RoundPoor{
+    font-size: 7em;
+}
+
+.drawFailed .icon-checkNumber{
     font-size: 7em;
 }
 
@@ -1332,6 +1336,114 @@ input.bigLotto-input2:checked:before {
 .item-accordion{
     padding: 10px 10px;
 }
+
+.add-img-icon{
+    font-size: 3em;
+    padding: 6px 15px;
+    display: table-cell;
+    color: #dddede;
+    background: none;
+    border: 1px solid #dddede;
+}
+
+.item-area p{
+    color: #fa6d69;
+    font-size: 9px;
+}
+
+/*密码验证模态框*/
+.pawCode{
+    position: absolute;
+    background: rgba(0, 0, 0, .6);
+}
+
+.account-modal {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.account-modal .icon{
+    font-size: 40px;
+    z-index: 9;
+    display: inline-table;
+    margin-left: -8px;
+    margin-top: 5px;
+}
+
+.account-modal ion-item,
+.account-modal .item-content {
+    color: #000;
+    font-size: 16px;
+    padding: 10px 16px;
+}
+
+.account-modal ion-item:first-child {
+    font-size: 17px;
+    text-align: center;
+    /*padding: 21px 16px;*/
+}
+
+.account-modal .disable-class .item-content {
+    background-color: #ccc;
+}
+
+.withdrawPawCode{
+    margin: 15px 0;
+}
+
+.withdrawPawCode input[type='password']{
+    width: 40px;
+    border-left: 1px solid #eeeeee;
+    height: 50px;
+    margin: 0 0;
+    padding-right: 0;
+    font-size: 2em;
+    line-height: 50px;
+    text-align: center;
+}
+
+.withdrawPawCode input[type='password']:first-child{
+    border-left: none;
+}
+
+.withdrawPawCode .item-input{
+    padding: 0 0 0 ;
+    border: solid 1px #c6c6c6;
+}
+
+.account-modal a{
+    display: block;
+    font-size: 12px;
+    text-align: end;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

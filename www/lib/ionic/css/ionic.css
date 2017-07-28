@@ -4713,7 +4713,7 @@ a.subdued:last-child {
     pointer-events: auto;
 }
 
-.platform-android .action-sheet-backdrop.active {
+/*.platform-android .action-sheet-backdrop.active {
     background-color: rgba(0, 0, 0, 0.2);
 }
 
@@ -4752,7 +4752,7 @@ a.subdued:last-child {
 
 .platform-android .action-sheet-has-icons .button {
     padding-left: 56px;
-}
+}*/
 
 .backdrop {
     position: fixed;

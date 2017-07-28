@@ -1,7 +1,7 @@
 // Ionic Starter App
 var jsonWrap = [];//存放所有的注数
 
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.util', 'starter.SignInCtrl', 'starter.RaceColorFootballCtrl', 'starter.BigLottoCtrl', 'starter.bettingDetailCtrl', 'starter.RecommendCtrl', 'starter.InformationCtrl', 'starter.BiddingFootballCtrl', 'starter.MineCtrl', 'starter.registerCtrl', 'starter.verifyCtrl', 'starter.forgetPasswordCtrl', 'starter.allOrdersCtrl', 'starter.withdrawCtrl', 'starter.withDrawFailedCtrl'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.util', 'starter.SignInCtrl', 'starter.RaceColorFootballCtrl', 'starter.BigLottoCtrl', 'starter.bettingDetailCtrl', 'starter.RecommendCtrl', 'starter.InformationCtrl', 'starter.BiddingFootballCtrl', 'starter.MineCtrl', 'starter.registerCtrl', 'starter.verifyCtrl', 'starter.forgetPasswordCtrl', 'starter.allOrdersCtrl', 'starter.withdrawCtrl', 'starter.withDrawFailedCtrl', 'starter.withDrawSuccessCtrl', 'starter.rechargeCtrl'])
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -211,6 +211,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                 prefetchTemplate:false,
                 templateUrl: 'templates/withDrawFailed.html',
                 controller: 'withDrawFailedCtrl'
+            })
+            //提现成功
+            .state('withDrawSuccess', {
+                url: '/withDrawSuccess',
+                cache: 'false',
+                prefetchTemplate:false,
+                templateUrl: 'templates/withDrawSuccess.html',
+                controller: 'withDrawSuccessCtrl'
+            })
+            //充值
+            .state('recharge', {
+                url: '/recharge',
+                cache: 'false',
+                prefetchTemplate:false,
+                templateUrl: 'templates/recharge.html',
+                controller: 'rechargeCtrl'
             });
     });
 
