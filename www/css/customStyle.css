@@ -1308,6 +1308,10 @@ input.bigLotto-input2:checked:before {
     background: white;
 }
 
+.item-area img{
+    max-width: 20%;
+}
+
 .proof .item-area textarea{
     width: 100%;
     resize: none;
@@ -1335,6 +1339,10 @@ input.bigLotto-input2:checked:before {
 
 .item-accordion{
     padding: 10px 10px;
+}
+
+.add-img{
+    display: inline-block;
 }
 
 .add-img-icon{

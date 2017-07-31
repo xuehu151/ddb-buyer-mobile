@@ -38,8 +38,10 @@
                         <ion-item class="item-accordion"
                                   ng-show="isGroupShown(group)" >
                             <div class="item-area">
-                                <textarea rows="6" cols="50" placeholder="提现失败的原因......"></textarea>
-                                <div class="add-img">
+                                <textarea rows="6" cols="50" placeholder="请输入备注或凭证说明......"></textarea>
+                                <img alt="" src="./img/user.jpg">
+                                <!--<span ng-if="item.imgSrc" ng-click="img_del($index)"></span>-->
+                                <div class="add-img" ng-click="pickImage()">
                                     <i class="add-img-icon ion-android-add"></i>
                                 </div>
                                 <p>*注:凭证保存时效为1个月。已上传凭证可在账单明细详情中查看;</p>

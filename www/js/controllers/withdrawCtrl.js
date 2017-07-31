@@ -11,6 +11,7 @@ angular.module ('starter.withdrawCtrl', [])
         
         //先定义后面取到数据替换
         $scope.widthdrawAble = 15;
+    
         
         $scope.whetherOK = function () {
             if ($scope.widthdrawMoney.money > 15) {
@@ -19,10 +20,10 @@ angular.module ('starter.withdrawCtrl', [])
                 $scope.whetherShow2 = true;
             }
             //小于1 disable
-            else if ($scope.widthdrawMoney.money <= 15) {
+            else if ($scope.widthdrawMoney.money < 1) {
                 $scope.cantWidthdraw = '';
                 $scope.whetherShow1 = true;
-                $scope.whetherShow2 = false;
+                $scope.whetherShow2 = true;
             }
             else if ($scope.widthdrawAble > 15 && $scope.widthdrawMoney.money != $scope.widthdrawAble) {
                 $scope.cantWidthdraw = '';
@@ -55,9 +56,6 @@ angular.module ('starter.withdrawCtrl', [])
                 })
                     .then (function (modal) {
                         modal.show ();
-                        
-                        
-                        
                         //关闭模态框
                         $scope.closeModal = function () {
                             modal.hide();

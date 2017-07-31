@@ -3,14 +3,38 @@
  */
 angular.module ('starter.rechargeCtrl', [])
     //充值
-    .controller ('rechargeCtrl', function ($scope, $state, $rootScope) {
+    .controller ('rechargeCtrl', function ($scope, $state, $rootScope, $cordovaImagePicker) {
         $scope.RechargeMoney = {money:''};
         $scope.Recharge = true; //控制提现提交按钮disable
+    
         $scope.RechargeOK = function () {
-            if ($scope.RechargeMoney.money > 0 || $scope.RechargeMoney.money === 'null'){
+            if ($scope.RechargeMoney.money > 0 ) {
                 $scope.Recharge = false;
+            }else {
+                $scope.Recharge = true;
             }
-            console.info($scope.RechargeMoney.money);
+        };
+        //拍照
+        $scope.pickImage = function () {
+            console.log("haha");
+            var options = {
+                maximumImagesCount: 9,
+                width: 800,
+                height: 800,
+                quality: 80
+            };
+            $cordovaImagePicker.getPictures(options)
+                .then(function (results) {
+                    console.log(results);
+                    
+                    for (var i = 0; i < results.length; i++) {
+                        console.log('Image URI: ' + results[i]);
+                    }
+                    
+                    $scope.imgSrc = results[0];
+                }, function (error) {
+                    // error getting photos
+                });
         };
         
         //充值确定按钮
