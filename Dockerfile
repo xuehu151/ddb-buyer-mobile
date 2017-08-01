@@ -5,7 +5,7 @@ FROM finfosoft/nodejs
 MAINTAINER zhangxuanchao "53536364@qq.com"
 
 #nodejs 文件上传到容器中
-ADD hhz-ddb-buyer-mobile.tar /home/app/webapps/
+ADD ddb-buyer-mobile.tar /home/app/webapps/
 ADD run.sh run.sh
 
 RUN chmod +x run.sh
