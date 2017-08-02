@@ -3,7 +3,7 @@
  */
 angular.module ('starter.rechargeCtrl', [])
     //充值
-    .controller ('rechargeCtrl', function ($scope, $state, $rootScope, $cordovaCamera) {
+    .controller ('rechargeCtrl', function ($scope, $state, $rootScope, $cordovaImagePicker) {
         $scope.RechargeMoney = {money:''};
         $scope.Recharge = true; //控制提现提交按钮disable
     
@@ -15,7 +15,7 @@ angular.module ('starter.rechargeCtrl', [])
             }
         };
         //拍照
-        /*$scope.pickImage = function () {
+        $scope.pickImage = function () {
             console.log("haha");
             var options = {
                 maximumImagesCount: 9,
@@ -35,33 +35,8 @@ angular.module ('starter.rechargeCtrl', [])
                 }, function (error) {
                     // error getting photos
                 });
-        };*/
-        $scope.pickImage = function () {
-            document.addEventListener ("deviceready", function () {
-                var options = {
-                    quality : 50,
-                    destinationType : Camera.DestinationType.DATA_URL,
-                    sourceType : Camera.PictureSourceType.CAMERA,
-                    allowEdit : true,
-                    encodingType : Camera.EncodingType.JPEG,
-                    targetWidth : 100,
-                    targetHeight : 100,
-                    popoverOptions : CameraPopoverOptions,
-                    saveToPhotoAlbum : false,
-                    correctOrientation : true
-                };
-        
-                $cordovaCamera.getPicture (options)
-                    .then (function (imageData) {
-                        alert (22131);
-                        var image = document.getElementById ('myImage');
-                        image.src = "data:image/jpeg;base64," + imageData;
-                    }, function (err) {
-                        // error
-                    });
-        
-            }, false);
         };
+
         //充值确定按钮
         $scope.RechargeSure = function () {
         
