@@ -14,7 +14,7 @@ angular.module ('starter.rechargeCtrl', [])
                 $scope.Recharge = true;
             }
         };
-        //拍照
+        /*//拍照
         $scope.pickImage = function () {
             console.log("haha");
             var options = {
@@ -35,7 +35,7 @@ angular.module ('starter.rechargeCtrl', [])
                 }, function (error) {
                     // error getting photos
                 });
-        };
+        };*/
 
         //充值确定按钮
         $scope.RechargeSure = function () {

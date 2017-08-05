@@ -1,7 +1,7 @@
 // Ionic Starter App
 var jsonWrap = [];//存放所有的注数
 
-angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services', 'starter.util', 'starter.SignInCtrl', 'starter.RaceColorFootballCtrl', 'starter.BigLottoCtrl', 'starter.bettingDetailCtrl', 'starter.RecommendCtrl', 'starter.InformationCtrl', 'starter.SuperLottoCtrl', 'starter.BiddingFootballCtrl', 'starter.MineCtrl', 'starter.registerCtrl', 'starter.verifyCtrl', 'starter.forgetPasswordCtrl', 'starter.allOrdersCtrl', 'starter.withdrawCtrl', 'starter.withDrawFailedCtrl', 'starter.withDrawSuccessCtrl', 'starter.rechargeCtrl'])
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services', 'starter.util', 'starter.SignInCtrl', 'starter.RaceColorFootballCtrl', 'starter.BigLottoCtrl', 'starter.bettingDetailCtrl', 'starter.RecommendCtrl', 'starter.InformationCtrl', 'starter.SuperLottoCtrl', 'starter.BiddingFootballCtrl', 'starter.MineCtrl', 'starter.registerCtrl', 'starter.verifyCtrl', 'starter.forgetPasswordCtrl', 'starter.allOrdersCtrl', 'starter.withdrawCtrl', 'starter.withDrawFailedCtrl', 'starter.withDrawSuccessCtrl', 'starter.rechargeCtrl', 'starter.accountDetailCtrl'])
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -16,7 +16,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
             }
         });
     })
-    .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
         //解决tabs在Android下局域顶部的方法
         $ionicConfigProvider.platform.ios.tabs.style('standard');
         $ionicConfigProvider.platform.ios.tabs.position('bottom');
@@ -29,8 +29,13 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
 
         $ionicConfigProvider.platform.ios.views.transition('ios');
         $ionicConfigProvider.platform.android.views.transition('android');
-
-         //隐藏ion-nav-back-button的文字
+    
+        /*//添加http请求头文件
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+        $httpProvider.defaults.headers.post['Accept'] = 'application/json, text/javascript, *!/!*; q=0.01';
+        $httpProvider.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest';*/
+    
+        //隐藏ion-nav-back-button的文字
         $ionicConfigProvider.backButton.text("");
         $ionicConfigProvider.backButton.previousTitleText(false);
     
@@ -196,7 +201,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
                 templateUrl: 'templates/allOrders.html',
                 controller: 'allOrdersCtrl'
             })
-            //提现withDrawFailed
+            //提现
             .state('withdraw', {
                 url: '/withdraw',
                 cache: 'false',
@@ -220,13 +225,21 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
                 templateUrl: 'templates/withDrawSuccess.html',
                 controller: 'withDrawSuccessCtrl'
             })
-            //充值
+            //充值accountDetail
             .state('recharge', {
                 url: '/recharge',
                 cache: 'false',
                 prefetchTemplate:false,
                 templateUrl: 'templates/recharge.html',
                 controller: 'rechargeCtrl'
+            })
+            //账户明细
+            .state('accountDetail', {
+                url: '/accountDetail',
+                cache: 'false',
+                prefetchTemplate:false,
+                templateUrl: 'templates/accountDetail.html',
+                controller: 'accountDetailCtrl'
             });
     });
 

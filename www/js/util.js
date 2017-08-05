@@ -4,13 +4,11 @@
  */
 angular.module ('starter.util', [])
     .factory ('$util', function ($http, $q, $ionicLoading) {
-        //Might use a resource here that returns a JSON array
-        var ipUrl = 'http://121.42.253.149:18820';       //服务器ip地址或者域名
-        //var ipUrl = 'http://192.168.1.118:8080';      //本地ip地址或者域名
-
+        var ipUrl = 'http://121.42.253.149:18818';       //服务器ip地址或者域名
+//        var ipUrl = 'http://192.168.1.19:8889';      //本地ip地址或者域名
         /* 接口地址  */
         var httpURL = {
-            initUrl: ipUrl + '/service/common/index1',   //初始化
+            registerUrl: ipUrl + '/buyer/auth/regist',   //注册
             initUrlNew: ipUrl + '/service/common/index',    //新用户
             getUserNameUrl: ipUrl + '/service/customer/add',    //注册框
             pl3AddUrl: ipUrl + '/service/lottery/pl3add', //排列3投注
@@ -51,16 +49,16 @@ angular.module ('starter.util', [])
                 return y + '-' + m + '-' + d;
             },
 
-            /*验证密码
-             * 密码由数字 字母 特殊字符的其中两种组成 6到24位
+            /*验证密码*/
+             /* 密码由数字 字母 特殊字符的其中两种组成 6到24位*/
              checkPassword: function (text) {
              var myreg = /((?=.*[a-z])(?=.*\d)|(?=[a-z])(?=.*[.#@!~%^&*])|(?=.*\d)(?=.*[.#@!~%^&*]))[a-z\d.#@!~%^&*]{6,24}/i;
              return myreg.test (text);
-             },*/
+             },
 
             /*验证手机号*/
             checkPhone: function (text) {
-                var myreg = /^1[34578]\d{9}$/;
+                var myreg = /^1[3578]\d{9}$/;
                 return myreg.test (text);
             },
 
