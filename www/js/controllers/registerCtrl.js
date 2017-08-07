@@ -4,19 +4,18 @@
 //var ipUrl = 'http://192.168.1.109:8889';
 var ipUrl = 'http://121.42.253.149:18818';
 angular.module ('starter.registerCtrl', [])
-    //注册
+//注册
     .controller ('registerCtrl', function ($scope, $state, $http, $ionicLoading, $util, $cordovaToast) {
-    
+        
         $scope.userInfo = {
-            userName: "",
-            password: "",
-            rePassword: ""
+            userName : "",
+            password : "",
+            rePassword : ""
         };
         $scope.sureNextStep = function () {
-          $cordovaToast.showLongBottom ("登录成功");
-            /*$ionicLoading.show ();
+            $ionicLoading.show ();
             var data = {
-                account: $scope.userInfo.userName,
+                account : $scope.userInfo.userName,
                 password : $scope.userInfo.password,
                 shopId : 1
             };
@@ -28,48 +27,46 @@ angular.module ('starter.registerCtrl', [])
                     "Content-Type" : "application/json"
                 }
             })
-//            $loginService.register (data)
+            //            $loginService.register (data)
                 .then (function (response) {
                     $ionicLoading.hide ();
-    
+                    $cordovaToast.showLongBottom ("登录成功");
                     console.log (response);
                     var users = $util.setUserInfo (response.data);
                     var userInfo = $util.getUserInfo ();
                     console.info (userInfo);
                     
-                    if($scope.userInfo.userName == '' || $scope.userInfo.userName.length < 6){
-//                        alert('请输入账号');
-                      $cordovaToast.showLongBottom ("登录成功");
-                        return
-                    }else if($scope.userInfo.password == ''){
-                        alert('请输入密码');
-                        return
-                    }else if($scope.userInfo.rePassword == ''){
-                        alert('请再次输入确认密码');
+                    if ($scope.userInfo.userName == '' || $scope.userInfo.userName.length < 6) {
+                        $cordovaToast.showShortCenter ("请输入账号");
                         return
                     }
-                    
-                    /!*if ($scope.userInfo.password != $scope.userInfo.rePassword) {
-                        alert ('两次密码不一致');
+                    else if ($scope.userInfo.password == '') {
+                        $cordovaToast.showShortCenter ("请输入密码");
+                        return
+                    }
+                    else if ($scope.userInfo.rePassword == '') {
+                        $cordovaToast.showShortCenter ("请输入密码");
+                        return
+                    } else if ($scope.userInfo.password != $scope.userInfo.rePassword) {
+                        $cordovaToast.showShortCenter ("两次密码不一致");
                         return
                     }
                     else {
-                        $state.go('verify');
-                    }*!/
+                        $state.go ('verify');
+                    }
                     
                     
                     
                 }, function (error) {
-                    console.log ("获取列表失败");
+                    $cordovaToast.showShortCenter ("数据加载失败");
                     $ionicLoading.hide ();
                 });
-            */
-            
+    
             /*$http.get (url + "?action=register", {
-                withCredentials: true,
-                params: {
-                    "useraccount": $scope.userInfo.userName,
-                    "userpassword": $scope.userInfo.password
+                withCredentials : true,
+                params : {
+                    "useraccount" : $scope.userInfo.userName,
+                    "userpassword" : $scope.userInfo.password
                 }
             })
                 .success (function (data) {
@@ -78,15 +75,15 @@ angular.module ('starter.registerCtrl', [])
                     if (true == data.type) {
                         //alert("注册成功，请登录")
                         var alertPopup = $ionicPopup.alert ({
-                            template: '注册成功，请登录',
-                            okText: "确定"
+                            template : '注册成功，请登录',
+                            okText : "确定"
                         });
                         $state.go ('signin');
                     }
                     else {
                         var alertPopup = $ionicPopup.alert ({
-                            template: data.msg,
-                            okText: "确定"
+                            template : data.msg,
+                            okText : "确定"
                         });
                     }
                 })
