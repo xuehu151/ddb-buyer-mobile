@@ -5,17 +5,17 @@
             </a>
         </ion-nav-buttons>
         <ion-nav-buttons ng-click="" side="right">
-            <button class="button button-clear"  style="font-size: 1em;line-height: 31px;">筛选</button>
+            <button class="button button-clear"  style="font-size: 1em;line-height: 31px;"  ng-click="openFilterModal()">筛选</button>
         </ion-nav-buttons>
     </ion-nav-bar>
 
     <ion-content>
         <div class="head-detail">
             <span>本月</span>
-            <i class="icon-calendar"></i>
+            <i class="icon-calendar" ng-click="openDatePopover($event)"></i>
         </div>
         <div class="list list-detail">
-            <a class="item" href="#">
+            <a class="item" href="#mineDetails">
                 <div class="row">
                     <div class="col col-20">
                         <ul>
@@ -24,9 +24,9 @@
                         </ul>
                     </div>
                     <div class="col col-80">
-                        <img src="http://www.runoob.com/try/demo_source/venkman.jpg">
-                        <h2>Venkman</h2>
-                        <p>Back off, man. I'm a scientist.</p>
+                        <img src="../img/disburse.png">
+                        <h2>-13.00</h2>
+                        <p>购彩支出</p>
                     </div>
                 </div>
             </a>
@@ -40,9 +40,9 @@
                         </ul>
                     </div>
                     <div class="col col-80">
-                        <img src="http://www.runoob.com/try/demo_source/venkman.jpg">
-                        <h2>Venkman</h2>
-                        <p>Back off, man. I'm a scientist.</p>
+                        <img src="../img/temporary.png">
+                        <h2>+1000</h2>
+                        <p>充值</p>
                     </div>
                 </div>
             </a>

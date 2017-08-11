@@ -1,0 +1,12 @@
+<ion-modal-view id="filtrate">
+    <div class="account-modal4">
+        <div class="top">完善资料</div>
+        <div class="middle">
+            <button ng-repeat="btnNum in btnArrText" ng-class="">{{btnNum}}</button>
+        </div>
+        <div class="row bottom">
+            <div class="col" style="color: #999;border-right: 1px solid #bdbdbd;" ng-click="closeFilterModal()">取 消</div>
+            <div class="col" style="color: #d32626;" ng-click="sureFilter()">确 定</div>
+        </div>
+    </div>
+</ion-modal-view>

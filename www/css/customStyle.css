@@ -991,8 +991,8 @@ input.bigLotto-input2:checked:before {
     padding: 10px 3px;
 }
 
-.red-point{
-    font-size: 12px!important;
+.red-point {
+    font-size: 12px !important;
     border-radius: 50%;
     padding: 4px;
     border: solid 1px #d11d1d;
@@ -1012,7 +1012,7 @@ input.bigLotto-input2:checked:before {
 }
 
 /*全部订单页面*/
-.all-orders-title .title{
+.all-orders-title .title {
     margin: 4px 10px;
 }
 
@@ -1034,7 +1034,7 @@ input.bigLotto-input2:checked:before {
     height: 90%;
 }
 
-.all-orders{
+.all-orders {
     background: #f6f6f6;
 }
 
@@ -1084,11 +1084,11 @@ input.bigLotto-input2:checked:before {
     color: #333
 }
 
-.all-orders-list .row-top{
+.all-orders-list .row-top {
     padding: 0 0 10px 10px;
 }
 
-.all-orders-list .row-top i{
+.all-orders-list .row-top i {
     width: 30px;
     height: 16px;
     font-size: 12px;
@@ -1098,45 +1098,45 @@ input.bigLotto-input2:checked:before {
     border-radius: 12px 12px 12px 12px;
 }
 
-.all-orders-list .row-top h3{
+.all-orders-list .row-top h3 {
     padding: 0 0 5px 0;
     font-size: 14px;
     color: #777777;
 }
 
-.all-orders-list .row-top ins{
+.all-orders-list .row-top ins {
     font-size: 13px;
     color: #e02121;
     text-decoration: none;
     font-weight: bold;
 }
 
-.all-orders-list .col-right{
+.all-orders-list .col-right {
     text-align: right;
     padding-right: 15px;
     padding-bottom: 0;
 }
 
-.all-orders-list .col-right h3 span{
+.all-orders-list .col-right h3 span {
     font-size: 13px;
 }
 
-.all-orders-list .col-right small{
+.all-orders-list .col-right small {
     font-size: 13px;
     color: #777777;
 }
 
-.all-orders-list .row-bottom{
+.all-orders-list .row-bottom {
     border-top: solid 1px #dedede;
     padding: 0 5px;
 }
 
-.all-orders-list .row-bottom a{
+.all-orders-list .row-bottom a {
     color: #666;
     font-size: 13px;
 }
 
-.all-orders-list .col-right a.button{
+.all-orders-list .col-right a.button {
     color: white;
     padding: 2px 10px;
     min-height: 25px;
@@ -1144,20 +1144,12 @@ input.bigLotto-input2:checked:before {
     font-size: 13px;
 }
 
-.row-top .win-img{
+.row-top .win-img {
     font-size: 50px;
     position: absolute;
-    left:50%;
+    left: 50%;
     color: #e02121;
 }
-
-
-
-
-
-
-
-
 
 .all-orders-list .font-style3 {
     color: #333;
@@ -1199,58 +1191,58 @@ input.bigLotto-input2:checked:before {
 }
 
 /*上拉菜单*/
-.action-sheet-group{
+.action-sheet-group {
     border-radius: 15px;
 }
 
-.action-sheet .button{
+.action-sheet .button {
     color: #999999;
     padding: 5px 0;
     font-size: 15px;
 }
 
 .action-sheet .button.active,
-.action-sheet .button.activated{
+.action-sheet .button.activated {
     color: #d11d1d;
 }
 
 /*提现*/
-.getMoney .withDrawMoney{
+.getMoney .withDrawMoney {
     margin: 20px 0 5px 0;
     padding: 8px 50px;
     font-size: 18px;
     color: #363535;
 }
 
-.getMoney .money-input{
+.getMoney .money-input {
     width: 90%;
     margin: 20px auto 0;
     padding: 0 30px;
     display: flex;
     vertical-align: bottom;
-    border-bottom: solid 1px  #cececf;
+    border-bottom: solid 1px #cececf;
 }
 
-.money-input i{
+.money-input i {
     font-size: x-large;
     font-weight: 600;
 }
 
-.getMoney input[type=number]{
+.getMoney input[type=number] {
     width: 90%;
     padding: 20px 10px 30px 5px;
     font-size: x-large;
     background: none;
 }
 
-.money-tips{
+.money-tips {
     margin: 10px auto;
     padding: 10px 5px;
     width: 80%;
     text-align: left;
 }
 
-.widthdraw-btn-red{
+.widthdraw-btn-red {
     color: #fff;
     background: #d11d1d;
 }
@@ -1260,12 +1252,12 @@ input.bigLotto-input2:checked:before {
     background: #ccc;
 }
 
-.tips-area{
+.tips-area {
     height: 60px;
     margin-top: 5px;
 }
 
-.cant-widthdraw{
+.cant-widthdraw {
     color: #d11d1d;
     margin: 10px auto;
     padding: 10px 5px;
@@ -1274,45 +1266,45 @@ input.bigLotto-input2:checked:before {
 }
 
 /*   提现  充值 */
-.drawFailed{
+.drawFailed {
     width: 100%;
     text-align: center;
     margin: 30px 0;
 }
 
-.drawFailed .icon-RoundPoor{
+.drawFailed .icon-RoundPoor {
     font-size: 7em;
 }
 
-.drawFailed .icon-checkNumber{
+.drawFailed .icon-checkNumber {
     font-size: 7em;
 }
 
-.drawFailed p{
+.drawFailed p {
     margin: 20px 0;
     color: #1a1a1a;
 }
 
-.drawFailed .button{
+.drawFailed .button {
     background: #d11d1d;
     color: white;
 }
 
-.proof{
+.proof {
     margin-top: 15px;
     background: white;
 }
 
-.proof .item-area{
+.proof .item-area {
     height: 100%;
     background: white;
 }
 
-.item-area img{
+.item-area img {
     max-width: 20%;
 }
 
-.proof .item-area textarea{
+.proof .item-area textarea {
     width: 100%;
     resize: none;
     height: 100%;
@@ -1321,7 +1313,7 @@ input.bigLotto-input2:checked:before {
     padding: 5px 6px;
 }
 
-.proof .item-stable{
+.proof .item-stable {
     border-top: 0;
     background: white;
     border-bottom: solid 1px #f7f5f5;
@@ -1329,23 +1321,23 @@ input.bigLotto-input2:checked:before {
     font-weight: 600;
 }
 
-.proof .item-stable i{
+.proof .item-stable i {
     color: #999999;
 }
 
-.proof .active{
-    background: #fff!important;
+.proof .active {
+    background: #fff !important;
 }
 
-.item-accordion{
+.item-accordion {
     padding: 10px 10px;
 }
 
-.add-img{
+.add-img {
     display: inline-block;
 }
 
-.add-img-icon{
+.add-img-icon {
     font-size: 3em;
     padding: 6px 15px;
     display: table-cell;
@@ -1354,13 +1346,138 @@ input.bigLotto-input2:checked:before {
     border: 1px solid #dddede;
 }
 
-.item-area p{
+.item-area p {
     color: #fa6d69;
     font-size: 9px;
 }
 
+/*明细详情*/
+.DetailInfo {
+    background: white;
+    margin-top: -15px;
+    padding-top: 20px;
+}
+
+.detail-title {
+    margin: 15px 0 0 15px;
+    text-align: center;
+    font-size: 18px;
+    color: #333333;
+    font-weight: 600;
+    height: 40px;
+    line-height: 40px;
+    /*定义盒子*/
+    display: flex;
+    /* 使子元素水平居中 */
+    justify-content: center;
+    /* 使子元素垂直居中 */
+    align-items: center;
+}
+
+.detail-title i {
+    display: inline-block;
+    font-size: xx-large;
+    vertical-align: middle;
+}
+
+.detail-title span {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.trading-status {
+    height: 100px;
+    margin: 15px 10px;
+}
+
+.trading-status p {
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    margin: 20px auto;
+}
+
+.trading-status > span {
+    display: table;
+    margin: 25px auto;
+    font-size: 12px;
+    color: #8d8e8d;
+}
+
+.detail-list {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 10px;
+}
+
+.detail-list span {
+    font-size: 16px;
+    color: #333333;
+    font-weight: 600;
+}
+
+.detail-list ins {
+    text-decoration: none;
+    float: right;
+    margin-right: 10px;
+    font-size: 14px;
+    color: #999999;
+}
+
+#filtrate {
+    position: absolute;
+    background: rgba(0, 0, 0, .6);
+}
+
+.account-modal4 {
+    position: absolute;
+    top: 25%;
+    width: 74.4%;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    transform: translate(-50%, -0);
+    text-align: center;
+    border-radius: 8px;
+}
+
+.account-modal4 .top {
+    border-radius: 8px 8px 0 0;
+    font-size: 14px;
+    color: #333333;
+    height: 47px;
+    line-height: 47px;
+    border-bottom: 1px solid #d11d1d;
+    background-color: #fff;
+}
+
+.account-modal4 .middle {
+    padding: 18px 0 12px;
+    text-align: center;
+    border-bottom: 1px solid #bdbdbd;
+    background-color: #f6f6f6;
+}
+
+.account-modal4 .middle button {
+    background: none;
+    border: 1px solid #a7a6a6;
+    padding: 10px;
+    margin: 10px 15px;
+    width: 35%;
+    border-radius: 4px;
+}
+
+.account-modal4 .bottom {
+    font-size: 12px;
+    line-height: 28px;
+    text-align: center;
+    background-color: #fff;
+    padding: 0;
+    border-radius:  0 0 8px 8px;
+}
+
 /*密码验证模态框*/
-.pawCode{
+.pawCode {
     position: absolute;
     background: rgba(0, 0, 0, .6);
 }
@@ -1371,7 +1488,7 @@ input.bigLotto-input2:checked:before {
     width: 100%;
 }
 
-.account-modal .icon{
+.account-modal .icon {
     font-size: 40px;
     z-index: 9;
     display: inline-table;
@@ -1395,11 +1512,11 @@ input.bigLotto-input2:checked:before {
     background-color: #ccc;
 }
 
-.withdrawPawCode{
+.withdrawPawCode {
     margin: 15px 0;
 }
 
-.withdrawPawCode input[type='password']{
+.withdrawPawCode input[type='password'] {
     width: 40px;
     border-left: 1px solid #eeeeee;
     height: 50px;
@@ -1410,43 +1527,43 @@ input.bigLotto-input2:checked:before {
     text-align: center;
 }
 
-.withdrawPawCode input[type='password']:first-child{
+.withdrawPawCode input[type='password']:first-child {
     border-left: none;
 }
 
-.withdrawPawCode .item-input{
-    padding: 0 0 0 ;
+.withdrawPawCode .item-input {
+    padding: 0 0 0;
     border: solid 1px #c6c6c6;
 }
 
-.account-modal a{
+.account-modal a {
     display: block;
     font-size: 12px;
     text-align: end;
 }
 
 /*  明细  */
-.head-detail{
+.head-detail {
     line-height: 35px;
     height: 35px;
     background: #efeff4;
 }
 
-.head-detail span{
+.head-detail span {
     margin-left: 18px;
 }
 
-.head-detail i{
+.head-detail i {
     float: right;
     margin-right: 17px;
     margin-top: 10px;
 }
 
-.list-detail .item{
+.list-detail .item {
     padding: 0;
 }
 
-.list-detail .col-20{
+.list-detail .col-20 {
     width: 70px;
     min-height: 70px;
     text-align: center;
@@ -1455,23 +1572,40 @@ input.bigLotto-input2:checked:before {
     align-items: center;
 }
 
-.list-detail .col-80{
+.list-detail .col-80 {
     padding-left: 60px;
     align-self: center;
+    font-size: 15px;
+    font-weight: 600;
 }
 
-.list-detail .col-80 img{
+.list-detail .col-80 img {
     position: absolute;
     top: 25%;
     left: 80px;
-    max-width: 40px;
-    max-height: 40px;
+    max-width: 50px;
+    max-height: 50px;
     width: 100%;
     height: 100%;
     border-radius: 50%;
 }
 
+.popoverView {
+    border-radius: 4px !important;
+    width: 110px;
+    height: 150px;
+}
 
+.popoverView > .datePopOver {
+    padding: 0 4px;
+    margin: 6px 0;
+}
+
+.popoverView > .datePopOver h4 {
+    text-align: center;
+    margin: 0 0;
+    padding: 6px 0;
+}
 
 
 

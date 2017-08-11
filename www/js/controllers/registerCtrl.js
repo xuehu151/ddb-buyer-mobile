@@ -30,13 +30,12 @@ angular.module ('starter.registerCtrl', [])
             //            $loginService.register (data)
                 .then (function (response) {
                     $ionicLoading.hide ();
-                    $cordovaToast.showLongBottom ("登录成功");
                     console.log (response);
                     var users = $util.setUserInfo (response.data);
                     var userInfo = $util.getUserInfo ();
                     console.info (userInfo);
                     
-                    if ($scope.userInfo.userName == '' || $scope.userInfo.userName.length < 6) {
+                    if ($scope.userInfo.userName == '' || $scope.userInfo.userName.length <= 6) {
                         $cordovaToast.showShortCenter ("请输入账号");
                         return
                     }
@@ -45,7 +44,7 @@ angular.module ('starter.registerCtrl', [])
                         return
                     }
                     else if ($scope.userInfo.rePassword == '') {
-                        $cordovaToast.showShortCenter ("请输入密码");
+                        $cordovaToast.showShortCenter ("请再次输入密码");
                         return
                     } else if ($scope.userInfo.password != $scope.userInfo.rePassword) {
                         $cordovaToast.showShortCenter ("两次密码不一致");
