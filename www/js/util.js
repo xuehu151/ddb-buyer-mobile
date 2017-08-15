@@ -3,13 +3,13 @@
  * 类描述：服务器地址访问类
  */
 angular.module ('starter.util', [])
-    .factory ('$util', function ($http, $q, $ionicLoading) {
-        var ipUrl = 'http://121.42.253.149:18818';       //服务器ip地址或者域名
-//        var ipUrl = 'http://192.168.1.19:8889';      //本地ip地址或者域名
+    .factory ('$util', function ($http, $q, $ionicLoading, $cordovaToast) {
+//        var ipUrl = 'http://121.42.253.149:18818';       //服务器ip地址或者域名
+        var ipUrl = 'http://192.168.1.109:8080';      //本地ip地址或者域名
         /* 接口地址  */
         var httpURL = {
             registerUrl: ipUrl + '/buyer/auth/regist',   //注册
-            initUrlNew: ipUrl + '/service/common/index',    //新用户
+            loginUrl: ipUrl + '/buyer/auth/login',   //登录
             getUserNameUrl: ipUrl + '/service/customer/add',    //注册框
             pl3AddUrl: ipUrl + '/service/lottery/pl3add', //排列3投注
             pl5AddUrl: ipUrl + '/service/lottery/pl5add', //排列5投注
@@ -52,8 +52,8 @@ angular.module ('starter.util', [])
             /*验证密码*/
              /* 密码由数字 字母 特殊字符的其中两种组成 6到24位*/
              checkPassword: function (text) {
-             var myreg = /((?=.*[a-z])(?=.*\d)|(?=[a-z])(?=.*[.#@!~%^&*])|(?=.*\d)(?=.*[.#@!~%^&*]))[a-z\d.#@!~%^&*]{6,24}/i;
-             return myreg.test (text);
+                 var myreg = /((?=.*[a-z])(?=.*\d)|(?=[a-z])(?=.*[.#@!~%^&*])|(?=.*\d)(?=.*[.#@!~%^&*]))[a-z\d.#@!~%^&*]{6,24}/i;
+                 return myreg.test (text);
              },
 
             /*验证手机号*/
@@ -88,7 +88,7 @@ angular.module ('starter.util', [])
                     //return error
                     $ionicLoading.hide ();
                     deferred.reject (response);
-                    //$cordovaToast.showLongBottom ('网络访问超时');
+                    $cordovaToast.showLongBottom ('网络访问超时');
                 });
                 return promise;
             }

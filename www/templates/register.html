@@ -4,30 +4,45 @@
             <a href="#/tab/mine" class="button button-clear ion ion-ios-arrow-left" style="font-size: 2em;">
             </a>
         </ion-nav-buttons>
-    </ion-nav-bar>
+    </ion-nav-bar>1
 
     <ion-content class="has-header">
         <div class="list list-inset">
-            <label class="item item-input borderTop">
-                <span class="input-label" >账 号
-                        </span>
-                <input type="text" ng-model="userInfo.userName" placeholder="请输要注册账号">
-            </label>
-            <label class="item item-input borderTop">
-                <span class="input-label"> 密 码</span>
-                <input type="password" ng-model="userInfo.password" placeholder="请输入登录密码">
-            </label>
-            <label class="item item-input borderTop">
-                <span class="input-label"> 确认密码</span>
-                <input type="password" ng-model="userInfo.rePassword" placeholder="请再次输入登录密码">
-            </label>
+            <form action="" name="loginForm">
+                <label class="item item-input borderTop">
+                    <span class="input-label" >账 号</span>
+                    <input type="text"
+                           placeholder="请输要注册账号"
+                           ng-minlength = 6
+                           name="userAccount"
+                           onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"
+                           ng-pattern=''
+                           ng-model="userInfo.userName">
+                    <span style="font-size: .6em;color: red;" ng-show="loginForm.userAccount.$dirty && loginForm.userAccount.$invalid">账号至少为6位&nbsp;</span>
+                </label>
+                <label class="item item-input borderTop">
+                    <span class="input-label"> 密 码</span>
+                    <input type="password"
+                           placeholder="请输入登录密码"
+                           ng-minlength = 6
+                           name="password"
+                           onKeyUp="value=value.replace(/\D/g,'')"
+                           ng-model="userInfo.password">
+                    <span style="font-size: .6em;color: red;" ng-show="loginForm.password.$dirty && loginForm.password.$invalid">密码至少为6位数字&nbsp;</span>
+                </label>
+                <label class="item item-input borderTop">
+                    <span class="input-label"> 确认密码</span>
+                    <input type="password"
+                           placeholder="请再次输入登录密码"
+                           ng-model="userInfo.rePassword">
+                </label>
+            </form>
         </div>
         <div class="padding">
             <button class="button button-block button-assertive" ng-click="sureNextStep()">
                确 定
             </button>
         </div>
-
     </ion-content>
 
     <ion-footer-bar class=" button-clear">

@@ -1,6 +1,8 @@
 <ion-view view-title="大乐透">
-    <ion-nav-bar class="bar bar-header bar-assertive" >
-        <ion-nav-back-button class="button button-icon icon ion-ios-arrow-left"></ion-nav-back-button>
+    <ion-nav-bar class="bar bar-assertive titles">
+        <ion-nav-buttons side="left" ng-click="">
+            <a href="#BigLotto" class="button button-icon icon ion-ios-arrow-left"></a>
+        </ion-nav-buttons>
         <ion-nav-buttons side="right">
             <button class="button button-clear" ng-click="showSaveAlert()">保存</button>
         </ion-nav-buttons>
@@ -21,16 +23,16 @@
                         <i class="icon ion-android-close dark"></i>
                     </a>
                     <div class="betting-num num-bg-red">
-                        <i ng-repeat="redItem in liItem.red" ng-bind="redItem.num"></i>
+                        <i ng-repeat="redItem in liItem.red track by $index" ng-bind="redItem.num"></i>
                     </div>
                     <div class="betting-num num-bg-blue">
-                        <i ng-repeat="blueItem in liItem.blue" ng-bind="blueItem.num"></i>
+                        <i ng-repeat="blueItem in liItem.blue track by $index" ng-bind="blueItem.num"></i>
                     </div>
                     <a class="button button-clear " href="" ng-click="editThisOrder($index)">
                         <i class="icon ion-ios-arrow-right dark"></i>
                     </a>
                 </li>
-                <li class="item item-button-left item-button-right" ng-repeat="liAutoAdd in liAutoAdds">
+                <li class="item item-button-left item-button-right" ng-repeat="liAutoAdd in liAutoAdds track by $index">
                     <a class="button button-clear deleteIconGroup">
                         <i class="icon ion-android-close dark"></i>
                     </a>

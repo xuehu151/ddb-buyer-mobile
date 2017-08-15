@@ -1476,6 +1476,19 @@ input.bigLotto-input2:checked:before {
     border-radius:  0 0 8px 8px;
 }
 
+.addBtnClassRed{
+    background: #d32626!important;
+    color: white;
+    border: 1px solid #d32626!important;
+}
+
+.addBtnClassGray{
+    background: #ffffff!important;
+    color: #333333;
+    border: 1px solid #888888;
+}
+
+
 /*密码验证模态框*/
 .pawCode {
     position: absolute;
@@ -1607,6 +1620,24 @@ input.bigLotto-input2:checked:before {
     padding: 6px 0;
 }
 
+/*走势图 历史开奖 玩法说明 popover*/
+.trendPopoverView {
+    border-radius: 4px !important;
+    width: 90px;
+    height: 100px;
+}
+
+.trendPopoverView > .trendPopOver {
+    padding: 0 4px;
+    margin: 6px 0;
+}
+
+.trendPopoverView > .trendPopOver h5 {
+    text-align: center;
+    margin: 0 0;
+    padding: 6px 0;
+    color: #333333;
+}
 
 
 

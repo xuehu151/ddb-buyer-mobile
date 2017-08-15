@@ -14,17 +14,30 @@
     <ion-content class="has-header">
         <div class="app-logo"><img src="img/lottery.png" width="180"></div>
         <div class="list list-inset">
-            <label class="item item-input borderTop">
-                <!--<i class="icon ion-ios-person" style="font-size: 1.5em;"></i>-->
-                <span class="input-label" style="padding-right: 22px; margin-left: 5px;  width: auto;">账 号
-                        </span>
-                <input type="text" ng-model="user.username" placeholder="请输入用户名" >
-            </label>
-            <label class="item item-input borderTop">
-                <!--<i class="icon ion-ios-locked" style="font-size: 1.5em;"></i>-->
-                <span class="input-label" style="padding-right: 22px; margin-left: 5px; width: auto;"> 密 码</span>
-                <input type="password" ng-model="user.password" placeholder="请输入密码" >
-            </label>
+            <form action="" name="signForm">
+                <label class="item item-input borderTop">
+                    <!--<i class="icon ion-ios-person" style="font-size: 1.5em;"></i>-->
+                    <span class="input-label" style="padding-right: 22px; margin-left: 5px;  width: auto;">账 号</span>
+                    <input type="text"
+                           placeholder="请输入用户名"
+                           ng-minlength = 6
+                           name="userInfo"
+                           onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"
+                           ng-model="users.userName" >
+                    <span style="font-size: .6em;color: red;" ng-show="signForm.userInfo.$dirty && signForm.userInfo.$invalid">账号至少为6位数字/字母&nbsp;</span>
+                </label>
+                <label class="item item-input borderTop">
+                    <!--<i class="icon ion-ios-locked" style="font-size: 1.5em;"></i>-->
+                    <span class="input-label" style="padding-right: 22px; margin-left: 5px; width: auto;"> 密 码</span>
+                    <input type="password"
+                           placeholder="请输入密码"
+                           ng-minlength = 6
+                           name="pwd"
+                           onKeyUp="value=value.replace(/\D/g,'')"
+                           ng-model="users.password">
+                    <span style="font-size: .6em;color: red;" ng-show="signForm.pwd.$dirty && signForm.pwd.$invalid">密码至少为6位数字&nbsp;</span>
+                </label>
+            </form>
         </div>
         <div class="padding">
             <button class="button button-block button-assertive" ng-click="signIn(user)">

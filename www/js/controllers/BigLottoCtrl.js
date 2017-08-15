@@ -66,7 +66,6 @@ angular.module ('starter.BigLottoCtrl', [])
                     }
                 }
             }
-
             noteCount ();//调取多少注以及多少钱
         };
 
@@ -118,7 +117,6 @@ angular.module ('starter.BigLottoCtrl', [])
                     }
                 }
             }
-
             noteCount ();//调取多少注以及多少钱函数
         };
 
@@ -146,7 +144,6 @@ angular.module ('starter.BigLottoCtrl', [])
 
         //随机选择   红蓝  色球
         $scope.randomBall = function () {
-
             //处理随机选取红色球***********************
             for (var i = 0; i < 35; i++) {//首先清空选中的号码效果
                 $scope.numDataRed[i].check = false;
@@ -201,7 +198,6 @@ angular.module ('starter.BigLottoCtrl', [])
                 $scope.NoteMoney = '0';
             }
         }
-
         /* console.log(filterDataRed.length);
          console.log(filterDataBlue.length);*/
 
@@ -255,9 +251,10 @@ angular.module ('starter.BigLottoCtrl', [])
                         }
                         // console.log(filterDataBlue1)
                         //以对象的方式存放每一注的  红篮球 的数据
-                        var jsonInner = { red : filterDataRed1, blue : filterDataBlue1 };
-
-
+                        var jsonInner = {
+                            red : filterDataRed1,
+                            blue : filterDataBlue1
+                        };
                         /**
                          * 1.如果是在bettingDetail中点击修改订单过来的,则把这个序号的内容变成本次确定的号码
                          * 2.如果不是则push新的号码
@@ -284,8 +281,13 @@ angular.module ('starter.BigLottoCtrl', [])
             }
         };
 
+        $scope.trendHistoryLottery = ['走势图','历史开奖','玩法说明'];
+        $scope.clickHide = function (listBtnNum) {
+            console.info(listBtnNum);
+            $scope.popover.hide ();
+        };
         // .fromTemplate() 方法
-        $ionicPopover.fromTemplateUrl ('popover.html', {
+        $ionicPopover.fromTemplateUrl ('templates/rightTopPopover.html', {
             scope : $scope
         })
             .then (function (popover) {
@@ -295,19 +297,10 @@ angular.module ('starter.BigLottoCtrl', [])
         $scope.openPopover = function ($event) {
             $scope.popover.show ($event);
         };
-        $scope.closePopover = function () {
-            $scope.popover.hide ();
-        };
-        // 清除浮动框
-        $scope.$on ('$destroy', function () {
-            $scope.popover.remove ();
-        });
-        // 在隐藏浮动框后执行
-        $scope.$on ('popover.hidden', function () {
-            // 执行代码
-        });
-        // 移除浮动框后执行
-        $scope.$on ('popover.removed', function () {
-            // 执行代码
-        });
+   
+     
+     
+     
+     
+     
     });

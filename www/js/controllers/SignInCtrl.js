@@ -1,24 +1,62 @@
 /**
  * Created by admin on 2017/7/24.
  */
+var ipUrl = 'http://121.42.253.149:18818';
+
 angular.module ('starter.SignInCtrl', [])
 //登录
-    .controller ('SignInCtrl', function ($scope, $state, $ionicPopup, $ionicLoading) {
+    .controller ('SignInCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $cordovaToast, $util, $loginService) {
+    
+        $scope.users = {
+            userName : "",
+            password : ""
+        };
         
         $scope.signIn = function (user) {
             
-            /* if (typeof(user) == 'undefined') {
-             
-             var alertPopup = $ionicPopup.alert({
-             template: '<p style="text-align: center;">请填写登录信息</p>',
-             okText: "确定"
-             });
-             return;
-             }
-             $ionicLoading.show();*/
-            
-            $state.go ('tab.home');
-            $ionicLoading.hide ();
-            
+            var data = {
+                account : $scope.users.userName,
+                password : $scope.users.password
+            };
+    
+            if ($scope.users.userName == '' || $scope.users.userName.length < 6) {
+                alert('请输入账号');
+                $cordovaToast.showShortCenter ("请输入账号");
+                return
+            }
+            else if($scope.users.password == ''){
+                alert('请输入密码');
+                $cordovaToast.showShortCenter ("请输入密码");
+                return
+            }
+    
+            $ionicLoading.show ({
+                template: 'Loading...'
+            });
+            $http ({
+                method : "POST",
+                url : ipUrl + '/buyer/auth/login',
+                data : data,
+                headers : {
+                    "Content-Type" : "application/json"
+                }
+            })
+            // $loginService.register (data)
+                .then (function (response) {
+                    $ionicLoading.hide ();
+                    var setUserInfo = $util.setUserInfo (response.data);
+                    var userInfo = $util.getUserInfo ();
+                    console.info (userInfo);
+                    if(userInfo.error == '0'){
+                        $state.go ('tab.home');
+                        $cordovaToast.showShortCenter ("登陆成功");
+                    }else {
+                        alert (userInfo.info);
+                        $cordovaToast.showShortCenter (userInfo.info);
+                    }
+                }, function (error) {
+                    $cordovaToast.showShortCenter ("登陆失败，请重试!");
+                    $ionicLoading.hide ();
+                });
         };
     });

@@ -30,10 +30,10 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
         $ionicConfigProvider.platform.ios.views.transition('ios');
         $ionicConfigProvider.platform.android.views.transition('android');
     
-        /*//添加http请求头文件
+        //添加http请求头文件
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-        $httpProvider.defaults.headers.post['Accept'] = 'application/json, text/javascript, *!/!*; q=0.01';
-        $httpProvider.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest';*/
+        $httpProvider.defaults.headers.post['Accept'] = 'application/json, text/javascript, */*; q=0.01';
+        $httpProvider.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest';
     
         //隐藏ion-nav-back-button的文字
         $ionicConfigProvider.backButton.text("");
