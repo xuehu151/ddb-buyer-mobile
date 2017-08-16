@@ -8,7 +8,7 @@ angular.module('starter.services', [])
             },
             //登录
             login: function (data) {
-                return $util.httpPostRequest($util.getHttpURL().registerUrl, data);
+                return $util.httpPostRequest($util.getHttpURL().loginUrl, data);
             }
         
             

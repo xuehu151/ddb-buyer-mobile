@@ -1,6 +1,7 @@
 /**
  * Created by admin on 2017/7/24.
  */
+//var ipUrl = 'http://192.168.1.109:8080';
 var ipUrl = 'http://121.42.253.149:18818';
 
 angular.module ('starter.SignInCtrl', [])
@@ -20,12 +21,10 @@ angular.module ('starter.SignInCtrl', [])
             };
     
             if ($scope.users.userName == '' || $scope.users.userName.length < 6) {
-                alert('请输入账号');
                 $cordovaToast.showShortCenter ("请输入账号");
                 return
             }
             else if($scope.users.password == ''){
-                alert('请输入密码');
                 $cordovaToast.showShortCenter ("请输入密码");
                 return
             }
@@ -41,7 +40,7 @@ angular.module ('starter.SignInCtrl', [])
                     "Content-Type" : "application/json"
                 }
             })
-            // $loginService.register (data)
+            //$loginService.login (data)
                 .then (function (response) {
                     $ionicLoading.hide ();
                     var setUserInfo = $util.setUserInfo (response.data);
@@ -51,7 +50,6 @@ angular.module ('starter.SignInCtrl', [])
                         $state.go ('tab.home');
                         $cordovaToast.showShortCenter ("登陆成功");
                     }else {
-                        alert (userInfo.info);
                         $cordovaToast.showShortCenter (userInfo.info);
                     }
                 }, function (error) {

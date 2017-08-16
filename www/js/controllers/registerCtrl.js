@@ -20,21 +20,17 @@ angular.module ('starter.registerCtrl', [])
             };
             
             if ($scope.userInfo.userName == '' || $scope.userInfo.userName.length < 6) {
-                alert('请输入账号');
                 $cordovaToast.showShortCenter ("请输入账号");
                 return
             }
             else if ($scope.userInfo.password == '') {
-                alert('请输入密码');
                 $cordovaToast.showShortCenter ("请输入密码");
                 return
             }
             else if ($scope.userInfo.rePassword == '') {
-                alert('请再次输入密码');
                 $cordovaToast.showShortCenter ("请再次输入密码");
                 return
             } else if ($scope.userInfo.password != $scope.userInfo.rePassword) {
-                alert('两次密码不一致');
                 $cordovaToast.showShortCenter ("两次密码不一致");
                 return
             }
@@ -58,10 +54,11 @@ angular.module ('starter.registerCtrl', [])
                     .then (function (response) {
                         $ionicLoading.hide ();
                         console.log (response);
-    
-                        $state.go ('verify');
+                        
+                        $cordovaToast.showShortCenter ("注册成功,请登录!");
+                        $state.go ('signin');
+//                        $state.go ('verify');
                     }, function (error) {
-                        alert('注册失败,请重试!');
                         $ionicLoading.hide ();
                         $cordovaToast.showShortCenter ("注册失败,请重试!");
                     });

@@ -10,12 +10,6 @@ angular.module ('starter.util', [])
         var httpURL = {
             registerUrl: ipUrl + '/buyer/auth/regist',   //注册
             loginUrl: ipUrl + '/buyer/auth/login',   //登录
-            getUserNameUrl: ipUrl + '/service/customer/add',    //注册框
-            pl3AddUrl: ipUrl + '/service/lottery/pl3add', //排列3投注
-            pl5AddUrl: ipUrl + '/service/lottery/pl5add', //排列5投注
-            dltAddUrl: ipUrl + '/service/lottery/dltadd', //大乐透投注
-            getWareIssueUrl: ipUrl + '/service/lottery/getWareIssue',   //获取期号
-            getHistoryUrl: ipUrl + '/service/lottery/getHistoryList'      //往期开奖
         };
         return {
             /* 返回httpURL  */
