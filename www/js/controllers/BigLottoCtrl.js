@@ -232,7 +232,7 @@ angular.module ('starter.BigLottoCtrl', [])
             
             if (filterDataRed.length == 5 && filterDataBlue.length == 2) {      //判断用户未选择号码时点击确定无效
                 var alertPopup = $ionicPopup.alert ({
-                    template : '<p style="text-align: center; letter-spacing: 2px;">你还未选择号码，请正确选择号码！</p>',
+                    template : '<p style="text-align: center; letter-spacing: 2px;">订单已提交到我的订单！</p>',
                     okText : "确定"
                 })
                 

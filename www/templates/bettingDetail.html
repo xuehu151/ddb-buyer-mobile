@@ -18,7 +18,7 @@
     <ion-content class="bg-grey ">
         <div>
             <ul class="list betting-detail-ul">
-                <li class="item item-button-left item-button-right" ng-repeat="liItem in sessionJsonWarp">
+                <li class="item item-button-left item-button-right" ng-repeat="liItem in sessionJsonWarp track by $index">
                     <a class="button button-clear deleteIcon" ng-click="deleteRow($index)">
                         <i class="icon ion-android-close dark"></i>
                     </a>
@@ -33,7 +33,7 @@
                     </a>
                 </li>
                 <li class="item item-button-left item-button-right" ng-repeat="liAutoAdd in liAutoAdds track by $index">
-                    <a class="button button-clear deleteIconGroup">
+                    <a class="button button-clear deleteIconGroup" ng-click="machineDelete($index)">
                         <i class="icon ion-android-close dark"></i>
                     </a>
                     <div style="line-height: 28px">店主机选 <span ng-bind="liAutoAdd.num"></span>注</div>
@@ -48,14 +48,18 @@
             <p>
                 投注
                 <label class="padding-left">
-                    <input class="bigLotto-input1 " type="text" placeholder="1"/>
+                    <input class="bigLotto-input1 " type="text" ng-model="multiple" ng-blur="blur($event)"  />
                 </label> 倍
             </p>
             <p>
-                金额：
-                <span class="font-red">2</span> 元 &nbsp
+                金额：<!--totalMoney * multiple * countMoney-->
+                <span class="font-red">{{totalMoney * multiple * countMoney}}</span> 元 &nbsp
                 <label class="checkbox ">
-                    <input class="bigLotto-input2" type="checkbox"/>
+                    <input
+                        class="bigLotto-input2"
+                        type="checkbox"
+                        ng-checked="isSelected.checked"
+                        ng-click="onchange()"/>
                 </label>追加 (每注3元)
             </p>
             <button class="button button-block button-assertive submitBtn" ng-click="showOrderAlertCms()" style="font-size: 16px;">

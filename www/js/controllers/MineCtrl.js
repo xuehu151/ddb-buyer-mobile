@@ -4,10 +4,10 @@
 angular.module ('starter.MineCtrl', [])
 //我的
     .controller ('MineCtrl', function ($scope, $state, $rootScope) {
-        $scope.bragePayment = true;
-        $scope.brageDrawer = true;
-        $scope.brageDrawerFail = true;
-        $scope.brageRecord = true;
+        $scope.bragePayment = false;
+        $scope.brageDrawer = false;
+        $scope.brageDrawerFail = false;
+        $scope.brageRecord = false;
         
         $scope.allListOrder = function (num) {
             $rootScope.tabIndex = num;

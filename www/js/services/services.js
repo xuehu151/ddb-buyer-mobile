@@ -10,14 +10,31 @@ angular.module('starter.services', [])
             login: function (data) {
                 return $util.httpPostRequest($util.getHttpURL().loginUrl, data);
             }
+            
+            
+            
         
+        };
+    })
+    
+    .factory('$getInfoService', function ($http, $util) {
+        return {
+            //获取期号
+            getWareIssue: function (data) {
+                return $util.httpPostRequest($util.getHttpURL().getWareIssueUrl, data);
+            }
             
             
             
-            
-            
-            
-            
+        };
+    })
+    
+    .factory('$bettingService', function ($http, $util) {
+        return {
+            //获取期号
+            dltadd: function (data) {
+                return $util.httpPostRequest($util.getHttpURL().dltaddUrl, data);
+            }
             
             
             

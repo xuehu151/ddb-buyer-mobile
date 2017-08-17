@@ -12,8 +12,8 @@ angular.module ('starter.allOrdersCtrl', [])
         };
         $scope.selectIndex = $rootScope.tabIndex;//我的页面点击进入
         $scope.viewList = '全部订单';
+        
         //上拉菜单
-        // Triggered on a button click, or some other target
         $scope.show = function() {
             var hideSheet = $ionicActionSheet.show({
                 buttons: [
@@ -40,10 +40,12 @@ angular.module ('starter.allOrdersCtrl', [])
                     hideSheet();
                 }
             });
-            // For example's sake, hide the sheet after two seconds
-           /* $timeout(function() {
-                hideSheet();
-            }, 2000);*/
+  
+  
+  
+  
+  
+  
         };
     
     

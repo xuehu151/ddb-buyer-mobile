@@ -10,6 +10,8 @@ angular.module ('starter.util', [])
         var httpURL = {
             registerUrl: ipUrl + '/buyer/auth/regist',   //注册
             loginUrl: ipUrl + '/buyer/auth/login',   //登录
+            getWareIssueUrl: ipUrl + '/buyer/order/getWareIssue',   //获取期号
+            dltaddUrl: ipUrl + '/buyer/order/getWareIssue',   //大乐透投注
         };
         return {
             /* 返回httpURL  */
