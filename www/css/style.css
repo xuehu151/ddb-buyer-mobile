@@ -1,20 +1,17 @@
-/* Empty. Add your own CSS if you like */
-/*字体库*/
 @font-face {
-    font-family: 'iconddb';
-    src:  url('../lib/ionic/fonts/iconddb.eot?sartr8');
-    src:  url('../lib/ionic/fonts/iconddb.eot?sartr8#iefix') format('embedded-opentype'),
-    url('../lib/ionic/fonts/iconddb.ttf?sartr8') format('truetype'),
-    url('../lib/ionic/fonts/iconddb.woff?sartr8') format('woff'),
-    url('../lib/ionic/fonts/iconddb.svg?sartr8#iconddb') format('svg');
+    font-family: 'icoddb';
+    src:  url('../lib/ionic/fonts/icoddb.eot?fm8md0');
+    src:  url('../lib/ionic/fonts/icoddb.eot?fm8md0#iefix') format('embedded-opentype'),
+    url('../lib/ionic/fonts/icoddb.ttf?fm8md0') format('truetype'),
+    url('../lib/ionic/fonts/icoddb.woff?fm8md0') format('woff'),
+    url('../lib/ionic/fonts/icoddb.svg?fm8md0#icoddb') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
-
 [class^="icon-"], [class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'iconddb' !important;
+    font-family: 'icoddb' !important;
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -27,130 +24,199 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-comment:before {
+    content: "\e90e";
+    color: #515151;
+}
+.icon-ring:before {
+    content: "\e90c";
+    color: #d11d1d;
+}
 .icon-drawer:before {
-    content: "\e924";
+    content: "\e900";
 }
-.icon-message:before {
-    content: "\e916";
+.icon-toDraw:before {
+    content: "\e901";
     color: #d11d1d;
 }
-.icon-message-outline:before {
-    content: "\e91a";
+.icon-drawer-failure:before {
+    content: "\e902";
 }
-.icon-recommend-outline:before {
-    content: "\e922";
-}
-.icon-recommend:before {
-    content: "\e923";
-    color: #d11d1d;
-}
-.icon-winning-red:before {
-    content: "\e910";
-    color: #d11d1d;
-}
-.icon-home-outline:before {
-    content: "\e913";
-}
-.icon-mine:before {
-    content: "\e91b";
-    color: #d11d1d;
-}
-.icon-mine-outline:before {
-    content: "\e91c";
-}
-.icon-home:before {
-    content: "\e91d";
-    color: #d11d1d;
+.icon-payment:before {
+    content: "\e903";
 }
 .icon-color-shop:before {
-    content: "\e91e";
+    content: "\e904";
     color: #de732d;
 }
 .icon-order:before {
-    content: "\e91f";
+    content: "\e905";
     color: #ffaf03;
 }
 .icon-PushSingle:before {
-    content: "\e920";
+    content: "\e906";
     color: #f69679;
 }
-.icon-setting:before {
-    content: "\e921";
-    color: #07d6ba;
-}
-.icon-drawer-failure:before {
-    content: "\e903";
-}
-.icon-payment:before {
-    content: "\e904";
-}
 .icon-checkNumber:before {
-    content: "\e905";
-    color: #d81e06;
-}
-.icon-limit:before {
-    content: "\e906";
-    color: #008bf4;
-}
-.icon-minus:before {
     content: "\e907";
     color: #d81e06;
 }
-.icon-corner-leftTop:before {
+.icon-limit:before {
     content: "\e908";
-    color: #d81e06;
+    color: #008bf4;
 }
-.icon-corner-rightbottomGrey:before {
+.icon-share:before {
     content: "\e909";
+    color: #d11d1d;
 }
-.icon-corner-rightBottom:before {
+.icon-machine:before {
     content: "\e90a";
+    color: #d11d1d;
+}
+.icon-minus:before {
+    content: "\e90b";
     color: #d81e06;
 }
-.icon-corner-rightTop:before {
-    content: "\e901";
-}
-.icon-record:before {
-    content: "\e90b";
-}
-.icon-bubble:before {
-    content: "\e90c";
-    color: #707070;
-}
-.icon-voucher:before {
+.icon-conner-greyTR:before {
     content: "\e90d";
 }
-.icon-calendar:before {
-    content: "\e90e";
-}
-.icon-clock:before {
-    content: "\e90f";
+.icon-conner-redTL:before {
+    content: "\e912";
     color: #d81e06;
 }
-.icon-withdraw:before {
+.icon-conner-grey:before {
+    content: "\e90f";
+}
+.icon-conner-large:before {
+    content: "\e910";
+    color: #d81e06;
+}
+.icon-conner-redTR:before {
     content: "\e911";
-    color: #f50;
+    color: #d11d1d;
 }
-.icon-withdraw-grey:before {
-    content: "\e912";
-}
-.icon-oval:before {
+.icon-conner-small:before {
     content: "\e914";
+    color: #d11d1d;
 }
-.icon-question:before {
+.icon-record:before {
     content: "\e915";
 }
-.icon-winning-grey:before {
-    content: "\e902";
+.icon-bubble-grey:before {
+    content: "\e916";
+    color: #707070;
 }
-.icon-RoundPoor:before {
+.icon-bubble-red:before {
     content: "\e917";
+    color: #d11d1d;
+}
+.icon-allOrder:before {
+    content: "\e918";
+    color: #ffaf02;
+}
+.icon-voucher:before {
+    content: "\e919";
+}
+.icon-calendar:before {
+    content: "\e91a";
+}
+.icon-filtrate:before {
+    content: "\e91b";
+    color: #d11d1d;
+}
+.icon-delete:before {
+    content: "\e91c";
+    color: #d11d1d;
+}
+.icon-setting:before {
+    content: "\e91d";
+    color: #07d6ba;
+}
+.icon-clock:before {
+    content: "\e91e";
     color: #d81e06;
+}
+.icon-home:before {
+    content: "\e91f";
+    color: #d11d1d;
+}
+.icon-home-outline:before {
+    content: "\e920";
+}
+.icon-putIn:before {
+    content: "\e921";
+    color: #d11d1d;
+}
+.icon-withdraw:before {
+    content: "\e922";
+    color: #f50;
+}
+.icon-withdraw-greyithdraw-grey:before {
+    content: "\e923";
+}
+.icon-append:before {
+    content: "\e924";
+    color: #8a8a8a;
+}
+.icon-add:before {
+    content: "\e925";
+    color: #d11d1d;
+}
+.icon-message:before {
+    content: "\e928";
+    color: #d11d1d;
+}
+.icon-message-outline:before {
+    content: "\e929";
+}
+.icon-recommend-outline:before {
+    content: "\e92b";
+}
+.icon-recommend:before {
+    content: "\e92c";
+    color: #d11d1d;
+}
+.icon-oval-grey:before {
+    content: "\e92e";
+}
+.icon-oval-red:before {
+    content: "\e92f";
+    color: #d81e06;
+}
+.icon-question:before {
+    content: "\e930";
+}
+.icon-mine:before {
+    content: "\e931";
+    color: #d11d1d;
+}
+.icon-mine-outline:before {
+    content: "\e932";
+}
+.icon-winning-grey:before {
+    content: "\e933";
+    color: #d11d1d;
+}
+.icon-wrong:before {
+    content: "\e934";
+    color: #d81e06;
+}
+.icon-photos:before {
+    content: "\e935";
+    color: #d11d1d;
 }
 .icon-Stick:before {
-    content: "\e918";
+    content: "\e936";
     color: #d81e06;
 }
+.icon-TicketCheck:before {
+    content: "\e937";
+    color: #d11d1d;
+}
+.icon-Winning:before {
+    content: "\e938";
+    color: #d11d1d;
+}
 .icon-freeze:before {
-    content: "\e919";
+    content: "\e939";
 }

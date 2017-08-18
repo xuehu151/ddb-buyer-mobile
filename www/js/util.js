@@ -12,6 +12,8 @@ angular.module ('starter.util', [])
             loginUrl: ipUrl + '/buyer/auth/login',   //登录
             getWareIssueUrl: ipUrl + '/buyer/order/getWareIssue',   //获取期号
             dltaddUrl: ipUrl + '/buyer/order/getWareIssue',   //大乐透投注
+            getOrderListUrl: ipUrl + '/buyer/order/getList',   //获取投注记录
+            getOrderInfoUrl: ipUrl + '/buyer/order/getInfo',   //获取投注详情
         };
         return {
             /* 返回httpURL  */

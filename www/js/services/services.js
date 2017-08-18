@@ -31,10 +31,30 @@ angular.module('starter.services', [])
     
     .factory('$bettingService', function ($http, $util) {
         return {
-            //获取期号
+            //投注
             dltadd: function (data) {
                 return $util.httpPostRequest($util.getHttpURL().dltaddUrl, data);
             }
+            
+            
+            
+        };
+    })
+    
+    .factory('$getListService', function ($http, $util) {
+        return {
+            //获取订单投注记录
+            getOrderList: function (data) {
+                return $util.httpPostRequest($util.getHttpURL().getOrderListUrl, data);
+            },
+            
+            //获取订单投注详情
+            getOrderInfo: function (data) {
+                return $util.httpPostRequest($util.getHttpURL().getOrderInfoUrl, data);
+            }
+            
+            
+            
             
             
             

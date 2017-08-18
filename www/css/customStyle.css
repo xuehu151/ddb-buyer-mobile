@@ -646,7 +646,7 @@ a {
 }
 
 .order-status-ul {
-    padding: 10px 10px 0 8px;
+    padding: 10px 10px 70px 0;
 }
 
 /*每个li分left（图标）、right（信息）两边*/
@@ -663,11 +663,12 @@ a {
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 30px;
-    height: 40px;
-    margin-left: -15px;
-    margin-top: -20px;
+    margin-left: -25%;
+    margin-top: -20%;
     z-index: 2;
+    background: #f6f6f6;
+    padding: 2px;
+    font-size: 25px;
 }
 
 .order-status-bg1 {
@@ -717,18 +718,39 @@ a {
     float: right;
 }
 
-.order-status-content h3 {
+.order-status-right p{
+    font-size: 12px;
+    padding-left: 10px;
+    color: #666666;
+    height: 32px;
+    line-height: 30px;
+}
+
+.order-status-right p .button{
+    background: #d11d1d;
+    padding: 0 15px;
+    min-height: 28px!important;
+    line-height: 28px;
+    color: #fefefe;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.order-status-content h5 {
     display: inline-block;
-    font-size: 1rem;
+    font-size: 16px;
+    padding-left: 10px;
+    color: #333333;
 }
 
 .order-status-content span {
     margin-top: 12px;
-    font-size: 1rem;
+    font-size: 12px;
+    color: #666666;;
+    padding-right: 10px;
 }
 
 /*投注详情页面*/
-
 .title-marginTop {
     margin-top: 10px;
 }

@@ -144,7 +144,22 @@ angular.module ('starter.bettingDetailCtrl', [])
                     $ionicLoading.hide ();
                     reques = response.data;
                     console.info (reques);
-                    getdltadd ();
+                    if(reques.error == '0'){
+                        getdltadd ();
+                    }else {
+                        var alertPopup = $ionicPopup.alert ({
+                            template : '<div style="text-align:center">'+response.data.info+'</div>',
+                            title : '<i class="icon ion-ios-checkmark-outline" style="font-size:26px"></i>'
+                        })
+                        //$cordovaToast.showShortCenter ("订单提交成功")   /*暂时注释掉为了测试浏览器*/
+                            .then (function (success) {
+                                // success
+                                $state.go ('signin');
+                            }, function (error) {
+            
+                            });
+                      
+                    }
                 }, function (error) {
                     $ionicLoading.hide ();
                     alert ("获取列表失败");
@@ -182,7 +197,6 @@ angular.module ('starter.bettingDetailCtrl', [])
                 var vid = '20170525170402702001';//先放这里 后面 在登录返回数据取
                 var payType = '1';
                 var data = {
-//                    token: userInfo.data.token,
                     wareIssue : reques.data.wareIssue,
                     payType : payType,
                     vid : vid,
@@ -202,22 +216,26 @@ angular.module ('starter.bettingDetailCtrl', [])
                     .then (function (response) {
                         $ionicLoading.hide ();
                         console.info(response.data);
-                       /* $cordovaToast.showShortCenter ("订单提交成功")      /!* 暂时注释掉 为了测试浏览器*!/
-                            .then (function (success) {
-                                // success
-                                $state.go ('orderStatus');
-                            }, function (error) {
-            
-                            });*/
+                        if(response.data.error == '0'){
+                            /* $cordovaToast.showShortCenter ("订单提交成功")      /!* 暂时注释掉 为了测试浏览器*!/
+                             .then (function (success) {
+                             // success
+                             $state.go ('orderStatus');
+                             }, function (error) {
+     
+                             });*/
     
-                        var alertPopup = $ionicPopup.alert ({
-                            template : '<div style="text-align:center">订单提交成功</div>',
-                            title : '<i class="icon ion-ios-checkmark-outline" style="font-size:26px"></i>'
-                        })
-                            .then (function () {
-                                $state.go ('orderStatus');
-                            });
-                            
+                            var alertPopup = $ionicPopup.alert ({
+                                template : '<div style="text-align:center">订单提交成功</div>',
+                                title : '<i class="icon ion-ios-checkmark-outline" style="font-size:26px"></i>'
+                            })
+                                .then (function () {
+                                    $state.go ('orderStatus');
+                                });
+                        }else {
+                            alert('投注失败了');
+                        }
+                        
                     }, function (error) {
                         //扫码后，所获赠注数的限制提示。
                         var confirmPopup = $ionicPopup.confirm ({
