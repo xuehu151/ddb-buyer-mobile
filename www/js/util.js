@@ -4,8 +4,8 @@
  */
 angular.module ('starter.util', [])
     .factory ('$util', function ($http, $q, $ionicLoading, $cordovaToast) {
-//        var ipUrl = 'http://121.42.253.149:18818';       //服务器ip地址或者域名
-        var ipUrl = 'http://192.168.1.109:8080';      //本地ip地址或者域名
+       var ipUrl = 'http://121.42.253.149:18818';       //服务器ip地址或者域名
+        // var ipUrl = 'http://192.168.1.109:8080';      //本地ip地址或者域名
         /* 接口地址  */
         var httpURL = {
             registerUrl: ipUrl + '/buyer/auth/regist',   //注册
@@ -61,7 +61,7 @@ angular.module ('starter.util', [])
             },
 
             /* HTTP请求  */
-            httpPostRequest: function (url, data) {
+            httpPostRequest: function (url, data,token) {
                 $ionicLoading.show ();
                 var deferred = $q.defer ();
                 var promise = deferred.promise;
@@ -69,7 +69,10 @@ angular.module ('starter.util', [])
                     method: 'POST',
                     url: url,
                     params: data,
-                    headers: {"content-type": "application/json;charset=UTF-8"},
+                    headers: {
+                        "content-type": "application/json;charset=UTF-8",
+                        "Auth-Token": token
+                    },
                     transformRequest: function (obj) {
                         var str = [];
                         for (var s in obj) {
