@@ -3,10 +3,10 @@
  */
 angular.module ('starter.bettingDetailCtrl', [])
     //方案保存成功提示
-    .controller ('bettingDetailCtrl', function ($scope,$rootScope, $ionicPopup, $timeout, $state, $cordovaToast, $ionicLoading, $util, $http, $getInfoService, $ionicModal) {
+    .controller ('bettingDetailCtrl', function ($scope,$rootScope, $ionicPopup, $timeout, $state, $cordovaToast, $ionicLoading, $util, $http, $getInfoService, $bettingService, $ionicModal) {
         $scope.multiple = '1';
         $scope.countMoney = '2';
-       
+
         //处理默认的倍数
         $scope.blur = function (focus) {
             if($scope.multiple < 1){
@@ -19,11 +19,11 @@ angular.module ('starter.bettingDetailCtrl', [])
                 return
             }
         };
-        
+
         $scope.sessionJsonWarp = JSON.parse (sessionStorage.jsonWrap);//反解析
         // console.log ($scope.sessionJsonWarp);
         $scope.totalMoney = $scope.sessionJsonWarp.length; //设置倍数及金额
-    
+
         //是否追加  0未追加false   1 追加true
         $scope.isSelected = {
             checked: true
@@ -44,18 +44,18 @@ angular.module ('starter.bettingDetailCtrl', [])
             }
             //console.info(addFlag);
         };
-        
+
         //手动添加一组，返回大乐透选中页面
         $scope.manualAdd = function () {
             $state.go ('BigLotto');
             sessionStorage.editThisOrderData = '';  //清除点击修改后保存在session.editThisOrderData中的数据
         };
-        
+
         //点击店家机选，添加机选一注
         $scope.liAutoAdds = [{num: 1}];   //初始化
         var addMachine = $scope.liAutoAdds.length;
         $scope.totalMoney = $scope.sessionJsonWarp.length + addMachine;
-        
+
         $scope.autoAdd = function () {
             if ($scope.liAutoAdds[$scope.liAutoAdds.length - 1].num >= 5) { //当最后一个对象的num>=5时，push一个新对象
                 $scope.liAutoAdds.push ({ num : 1 });
@@ -66,7 +66,7 @@ angular.module ('starter.bettingDetailCtrl', [])
             addMachine = ($scope.liAutoAdds.length - 1) * 5 + $scope.liAutoAdds[$scope.liAutoAdds.length - 1].num;
             $scope.totalMoney = $scope.sessionJsonWarp.length + addMachine;
         };
-        
+
         //点击删除一组机选号码
         $scope.machineDelete = function ($index) {
             if($scope.liAutoAdds.length == 1){
@@ -77,18 +77,18 @@ angular.module ('starter.bettingDetailCtrl', [])
             addMachine = ($scope.liAutoAdds.length - 1) * 5 + $scope.liAutoAdds[$scope.liAutoAdds.length - 1].num;
             $scope.totalMoney = $scope.sessionJsonWarp.length + addMachine;
         };
-        
+
         //点击删除一组手选号码
         $scope.deleteRow = function ($index) {
             $scope.sessionJsonWarp.splice ($index, 1);   //点击删除本行
-            
+
             //删除本行后的数据保存到sessionStorage
             var changeToStr = JSON.stringify ($scope.sessionJsonWarp);
             sessionStorage.jsonWrap = changeToStr;
             // console.log(sessionStorage.jsonWrap);
             $scope.totalMoney--;
         };
-        
+
         $scope.editThisOrder = function ($index) {
             /**
              * 1.先转成数组
@@ -97,16 +97,16 @@ angular.module ('starter.bettingDetailCtrl', [])
              */
             var changeToArr = JSON.parse (sessionStorage.jsonWrap);
             var thisIndexOrder = changeToArr[$index];
-        
+
             var changeToArr1 = JSON.stringify (thisIndexOrder);
             sessionStorage.editThisOrderData = changeToArr1;
-        
+
             // console.log(thisIndexOrder);
             $rootScope.editIndex = $index;
             $state.go ('BigLotto');
              $scope.deleteRow($index);
         };
-        
+
         // 方案保存成功提示框
         $scope.showSaveAlert = function () {
             $cordovaToast.showShortCenter ("方案保存成功");
@@ -115,7 +115,7 @@ angular.module ('starter.bettingDetailCtrl', [])
                 title: '<i class="icon ion-ios-checkmark-outline" style="font-size:26px"></i>'
             });
         };
-        
+
         //提交彩店
         $scope.showOrderAlertCms = function () {
             $ionicLoading.show({
@@ -124,12 +124,18 @@ angular.module ('starter.bettingDetailCtrl', [])
             //获取大乐透期号
             var reques = {};
             var userInfo = $util.getUserInfo ();
-            //console.log(userInfo);
-            
+            console.log(userInfo);
+            var token = userInfo.token;
             var data = {
-                lotteryID : 2
+                data:{
+
+                },
+                params:{
+                    lotteryID : 2
+                }
             };
-            $http ({
+
+            /*$http ({
                 method : "POST",
                 url : ipUrl + '/buyer/order/getWareIssue',
                 params : data,
@@ -137,18 +143,19 @@ angular.module ('starter.bettingDetailCtrl', [])
                     "Content-Type" : "application/json",
                     "Auth-Token": userInfo.data.token
                 }
-            })
+            })*/
 //            console.info(data);
-            //$getInfoService.getWareIssue (data)
+            $getInfoService.getWareIssue (data, token)
                 .then (function (response) {
                     $ionicLoading.hide ();
                     reques = response.data;
                     console.info (reques);
-                    if(reques.error == '0'){
+                    console.info(response);
+                    if(response.error == '0'){
                         getdltadd ();
                     }else {
                         var alertPopup = $ionicPopup.alert ({
-                            template : '<div style="text-align:center">'+response.data.info+'</div>',
+                            template : '<div style="text-align:center">'+response.info+'</div>',
                             title : '<i class="icon ion-ios-checkmark-outline" style="font-size:26px"></i>'
                         })
                         //$cordovaToast.showShortCenter ("订单提交成功")   /*暂时注释掉为了测试浏览器*/
@@ -156,9 +163,9 @@ angular.module ('starter.bettingDetailCtrl', [])
                                 // success
                                 $state.go ('signin');
                             }, function (error) {
-            
+
                             });
-                      
+
                     }
                 }, function (error) {
                     $ionicLoading.hide ();
@@ -167,7 +174,7 @@ angular.module ('starter.bettingDetailCtrl', [])
             // 大乐透投注接口信息
             function getdltadd () {
                 $ionicLoading.show ();
-                var userInfo = $util.getUserInfo ();
+                // var userInfo = $util.getUserInfo ();
                 var dataArrayBig = [];
                 for (var i in $scope.sessionJsonWarp) {
                     var dataObj = {
@@ -178,9 +185,9 @@ angular.module ('starter.bettingDetailCtrl', [])
                     for (var j in $scope.sessionJsonWarp[i]) {
                         for (var k in $scope.sessionJsonWarp[i][j]) {
                             if (typeof $scope.sessionJsonWarp[i][j][k] === 'object') {
-                        
+
                                 investCode += ',' + $scope.sessionJsonWarp[i][j][k].num;
-                        
+
                                 if (investCode.substr (0, 1) == ',') investCode = investCode.substr (1); //截取第一位逗号
                                 investCode = (investCode.substring (investCode.length - 1) == ',') ? investCode.substring (0, investCode.length - 1) : investCode; //截取最后一位逗号
                                 var get_array = investCode.split ('');
@@ -197,14 +204,20 @@ angular.module ('starter.bettingDetailCtrl', [])
                 var vid = '20170525170402702001';//先放这里 后面 在登录返回数据取
                 var payType = '1';
                 var data = {
-                    wareIssue : reques.data.wareIssue,
-                    payType : payType,
-                    vid : vid,
-                    addFlag : addFlag,
-                    data : dataArrayBig
+                    data: {
+                        wareIssue: reques.wareIssue,
+                        payType: payType,
+                        vid: vid,
+                        addFlag: addFlag,
+                        data: dataArrayBig
+                    },
+                    params: {
+
+                    }
                 };
+                var token = userInfo.token;
                 console.log(data);
-                $http ({
+                /*$http ({
                     method : "POST",
                     url : ipUrl + '/buyer/order/dltadd',
                     data : data,
@@ -212,19 +225,20 @@ angular.module ('starter.bettingDetailCtrl', [])
                         "Content-Type" : "application/json",
                         "Auth-Token": userInfo.data.token
                     }
-                })
+                })*/
+                $bettingService.dltadd(data, token)
                     .then (function (response) {
                         $ionicLoading.hide ();
-                        console.info(response.data);
-                        if(response.data.error == '0'){
+                        console.info(response);
+                        if(response.error == '0'){
                             /* $cordovaToast.showShortCenter ("订单提交成功")      /!* 暂时注释掉 为了测试浏览器*!/
                              .then (function (success) {
                              // success
                              $state.go ('orderStatus');
                              }, function (error) {
-     
+
                              });*/
-    
+
                             var alertPopup = $ionicPopup.alert ({
                                 template : '<div style="text-align:center">订单提交成功</div>',
                                 title : '<i class="icon ion-ios-checkmark-outline" style="font-size:26px"></i>'
@@ -235,7 +249,7 @@ angular.module ('starter.bettingDetailCtrl', [])
                         }else {
                             alert('投注失败了');
                         }
-                        
+
                     }, function (error) {
                         //扫码后，所获赠注数的限制提示。
                         var confirmPopup = $ionicPopup.confirm ({
@@ -245,11 +259,11 @@ angular.module ('starter.bettingDetailCtrl', [])
                             okType : 'button-darkBlue'
                         })
                             .then (function () {
-                            
+
                             });
                     });
             }
-       
-            
+
+
         };
     });

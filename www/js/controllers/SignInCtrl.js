@@ -7,19 +7,24 @@ var ipUrl = 'http://121.42.253.149:18818';
 angular.module ('starter.SignInCtrl', [])
 //登录
     .controller ('SignInCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $cordovaToast, $util, $loginService) {
-    
+
         $scope.users = {
             userName : "",
             password : ""
         };
-        
+
         $scope.signIn = function (user) {
-            
+
             var data = {
-                account : $scope.users.userName,
-                password : $scope.users.password
+               data:{
+                   account : $scope.users.userName,
+                   password : $scope.users.password
+               },
+                params:{
+                   //.......
+                }
             };
-    
+
             if ($scope.users.userName == '' || $scope.users.userName.length < 6) {
                 $cordovaToast.showShortCenter ("请输入账号");
                 return
@@ -28,25 +33,26 @@ angular.module ('starter.SignInCtrl', [])
                 $cordovaToast.showShortCenter ("请输入密码");
                 return
             }
-    
+
             $ionicLoading.show ({
                 template: 'Loading...'
             });
-            $http ({
+            /*$http ({
                 method : "POST",
                 url : ipUrl + '/buyer/auth/login',
                 data : data,
                 headers : {
                     "Content-Type" : "application/json"
                 }
-            })
-            //$loginService.login (data)
+            })*/
+            $loginService.login (data)
                 .then (function (response) {
+                    console.info(response);
                     $ionicLoading.hide ();
                     var setUserInfo = $util.setUserInfo (response.data);
                     var userInfo = $util.getUserInfo ();
                     console.info (userInfo);
-                    if(userInfo.error == '0'){
+                    if(response.error == '0'){
                         $state.go ('tab.home');
                         $cordovaToast.showShortCenter ("登陆成功");
                     }else {

@@ -11,14 +11,14 @@ angular.module ('starter.registerCtrl', [])
             password : "",
             rePassword : ""
         };
-       
+
         $scope.sureNextStep = function () {
             var data = {
                 account : $scope.userInfo.userName,
                 password : $scope.userInfo.password,
                 shopId : 1
             };
-            
+
             if ($scope.userInfo.userName == '' || $scope.userInfo.userName.length < 6) {
                 $cordovaToast.showShortCenter ("请输入账号");
                 return
@@ -42,19 +42,19 @@ angular.module ('starter.registerCtrl', [])
                 $ionicLoading.show ({
                     template: 'Loading...'
                 });
-                $http ({
+                /*$http ({
                     method : "POST",
                     url : ipUrl + '/buyer/auth/regist',
                     data : data,
                     headers : {
                         "Content-Type" : "application/json;charset=utf-8"
                     }
-                })
-                // $loginService.register (data)
+                })*/
+                $loginService.register (data)
                     .then (function (response) {
                         $ionicLoading.hide ();
                         console.log (response);
-                        
+
                         $cordovaToast.showShortCenter ("注册成功,请登录!");
                         $state.go ('signin');
 //                        $state.go ('verify');
@@ -63,8 +63,8 @@ angular.module ('starter.registerCtrl', [])
                         $cordovaToast.showShortCenter ("注册失败,请重试!");
                     });
             }
-           
+
         };
-        
-        
+
+
     });

@@ -11,7 +11,7 @@ angular.module ('starter.util', [])
             registerUrl: ipUrl + '/buyer/auth/regist',   //注册
             loginUrl: ipUrl + '/buyer/auth/login',   //登录
             getWareIssueUrl: ipUrl + '/buyer/order/getWareIssue',   //获取期号
-            dltaddUrl: ipUrl + '/buyer/order/getWareIssue',   //大乐透投注
+            dltaddUrl: ipUrl + '/buyer/order/dltadd',   //大乐透投注
             getOrderListUrl: ipUrl + '/buyer/order/getList',   //获取投注记录
             getOrderInfoUrl: ipUrl + '/buyer/order/getInfo',   //获取投注详情
         };
@@ -61,26 +61,27 @@ angular.module ('starter.util', [])
             },
 
             /* HTTP请求  */
-            httpPostRequest: function (url, data,token) {
+            httpPostRequest: function (url, data, token) {
                 $ionicLoading.show ();
                 var deferred = $q.defer ();
                 var promise = deferred.promise;
                 $http ({
                     method: 'POST',
                     url: url,
-                    params: data,
+                    data: data.data,
+                    params: data.params,
                     headers: {
                         "content-type": "application/json;charset=UTF-8",
                         "Auth-Token": token
-                    },
-                    transformRequest: function (obj) {
+                    }
+                    /*transformRequest: function (obj) {
                         var str = [];
                         for (var s in obj) {
                             str.push (encodeURIComponent (s) + "=" + encodeURIComponent (obj[s]));
                         }
                         return str.join ("&");
                     },
-                    timeout: 3000
+                    timeout: 3000*/
                 }).success (function (response) {
                     //return success
                     $ionicLoading.hide ();
