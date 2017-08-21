@@ -291,6 +291,9 @@ angular.module ('starter.BigLottoCtrl', [])
         $scope.clickHide = function (listBtnNum) {
             console.info (listBtnNum);
             $scope.popover.hide ();
+            if(listBtnNum == '历史开奖'){
+                $state.go('HistoryLottery');
+            }
         };
         // .fromTemplate() 方法
         $ionicPopover.fromTemplateUrl ('templates/rightTopPopover.html', {

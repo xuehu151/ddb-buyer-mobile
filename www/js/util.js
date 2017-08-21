@@ -14,6 +14,7 @@ angular.module ('starter.util', [])
             dltaddUrl: ipUrl + '/buyer/order/dltadd',   //大乐透投注
             getOrderListUrl: ipUrl + '/buyer/order/getList',   //获取投注记录
             getOrderInfoUrl: ipUrl + '/buyer/order/getInfo',   //获取投注详情
+            getHistoryListUrl: ipUrl + '/buyer/order/getHistoryList',   //获取历史开奖记录
         };
         return {
             /* 返回httpURL  */

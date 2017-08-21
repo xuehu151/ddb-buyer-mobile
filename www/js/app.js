@@ -1,7 +1,7 @@
 // Ionic Starter App
 var jsonWrap = [];//存放所有的注数
 
-angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services', 'starter.util', 'starter.SignInCtrl', 'starter.RaceColorFootballCtrl', 'starter.BigLottoCtrl', 'starter.bettingDetailCtrl', 'starter.RecommendCtrl', 'starter.InformationCtrl', 'starter.SuperLottoCtrl', 'starter.BiddingFootballCtrl', 'starter.MineCtrl', 'starter.registerCtrl', 'starter.verifyCtrl', 'starter.forgetPasswordCtrl', 'starter.allOrdersCtrl', 'starter.withdrawCtrl', 'starter.withDrawFailedCtrl', 'starter.withDrawSuccessCtrl', 'starter.rechargeCtrl', 'starter.accountDetailCtrl', 'starter.mineDetailsCtrl', 'starter.orderStatusCtrl'])
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services', 'starter.util', 'starter.SignInCtrl', 'starter.RaceColorFootballCtrl', 'starter.BigLottoCtrl', 'starter.bettingDetailCtrl', 'starter.RecommendCtrl', 'starter.InformationCtrl', 'starter.SuperLottoCtrl', 'starter.BiddingFootballCtrl', 'starter.MineCtrl', 'starter.registerCtrl', 'starter.verifyCtrl', 'starter.forgetPasswordCtrl', 'starter.allOrdersCtrl', 'starter.withdrawCtrl', 'starter.withDrawFailedCtrl', 'starter.withDrawSuccessCtrl', 'starter.rechargeCtrl', 'starter.accountDetailCtrl', 'starter.mineDetailsCtrl', 'starter.orderStatusCtrl', 'starter.HistoryLotteryCtrl', 'starter.HistoryLotteryDetailsCtrl'])
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -128,6 +128,23 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
                 controller: 'orderStatusCtrl'
             })
 
+            //***首页   大乐透 历史开奖
+            .state('HistoryLottery',{
+                url:'/HistoryLottery',
+                cache:'false',
+                prefetchTemplate:false,
+                templateUrl:'templates/HistoryLottery.html',
+                controller: 'HistoryLotteryCtrl'
+            })
+
+            //***首页   大乐透 历史开奖详情订单列表页面
+            .state('HistoryLotteryDetails',{
+                url:'/HistoryLotteryDetails',
+                cache:'false',
+                prefetchTemplate:false,
+                templateUrl:'templates/HistoryLotteryDetails.html',
+                controller: 'HistoryLotteryDetailsCtrl'
+            })
 
             //推荐
             .state('tab.recommend', {

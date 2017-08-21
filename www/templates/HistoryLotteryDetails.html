@@ -1,0 +1,79 @@
+<ion-view view-title="大乐透历史开奖">
+    <ion-nav-bar class="bar bar-assertive">
+        <ion-nav-back-button class="button button-icon icon ion-ios-arrow-left"></ion-nav-back-button>
+    </ion-nav-bar>
+    <div class=" bar has-header history-title">
+        <div class="history-notice">
+            <div class="">每周一、三、六20：30开奖</div>
+        </div>
+    </div>
+
+    <ion-content class="h25">
+       <div class="history-show">
+            <p><ins>17044 期</ins><i>04-19 周三</i></p>
+           <div class="row">
+               <div class="col col-60 show-red-balls" style="text-align: right">
+                   <i ng-cloak>{{toArray(past.result,0)}}02</i>
+                   <i ng-cloak>{{toArray(past.result,1)}}02</i>
+                   <i ng-cloak>{{toArray(past.result,2)}}02</i>
+                   <i ng-cloak>{{toArray(past.result,3)}}02</i>
+                   <i ng-cloak>{{toArray(past.result,4)}}02</i>
+               </div>
+               <div class="col col-40 show-blue-balls">
+                   <i ng-cloak>{{toArray(past.result,5)}}02</i>
+                   <i ng-cloak>{{toArray(past.result,6)}}02</i>
+               </div>
+           </div>
+           <div class="explain">
+               本期销量:<i>2.19亿元</i> | 下期奖池:<i>37.53亿元</i>
+           </div>
+       </div>
+    <!--    <div class="row">
+            <div class="col col-30">等级</div>
+            <div class="col col-34">单注奖金</div>
+            <div class="col col-34">中奖注数</div>
+        </div>-->
+        <div class="row">
+            <table>
+                <thead></thead>
+                <tr>
+                    <th>等级</th>
+                    <th>单注奖金</th>
+                    <th>中奖注数</th>
+                </tr>
+                <tr>
+                    <td>一等奖(追加)</td>
+                    <td>10000000(0)元</td>
+                    <td>2(0)</td>
+                </tr>
+                <tr>
+                    <td>二等奖(追加)</td>
+                    <td>220005(132003)元</td>
+                    <td>39(19)</td>
+                </tr>
+                <tr>
+                    <td>三等奖(追加)</td>
+                    <td>5803(3484)元</td>
+                    <td>596(244)</td>
+                </tr>
+                <tr>
+                    <td>四等奖(追加)</td>
+                    <td>200(100)元</td>
+                    <td>23059(8561)</td>
+                </tr>
+                <tr>
+                    <td>五等奖(追加)</td>
+                    <td>10(5)元</td>
+                    <td>420777(155136)</td>
+                </tr>
+                <tr>
+                    <td>六等奖(追加)</td>
+                    <td>5元</td>
+                    <td>4187402</td>
+                </tr>
+            </table>
+        </div>
+        <a href="#BigLotto" class="button ">立即投注</a>
+    </ion-content>
+
+</ion-view>

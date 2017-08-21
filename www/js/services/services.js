@@ -60,9 +60,12 @@ angular.module('starter.services', [])
             //获取订单投注详情
             getOrderInfo: function (data, token) {
                 return $util.httpPostRequest($util.getHttpURL().getOrderInfoUrl, data, token);
+            },
+
+            //获取历史开奖记录
+            getHistoryList: function (data, token) {
+                return $util.httpPostRequest($util.getHttpURL().getHistoryListUrl, data, token);
             }
-
-
 
 
 

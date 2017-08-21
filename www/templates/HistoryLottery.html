@@ -1,0 +1,33 @@
+<ion-view view-title="大乐透历史开奖">
+    <ion-nav-bar class="bar bar-assertive">
+        <ion-nav-back-button class="button button-icon icon ion-ios-arrow-left"></ion-nav-back-button>
+    </ion-nav-bar>
+    <div class=" bar has-header history-title">
+        <div class="history-notice">
+            <div class="">每周一、三、六20：30开奖</div>
+        </div>
+    </div>
+
+    <ion-content class="h30">
+        <ion-list>
+            <ion-item class="history-time" ng-repeat="past in bitLotto track by $index" ng-click="goToHistory()">
+                <p><span ng-cloak>{{past.wareIssue}}期</span><ins ng-cloak> {{past.createDate}} 周三</ins></p>
+                <div class="row">
+                    <div class="col col-50 show-red-ball">
+                        <i ng-cloak>{{toArray(past.result,0)}}</i>
+                        <i ng-cloak>{{toArray(past.result,1)}}</i>
+                        <i ng-cloak>{{toArray(past.result,2)}}</i>
+                        <i ng-cloak>{{toArray(past.result,3)}}</i>
+                        <i ng-cloak>{{toArray(past.result,4)}}</i>
+                    </div>
+                    <div class="col col-50 show-blue-ball">
+                        <i ng-cloak>{{toArray(past.result,5)}}</i>
+                        <i ng-cloak>{{toArray(past.result,6)}}</i>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+
+</ion-view>

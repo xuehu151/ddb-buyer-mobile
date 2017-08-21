@@ -1661,6 +1661,188 @@ input.bigLotto-input2:checked:before {
     color: #333333;
 }
 
+/*历史开奖*/
+.history-title{
+    height: 25px;
+    padding: 0 0;
+}
+
+.history-notice{
+    height: 25px;
+    line-height: 20px;
+    padding: 2px 0 2px 10px;
+    font-size: 12px;
+    color: #999999;
+    width: 100%;
+    background: #f6f6f6;
+    border-bottom: solid 1px #ebebeb;
+}
+
+.h25{
+    padding-top: 25px;
+    background: #f6f6f6;
+}
+
+.h25 .row{
+    padding: 0;
+}
+
+.h25 .row table{
+    width: 100%;
+}
+
+.h25 .row table tr:first-child{
+    background: #f6f6f6;
+    padding: 3px 10px;
+}
+
+.h25 .row table tr{
+    width: 100%;
+    display: flex;
+    font-size: 12px;
+    padding: 14px 10px;
+    background: white;
+    border-bottom: solid 1px #ebebeb;
+}
+
+.h25 .row table td:nth-child(2n){
+    color: #f33232;
+}
+
+.h25 .row table td,
+.h25 .row table th{
+    width: 35%;
+    text-align: left;
+}
+
+.h25 .row{
+    font-size: 13px;
+    color: #999999;
+}
+
+.h25 .button{
+    background: #d21e1e;
+    color: white;
+    margin: 55px auto;
+    padding: 0 50px;
+    display: table;
+}
+
+.history-time {
+    padding: 2px 10px;
+}
+
+.history-time .row {
+    padding: 0 5px;
+}
+
+.history-time .row .col {
+    padding: 0;
+}
+
+.history-time p {
+    font-size: .6em;
+    color: #a2a2a2;
+    padding-left: 5px;
+}
+
+.history-time ins {
+    float: right;
+    text-decoration: none;
+}
+
+.show-red-ball{
+    height: 40px;
+}
+
+.show-red-ball i,
+.show-blue-ball i {
+    width: 1.5em;
+    height: 1.5em;
+    color: #fff4fb;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 1.4em;
+    margin: 4px 0;
+    display: inline-block;
+}
+
+.show-red-ball i {
+    border: solid 1px #d11d1d;
+    background-color: #d11d1d;
+}
+
+.show-blue-ball i {
+    border: solid 1px #3f97d5;
+    background-color: #3f97d5;
+}
+
+.h25 .history-show{
+    min-height: 100px;
+    padding-bottom: 15px;
+    background: #FFF;
+}
+
+.history-show p{
+    margin-top: 3px;
+    padding: 10px 8px;
+}
+
+.history-show p ins{
+    font-size: 15px;
+    color: #333333;
+    text-decoration: none;
+}
+
+.history-show p i {
+    float: right;
+    font-size: 15px;
+    color: #333333;
+}
+
+.history-show .explain{
+    font-size: 11px;
+    color: #333333;
+    text-align: center;
+}
+
+.history-show .explain i{
+    font-size: 11px;
+    color: #d11d1d;
+}
+
+.show-red-balls{
+    height: 40px;
+}
+
+.show-red-balls i,
+.show-blue-balls i {
+    width: 28px;
+    height: 28px;
+    color: #fff4fb;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 26px;
+    margin: 4px 0;
+    display: inline-block;
+}
+
+.show-red-balls i {
+    border: solid 1px #d11d1d;
+    background-color: #d11d1d;
+}
+
+.show-blue-balls i {
+    border: solid 1px #3f97d5;
+    background-color: #3f97d5;
+}
+
+
+
+
+
+
+
 
 
 
