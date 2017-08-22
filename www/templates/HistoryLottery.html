@@ -8,9 +8,9 @@
         </div>
     </div>
 
-    <ion-content class="h30">
+    <ion-content class="h25">
         <ion-list>
-            <ion-item class="history-time" ng-repeat="past in bitLotto track by $index" ng-click="goToHistory()">
+            <ion-item class="history-time" ng-repeat="past in bitLotto track by $index" ng-click="goToHistory($index, past)">
                 <p><span ng-cloak>{{past.wareIssue}}期</span><ins ng-cloak> {{past.createDate}} 周三</ins></p>
                 <div class="row">
                     <div class="col col-50 show-red-ball">

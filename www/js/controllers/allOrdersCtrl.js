@@ -3,7 +3,7 @@
  */
 angular.module ('starter.allOrdersCtrl', [])
 //全部订单
-    .controller ('allOrdersCtrl', function ($scope, $rootScope, $ionicActionSheet, $timeout) {
+    .controller ('allOrdersCtrl', function ($scope, $rootScope, $ionicActionSheet, $timeout, locals) {
         $scope.tabNames = ['待付款','待出票', '待开奖', '待派奖', '已取票'];
         $scope.selectIndex = 0;
     
@@ -48,7 +48,17 @@ angular.module ('starter.allOrdersCtrl', [])
   
         };
     
-    
-    
-    
+        //待付款
+        $scope.localsArr = locals.getObject("localsArr");
+        console.info($scope.localsArr);
+        
+
+       
+        if($scope.status == 5){
+            $scope.statusText = '待付款';
+            $scope.titleText = '大乐透';
+        }
+        
+        
+ 
     });

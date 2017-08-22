@@ -10,29 +10,19 @@
 
     <ion-content class="h25">
        <div class="history-show">
-            <p><ins>17044 期</ins><i>04-19 周三</i></p>
+            <p><ins ng-cloak>{{wareIssue}} 期</ins><i ng-cloak>{{createDate}} 周三</i></p>
            <div class="row">
                <div class="col col-60 show-red-balls" style="text-align: right">
-                   <i ng-cloak>{{toArray(past.result,0)}}02</i>
-                   <i ng-cloak>{{toArray(past.result,1)}}02</i>
-                   <i ng-cloak>{{toArray(past.result,2)}}02</i>
-                   <i ng-cloak>{{toArray(past.result,3)}}02</i>
-                   <i ng-cloak>{{toArray(past.result,4)}}02</i>
+                   <i ng-repeat="ball in resultArrayRed track by $index" ng-cloak>{{ball}}</i>
                </div>
                <div class="col col-40 show-blue-balls">
-                   <i ng-cloak>{{toArray(past.result,5)}}02</i>
-                   <i ng-cloak>{{toArray(past.result,6)}}02</i>
+                   <i ng-repeat="ball in resultArrayBlue track by $index" ng-cloak>{{ball}}</i>
                </div>
            </div>
            <div class="explain">
                本期销量:<i>2.19亿元</i> | 下期奖池:<i>37.53亿元</i>
            </div>
        </div>
-    <!--    <div class="row">
-            <div class="col col-30">等级</div>
-            <div class="col col-34">单注奖金</div>
-            <div class="col col-34">中奖注数</div>
-        </div>-->
         <div class="row">
             <table>
                 <thead></thead>

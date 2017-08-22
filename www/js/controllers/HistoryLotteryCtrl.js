@@ -49,7 +49,9 @@ angular.module ('starter.HistoryLotteryCtrl', [])
                             });
                     }
     
-                    $scope.goToHistory = function () {
+                    $scope.goToHistory = function (index, pastResult) {
+                        $rootScope.pastResult = pastResult;
+                        console.info($rootScope.pastResult);
                         $state.go('HistoryLotteryDetails');
                     }
                     

@@ -225,7 +225,7 @@ angular.module ('starter.BigLottoCtrl', [])
             $scope.Note = '1'; // 判断如果点击修改查看按钮返回到详情投注页面后添加注数以及金额
             $scope.NoteMoney = '2';
         }
-        //确认提交按钮
+        //确认按钮
         $scope.saveBallSelect = function () {
             var filterDataRed1 = [];        //用来保存本次点击确定后的红球
             var filterDataBlue1 = [];       //用来保存本次点击确定后的蓝球

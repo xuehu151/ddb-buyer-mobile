@@ -3,10 +3,10 @@
  */
 angular.module ('starter.bettingDetailCtrl', [])
     //方案保存成功提示
-    .controller ('bettingDetailCtrl', function ($scope,$rootScope, $ionicPopup, $timeout, $state, $cordovaToast, $ionicLoading, $util, $http, $getInfoService, $bettingService, $ionicModal) {
+    .controller ('bettingDetailCtrl', function ($scope,$rootScope, $ionicPopup, $timeout, $state, $cordovaToast, $ionicLoading, $util, $http, $getInfoService, $bettingService, $ionicModal, locals) {
         $scope.multiple = '1';
         $scope.countMoney = '2';
-
+       
         //处理默认的倍数
         $scope.blur = function (focus) {
             if($scope.multiple < 1){
@@ -104,16 +104,33 @@ angular.module ('starter.bettingDetailCtrl', [])
             // console.log(thisIndexOrder);
             $rootScope.editIndex = $index;
             $state.go ('BigLotto');
-             $scope.deleteRow($index);
+            $scope.deleteRow($index);
         };
 
         // 方案保存成功提示框
+        var totalSum = $scope.totalMoney * $scope.multiple * $scope.countMoney;
+        var localsArrs = locals.getObject ("localsArr");
+        //console.info (localsArrs);
+        jsonWarpBall = [];
+        for (var i = 0; i < localsArrs.length; i++) {
+            jsonWarpBall.push (localsArrs[i]);
+        }
+  
         $scope.showSaveAlert = function () {
-            $cordovaToast.showShortCenter ("方案保存成功");
-            var alertPopup = $ionicPopup.alert ({
+            var objBall = {
+                totalSum : totalSum,
+                ballList : $scope.sessionJsonWarp,
+                status: 5
+            };
+            jsonWarpBall.push(objBall);
+            locals.setObject("localsArr", jsonWarpBall);
+            //console.info(jsonWarpBall);
+            //$cordovaToast.showShortCenter ("方案保存成功");
+            
+            /*var alertPopup = $ionicPopup.alert ({
                 template: '<div style="text-align:center">方案保存成功</div>',
                 title: '<i class="icon ion-ios-checkmark-outline" style="font-size:26px"></i>'
-            });
+            });*/
         };
 
         //提交彩店
@@ -134,16 +151,6 @@ angular.module ('starter.bettingDetailCtrl', [])
                     lotteryID : 2
                 }
             };
-
-            /*$http ({
-                method : "POST",
-                url : ipUrl + '/buyer/order/getWareIssue',
-                params : data,
-                headers : {
-                    "Content-Type" : "application/json",
-                    "Auth-Token": userInfo.data.token
-                }
-            })*/
 //            console.info(data);
             $getInfoService.getWareIssue (data, token)
                 .then (function (response) {
@@ -217,15 +224,7 @@ angular.module ('starter.bettingDetailCtrl', [])
                 };
                 var token = userInfo.token;
                 console.log(data);
-                /*$http ({
-                    method : "POST",
-                    url : ipUrl + '/buyer/order/dltadd',
-                    data : data,
-                    headers : {
-                        "Content-Type" : "application/json",
-                        "Auth-Token": userInfo.data.token
-                    }
-                })*/
+
                 $bettingService.dltadd(data, token)
                     .then (function (response) {
                         $ionicLoading.hide ();
