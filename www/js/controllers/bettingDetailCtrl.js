@@ -110,13 +110,14 @@ angular.module ('starter.bettingDetailCtrl', [])
         // 方案保存成功提示框
         var totalSum = $scope.totalMoney * $scope.multiple * $scope.countMoney;
         var localsArrs = locals.getObject ("localsArr");
-        //console.info (localsArrs);
+        console.info (localsArrs);
         jsonWarpBall = [];
         for (var i = 0; i < localsArrs.length; i++) {
             jsonWarpBall.push (localsArrs[i]);
         }
   
         $scope.showSaveAlert = function () {
+            var userInfo = $util.getUserInfo ();
             var objBall = {
                 totalSum : totalSum,
                 ballList : $scope.sessionJsonWarp,
@@ -124,7 +125,9 @@ angular.module ('starter.bettingDetailCtrl', [])
             };
             jsonWarpBall.push(objBall);
             locals.setObject("localsArr", jsonWarpBall);
-            //console.info(jsonWarpBall);
+            console.info(jsonWarpBall);
+            console.info(userInfo);
+            
             //$cordovaToast.showShortCenter ("方案保存成功");
             
             /*var alertPopup = $ionicPopup.alert ({

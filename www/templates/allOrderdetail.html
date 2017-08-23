@@ -5,7 +5,63 @@
         </ion-nav-buttons>
     </ion-nav-bar>
 
-    <ion-content>
-
+    <ion-content style="background: #f9f8f0;">
+        <div class="detailTitle">
+            <div class="user-head">
+                <img src="./img/BigLotto.png" alt="大乐透">
+            </div>
+            <h3>大乐透</h3>
+            <span>2017098期</span>
+            <i>金额: 10.00元</i>
+        </div>
+        <div class="list detailTitle-content">
+            <ion-list>
+                <ion-item class="list-item">
+                    <h2>订单状态:</h2>
+                    <span>待开奖</span>
+                </ion-item>
+                <ion-item class="list-item">
+                    <h2>开奖号码:</h2>
+                    <span>未知</span>
+                </ion-item>
+                <div ng-repeat="group in groups track by $index">
+                    <ion-item class="item-icon-right list-item"
+                              ng-click="toggleGroup(group)"
+                              ng-class="{active: isGroupShown(group)}" >
+                        <i ng-class="isGroupShown(group) ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+                        <h2 style="font-weight: 600">选号详情:</h2>
+                        <span>5 条</span>
+                    </ion-item>
+                    <ion-item class="itemContent list-item" ng-show="isGroupShown(group)" >
+                        <ul class="ball-content">
+                            <li ng-repeat="ball in ballContentArr track by $index" ng-cloak>
+                                <div class="way">
+                                    <h3>单式:</h3>
+                                    <ins>1倍</ins>
+                                </div>
+                                <span>10,13,13,13,13*22,03</span>
+                            </li>
+                        </ul>
+                    </ion-item>
+                </div>
+            </ion-list>
+        </div>
+        <div class="ball-foot">
+            <ul>
+                <li>
+                    <h3>下单时间:</h3>
+                    <ins>2017-08-21 15:30:03</ins>
+                </li>
+                <li>
+                    <h3>订单编号:</h3>
+                    <ins>201702215522243513151578</ins>
+                </li>
+                <li>
+                    <h3>温馨提示:</h3>
+                    <ins>奖金直接打入您的账户</ins>
+                </li>
+            </ul>
+        </div>
     </ion-content>
+    <a href="" class="button button-assertive Continue-bet">继续投注本次号码</a>
 </ion-view>

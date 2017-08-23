@@ -1212,6 +1212,194 @@ input.bigLotto-input2:checked:before {
     width: 70px;
 }
 
+/*全部订单待付款*/
+.detailTitle{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    line-height: 60px;
+    background-image: url("../img/detail-bg.png");
+    background-size: 100%;
+}
+
+.detailTitle h3{
+    display: inline-block;
+    margin: 0 0 0 10px;
+    font-size: 17px;
+    line-height: 60px;
+    color: #333333;
+}
+
+.detailTitle span{
+    font-size: 11px;
+    color: #999999;
+    margin-left: 8px;
+    letter-spacing: 1px;
+}
+
+.detailTitle i{
+    font-size: 15px;
+    color: #d11d1d;
+    display: inline-block;
+    position: absolute;
+    right: 14px;
+}
+
+.user-head{
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    margin-left: 15px;
+}
+
+.user-head img{
+    width: 90%;
+    vertical-align: middle;
+}
+
+.detailTitle-content{
+    height: 100%;
+    background: white;
+    padding: 20px 10px 0 10px;
+    margin-bottom: 5px;
+}
+
+.detailTitle-content .list-item{
+    padding: 5px 15px 5px 4px;
+    border: none;
+    margin: 0;
+    border-bottom: solid 1px #efefef;
+    display: flex;
+    vertical-align: middle;
+}
+
+.list-item.active{
+    background: white;
+}
+
+.list-item h2{
+    font-size: 15px;
+    color: #333333;
+    display: inline-block;
+    padding: 3px 2px;
+    vertical-align: middle;
+}
+
+.list-item span{
+    font-size: 14px;
+    color: #999999;
+    display: inline-block;
+    padding: 3px 2px;
+    vertical-align: middle;
+    margin-left: 20px;
+}
+
+.list-item i{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 10px;
+    width: 15px;
+    text-align: center;
+    line-height: 15px;
+    height: 15px!important;
+    border-radius: 50%;
+    border: solid 1px #d2d2d2;
+}
+
+.itemContent{
+    padding: 2px 2px!important;
+}
+
+.ball-content{
+    width: 100%;
+}
+
+.ball-content li{
+    width: 100%;
+    padding: 0 2px;
+    height: 40px;
+    line-height: 40px;
+    display: flex;
+    border-bottom: solid 1px #efefef;
+}
+
+.ball-content li:last-child{
+    border-bottom: none;
+}
+
+.ball-content .way{
+    width: 25%;
+    height: 40px;
+    display: inline-block;
+}
+
+.ball-content > li > span{
+    width: 75%;
+    display: inline-block;
+    font-size: 14px;
+    color: #999999;
+    padding: 3px 2px;
+    vertical-align: middle;
+    margin: 0;
+    float: right;
+    padding-left: 14px;
+}
+
+.ball-content h3{
+    font-size: 15px;
+    color: #b0b1b1;
+    padding: 3px 0 0 3px;
+    display: grid;
+    vertical-align: middle;
+    width: 100%;
+    padding-left: 12px;
+    margin: 0 0;
+}
+
+.ball-content ins{
+    text-decoration: none;
+    display: flex;
+    height: 18px;
+    line-height: 18px;
+    font-size: 12px;
+    padding-left: 12px;
+    color: #b0b1b1;
+}
+
+.ball-foot li{
+    height: 35px;
+}
+
+.ball-foot h3{
+    font-size: 15px;
+    color: #ab967a;
+    display: inline-block;
+    margin-left: 8px;
+    width: 24%;
+    padding: 6px 6px;
+    font-weight: 600;
+}
+
+.ball-foot ins{
+    font-size: 15px;
+    color: #ab967a;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.Continue-bet{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%,0);
+    margin: auto;
+    display: table;
+    padding: 0 30px;
+}
+
 /*上拉菜单*/
 .action-sheet-group {
     border-radius: 15px;
