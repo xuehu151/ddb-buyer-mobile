@@ -92,4 +92,20 @@ angular.module('starter.services', [])
 
 
         };
+    })
+    
+    .factory('$rechargeService', function ($http, $util) {
+        return {
+            //充值申请
+            recharge: function (data, token) {
+                return $util.httpPostRequest($util.getHttpURL().rechargeUrl, data, token);
+            },
+    
+            //充值申请
+            withdraw: function (data, token) {
+                return $util.httpPostRequest($util.getHttpURL().withdrawUrl, data, token);
+            }
+            
+            
+        };
     });

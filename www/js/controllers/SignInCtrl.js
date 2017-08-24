@@ -37,14 +37,7 @@ angular.module ('starter.SignInCtrl', [])
             $ionicLoading.show ({
                 template: 'Loading...'
             });
-            /*$http ({
-                method : "POST",
-                url : ipUrl + '/buyer/auth/login',
-                data : data,
-                headers : {
-                    "Content-Type" : "application/json"
-                }
-            })*/
+
             $loginService.login (data)
                 .then (function (response) {
                     console.info(response);

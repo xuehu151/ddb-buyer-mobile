@@ -1053,7 +1053,7 @@ input.bigLotto-input2:checked:before {
 
 .allorders-scroll {
     width: 100%;
-    height: 90%;
+    height: 93%;
 }
 
 .all-orders {
@@ -1482,10 +1482,10 @@ input.bigLotto-input2:checked:before {
     margin: 30px 0;
 }
 
-.drawFailed .icon-RoundPoor {
+.drawFailed .icon-wrong {
     font-size: 7em;
 }
-
+.drawFailed .icon-clock,
 .drawFailed .icon-checkNumber {
     font-size: 7em;
 }

@@ -115,7 +115,6 @@ angular.module ('starter.bettingDetailCtrl', [])
         for (var i = 0; i < localsArrs.length; i++) {
             jsonWarpBall.push (localsArrs[i]);
         }
-  
         $scope.showSaveAlert = function () {
             var userInfo = $util.getUserInfo ();
             var objBall = {

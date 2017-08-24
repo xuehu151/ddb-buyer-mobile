@@ -1,7 +1,7 @@
 // Ionic Starter App
 var jsonWrap = [];//存放所有的注数
 var jsonWarpBall = [];//存放订单待付款
-angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services', 'starter.util', 'starter.SignInCtrl', 'starter.RaceColorFootballCtrl', 'starter.BigLottoCtrl', 'starter.bettingDetailCtrl', 'starter.RecommendCtrl', 'starter.InformationCtrl', 'starter.SuperLottoCtrl', 'starter.BiddingFootballCtrl', 'starter.MineCtrl', 'starter.registerCtrl', 'starter.verifyCtrl', 'starter.forgetPasswordCtrl', 'starter.allOrdersCtrl', 'starter.withdrawCtrl', 'starter.withDrawFailedCtrl', 'starter.withDrawSuccessCtrl', 'starter.rechargeCtrl', 'starter.accountDetailCtrl', 'starter.mineDetailsCtrl', 'starter.orderStatusCtrl', 'starter.HistoryLotteryCtrl', 'starter.HistoryLotteryDetailsCtrl', 'starter.allOrderdetailCtrl'])
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services', 'starter.util', 'starter.SignInCtrl', 'starter.RaceColorFootballCtrl', 'starter.BigLottoCtrl', 'starter.bettingDetailCtrl', 'starter.RecommendCtrl', 'starter.InformationCtrl', 'starter.SuperLottoCtrl', 'starter.BiddingFootballCtrl', 'starter.MineCtrl', 'starter.registerCtrl', 'starter.verifyCtrl', 'starter.forgetPasswordCtrl', 'starter.allOrdersCtrl', 'starter.withdrawCtrl', 'starter.withDrawStatusCtrl', 'starter.rechargeCtrl', 'starter.accountDetailCtrl', 'starter.mineDetailsCtrl', 'starter.orderStatusCtrl', 'starter.HistoryLotteryCtrl', 'starter.HistoryLotteryDetailsCtrl', 'starter.allOrderdetailCtrl', 'starter.rechargeSuccessCtrl'])
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -235,22 +235,15 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
                 templateUrl: 'templates/withdraw.html',
                 controller: 'withdrawCtrl'
             })
-            //提现失败
-            .state('withDrawFailed', {
-                url: '/withDrawFailed',
+            //提现失败成功
+            .state('withDrawStatus', {
+                url: '/withDrawStatus',
                 cache: 'false',
                 prefetchTemplate:false,
-                templateUrl: 'templates/withDrawFailed.html',
-                controller: 'withDrawFailedCtrl'
+                templateUrl: 'templates/withDrawStatus.html',
+                controller: 'withDrawStatusCtrl'
             })
-            //提现成功
-            .state('withDrawSuccess', {
-                url: '/withDrawSuccess',
-                cache: 'false',
-                prefetchTemplate:false,
-                templateUrl: 'templates/withDrawSuccess.html',
-                controller: 'withDrawSuccessCtrl'
-            })
+    
             //充值accountDetail
             .state('recharge', {
                 url: '/recharge',
@@ -259,6 +252,16 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
                 templateUrl: 'templates/recharge.html',
                 controller: 'rechargeCtrl'
             })
+
+            //充值成功
+            .state('rechargeSuccess', {
+                url: '/rechargeSuccess',
+                cache: 'false',
+                prefetchTemplate:false,
+                templateUrl: 'templates/rechargeSuccess.html',
+                controller: 'rechargeSuccessCtrl'
+            })
+            
             //账户明细
             .state('accountDetail', {
                 url: '/accountDetail',

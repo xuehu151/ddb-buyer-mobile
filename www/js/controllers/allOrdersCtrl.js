@@ -53,7 +53,6 @@ angular.module ('starter.allOrdersCtrl', [])
         var data = {
             data:{},
             params:{}
-        
         };
         $getInfoService.getOrderList(data, token)
             .then (function (response) {
@@ -64,9 +63,10 @@ angular.module ('starter.allOrdersCtrl', [])
                     $scope.requesArr[i].createDate = _createDate.split (' ')[0];
         
                     var status = $scope.requesArr[i].status;
+                    var isReturn = $scope.requesArr[i].isReturn;
                     var ticketID = $scope.requesArr[i].ticketID;
                     var orderMoney = $scope.requesArr[i].money;
-                    //console.info(ticketID);
+//                    console.info(status);
                     switch ( status ) {
                         case 1:
 //                            $scope.requesArr[i].status = '待出票';
@@ -81,26 +81,35 @@ angular.module ('starter.allOrdersCtrl', [])
                             $scope.requesArr[i].ticketID = ticketID;
                             $scope.requesArr[i].money = orderMoney;
                             break;
-                       /* case 3:
+                        case 3:
                             $scope.statusText = '待付款';
                             $scope.titleText = '大乐透';
                             break;
                         case 4:
-                            $scope.statusText = '待付款';
+                            switch ( isReturn ){
+                                case 0:
+                                    $scope.statusText = '待派奖';
+                                    break;
+                                case 1:
+                                    $scope.statusText = '已返奖';
+                                    break;
+                                default:
+                                    //。。。。。。。。
+                            }
                             $scope.titleText = '大乐透';
-                            break;*/
+                            $scope.requesArr[i].ticketID = ticketID;
+                            $scope.requesArr[i].money = orderMoney;
+                            break;
                         default:
                             //$scope.requesArr[i].status = '已撤单';
                     }
-        
                 }
-            
             },function (error) {
-            
+                //.....
             });
         //待付款
         $scope.localsArr = locals.getObject ("localsArr");
-        //console.info($scope.localsArr);
+        console.info($scope.localsArr);
         for (var i = 0; i < $scope.localsArr.length; i++) {
             if ($scope.localsArr[i].status == 5) {
                 $scope.statusText = '待付款';
@@ -108,14 +117,6 @@ angular.module ('starter.allOrdersCtrl', [])
                 $scope.totalSum = $scope.localsArr[i].totalSum;
             }
         }
-        
-        //全部订单
-    
-        
-        
-        
-        
-        
         
         //查看详情
         $scope.viewDetails = function (index) {

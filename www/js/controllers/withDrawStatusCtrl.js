@@ -1,9 +1,9 @@
 /**
  * Created by admin on 2017/7/27.
  */
-angular.module ('starter.withDrawFailedCtrl', [])
+angular.module ('starter.withDrawStatusCtrl', [])
     //提现失败
-    .controller ('withDrawFailedCtrl', function ($scope, $state, $rootScope) {
+    .controller ('withDrawStatusCtrl', function ($scope, $state, $rootScope) {
         $scope.groups = [];//将来作为失败的多个凭证数组
         for (var i = 0; i < 1; i++) {//循环列表
             $scope.groups[i] = {

@@ -1,0 +1,18 @@
+<ion-view view-title="充值">
+    <ion-nav-bar class="bar bar-assertive">
+        <ion-nav-buttons ng-click="" side="left">
+            <a class="button button-icon ion-ios-arrow-left light" href="#/tab/mine" style="font-size: 1.5em;line-height: 31px;">
+            </a>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-content style="background: #f7f5f5;">
+        <div class="drawFailed">
+            <i  ng-class="signIconStatus == true ? 'icon-checkNumber' : 'icon-clock'"></i>
+            <p ng-cloak>{{describe}}</p>
+            <div class="padding">
+                <a href="" class="button button-block" ng-click="rechargeMakeSure()">确 定</a>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

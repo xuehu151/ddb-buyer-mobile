@@ -15,6 +15,8 @@ angular.module ('starter.util', [])
             getOrderListUrl: ipUrl + '/buyer/order/getList',   //获取投注记录
             getOrderInfoUrl: ipUrl + '/buyer/order/getInfo',   //获取投注详情
             getHistoryListUrl: ipUrl + '/buyer/order/getHistoryList',   //获取历史开奖记录
+            rechargeUrl: ipUrl + '/buyer/bill/recharge',   //充值申请
+            withdrawUrl: ipUrl + '/buyer/bill/cash',   //提现申请
         };
         return {
             /* 返回httpURL  */

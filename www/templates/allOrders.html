@@ -33,7 +33,7 @@
                                 <a href="" ng-click="viewDetails($index)">查看详情</a>
                             </div>
                             <div class="col col-right">
-                                <a href="#" class="button button-assertive">点击付款</a>
+                                <a href="" class="button button-assertive">点击付款</a>
                             </div>
                         </div>
                     </ion-item>
@@ -57,10 +57,10 @@
                         </div>
                         <div class="row row-bottom">
                             <div class="col">
-                                <a href="#">订单编号：<i ng-cloak>{{orders.ticketID}}</i></a>
+                                <a href="">订单编号：<i ng-cloak>{{orders.ticketID}}</i></a>
                             </div>
                             <div class="col col-right">
-                                <a href="#" class="button button-assertive">查看详情</a>
+                                <a href="" class="button button-assertive"  ng-click="viewDetails($index)">查看详情</a>
                             </div>
                         </div>
                     </ion-item>
@@ -69,7 +69,7 @@
         </ion-scroll>
 
         <ion-scroll zooming="false" direction="y" class="allorders-scroll" ng-if="selectIndex==2"><!--待开奖-->
-            <ion-list class="all-orders-list" ng-repeat="orders in requesArr "><!--| filter : {status : 2}-->
+            <ion-list class="all-orders-list" ng-repeat="orders in requesArr | filter : {status : 2}">
                 <div class="each-order" ng-click="toOrderDetail(order.ticketID)" >
                     <ion-item class="padding-h8">
                         <div class="row row-top">
@@ -84,10 +84,10 @@
                         </div>
                         <div class="row row-bottom">
                             <div class="col">
-                                <a href="#">订单编号：<i ng-cloak>{{orders.ticketID}}</i></a>
+                                <a href="">订单编号：<i ng-cloak>{{orders.ticketID}}</i></a>
                             </div>
                             <div class="col col-right">
-                                <a href="" class="button button-assertive">查看详情</a>
+                                <a href="" class="button button-assertive"  ng-click="viewDetails($index)">查看详情</a>
                             </div>
                         </div>
                     </ion-item>
@@ -95,49 +95,26 @@
             </ion-list>
         </ion-scroll>
 
-        <ion-scroll zooming="false" direction="y" class="allorders-scroll" ng-if="selectIndex==3">
-            <ion-list class="all-orders-list">
+        <ion-scroll zooming="false" direction="y" class="allorders-scroll" ng-if="selectIndex==3"><!--待派奖-->
+            <ion-list class="all-orders-list"  ng-repeat="orders in requesArr | filter : {status : 4}">
                 <div class="each-order" ng-click="toOrderDetail(order.ticketID)" >
                     <ion-item class="padding-h8">
                         <div class="row row-top">
                             <div class="col">
-                                <h3>精彩胜平负</h3>
-                                <i>待派奖</i>
+                                <h3 ng-cloak>{{titleText}}</h3>
+                                <i ng-cloak>{{statusText}}</i>
                             </div>
                             <div class="col col-right" style="margin-top: 7%;">
-                                <small>预计奖金: </small><ins>￥<span>15.00</span>元</ins>
+                                <small>预计奖金: </small><ins>￥<span ng-cloak>{{orders.money}}</span>元</ins>
                             </div>
                             <div class="win-img icon-winning-grey"></div>
                         </div>
                         <div class="row row-bottom">
                             <div class="col">
-                                <a href="#">订单编号：<i>20170910</i></a>
+                                <a href="">订单编号：<i ng-cloak>{{orders.ticketID}}</i></a>
                             </div>
                             <div class="col col-right">
-                                <a href="#" class="button button-assertive">查看详情</a>
-                            </div>
-                        </div>
-                    </ion-item>
-                </div>
-
-                <div class="each-order" ng-click="toOrderDetail(order.ticketID)" >
-                    <ion-item class="padding-h8">
-                        <div class="row row-top">
-                            <div class="col">
-                                <h3>精彩胜平负</h3>
-                                <i>待派奖</i>
-                            </div>
-                            <div class="col col-right" style="margin-top: 7%;">
-                                <small>预计奖金: </small><ins>￥<span>15.00</span>元</ins>
-                            </div>
-                            <div class="win-img icon-winning-grey"></div>
-                        </div>
-                        <div class="row row-bottom">
-                            <div class="col">
-                                <a href="#">订单编号：<i>20170910</i></a>
-                            </div>
-                            <div class="col col-right">
-                                <a href="#" class="button button-assertive">查看详情</a>
+                                <a href="" class="button button-assertive"  ng-click="viewDetails($index)">查看详情</a>
                             </div>
                         </div>
                     </ion-item>
@@ -145,7 +122,7 @@
             </ion-list>
         </ion-scroll>
 
-        <ion-scroll zooming="false" direction="y" class="allorders-scroll" ng-if="selectIndex==4">
+        <ion-scroll zooming="false" direction="y" class="allorders-scroll" ng-if="selectIndex==4"><!--已取票-->
             <ion-list class="all-orders-list">
                 <div class="each-order" ng-click="toOrderDetail(order.ticketID)" >
                     <ion-item class="padding-h8">
@@ -161,33 +138,10 @@
                         </div>
                         <div class="row row-bottom">
                             <div class="col">
-                                <a href="#">查看详情</a>
+                                <a href=""  ng-click="viewDetails($index)">查看详情</a>
                             </div>
                             <div class="col col-right">
-                                <a href="#" class="button button-assertive">确认</a>
-                            </div>
-                        </div>
-                    </ion-item>
-                </div>
-
-                <div class="each-order" ng-click="toOrderDetail(order.ticketID)" >
-                    <ion-item class="padding-h8">
-                        <div class="row row-top">
-                            <div class="col">
-                                <h3>精彩胜平负</h3>
-                                <i>已取票</i>
-                            </div>
-                            <div class="col col-right">
-                                <h3>创建时间: <span>2017-5-3</span></h3>
-                                <small>最高奖金:</small><ins>￥<span>15.00</span>元</ins>
-                            </div>
-                        </div>
-                        <div class="row row-bottom">
-                            <div class="col">
-                                <a href="#">查看详情</a>
-                            </div>
-                            <div class="col col-right">
-                                <a href="#" class="button button-assertive">确认</a>
+                                <a href="" class="button button-assertive">确认</a>
                             </div>
                         </div>
                     </ion-item>
