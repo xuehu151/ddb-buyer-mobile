@@ -1170,7 +1170,6 @@ input.bigLotto-input2:checked:before {
     font-size: 50px;
     position: absolute;
     left: 50%;
-    color: #e02121;
 }
 
 .all-orders-list .font-style3 {
@@ -1438,7 +1437,7 @@ input.bigLotto-input2:checked:before {
     font-weight: 600;
 }
 
-.getMoney input[type=number] {
+.getMoney input[type=tel] {
     width: 90%;
     padding: 20px 10px 30px 5px;
     font-size: x-large;

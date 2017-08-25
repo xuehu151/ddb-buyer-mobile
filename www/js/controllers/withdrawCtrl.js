@@ -80,9 +80,6 @@ angular.module ('starter.withdrawCtrl', [])
                         $rootScope.placeholder = '提现失败的原因......';
                         $state.go('withDrawStatus');
                     }
-            
-            
-            
                 },function (error) {
                     //....
                 });

@@ -196,9 +196,13 @@
 .icon-mine-outline:before {
     content: "\e932";
 }
-.icon-winning-grey:before {
+.icon-winning-red:before {
     content: "\e933";
     color: #d11d1d;
+}
+.icon-winning-grey:before {
+    content: "\e933";
+    color: #999999;
 }
 .icon-wrong:before {
     content: "\e934";

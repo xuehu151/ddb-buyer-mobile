@@ -12,7 +12,7 @@
             <div class="money-input">
                 <i>￥</i>
                 <input
-                    type="number"
+                    type="tel"
                     ng-model="RechargeMoney.money"
                     ng-change="RechargeOK()" >
             </div>
@@ -39,9 +39,12 @@
                                   ng-show="isGroupShown(group)" >
                             <div class="item-area">
                                 <textarea rows="6" cols="50" placeholder="请输入备注或凭证说明......"></textarea>
-                                <img alt="" src="./img/user.jpg" id="myImage">
+                                <div class="item" ng-repeat="img in images_list">
+                                    <img src="{{img}}"   alt="" id="myImage">
+                                    <!--<img alt="" src="./img/user.jpg" id="myImage">-->
+                                </div>
                                 <!--<span ng-if="item.imgSrc" ng-click="img_del($index)"></span>-->
-                                <div class="add-img" ng-click="pickImage()">
+                                <div class="add-img" ng-click="picture()">
                                     <i class="add-img-icon ion-android-add"></i>
                                 </div>
                                 <p>*注:凭证保存时效为1个月。已上传凭证可在账单明细详情中查看;</p>

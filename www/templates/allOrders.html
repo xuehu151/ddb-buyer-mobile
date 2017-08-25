@@ -20,8 +20,8 @@
                     <ion-item class="padding-h8">
                         <div class="row row-top">
                             <div class="col">
-                                <h3 ng-cloak>{{titleText}}</h3>
-                                <i ng-cloak>{{statusText}}</i>
+                                <h3 ng-cloak>{{orders.titleText}}</h3>
+                                <i ng-cloak>{{orders.statusText}}</i>
                             </div>
                             <div class="col col-right">
                                 <h3><span>23</span>小时后截止购买</h3>
@@ -47,8 +47,8 @@
                     <ion-item class="padding-h8">
                         <div class="row row-top">
                             <div class="col">
-                                <h3 ng-cloak>{{titleText}}{{orders.id}}</h3>
-                                <i ng-cloak>{{statusText}}</i>
+                                <h3 ng-cloak>{{orders.titleText}}</h3>
+                                <i ng-cloak>{{orders.statusText}}</i>
                             </div>
                             <div class="col col-right">
                                 <h3>创建时间: <span ng-cloak>{{orders.createDate}}</span></h3>
@@ -74,8 +74,8 @@
                     <ion-item class="padding-h8">
                         <div class="row row-top">
                             <div class="col">
-                                <h3 ng-cloak>{{titleText}}</h3>
-                                <i ng-cloak>{{statusText}}</i>
+                                <h3 ng-cloak>{{orders.titleText}}</h3>
+                                <i ng-cloak>{{orders.statusText}}</i>
                             </div>
                             <div class="col col-right">
                                 <h3 style="color: #e02121">距离开奖: <span>7:23</span></h3>
@@ -101,13 +101,13 @@
                     <ion-item class="padding-h8">
                         <div class="row row-top">
                             <div class="col">
-                                <h3 ng-cloak>{{titleText}}</h3>
-                                <i ng-cloak>{{statusText}}</i>
+                                <h3 ng-cloak>{{orders.titleText}}</h3>
+                                <i ng-cloak>{{orders.statusText}}</i>
                             </div>
                             <div class="col col-right" style="margin-top: 7%;">
                                 <small>预计奖金: </small><ins>￥<span ng-cloak>{{orders.money}}</span>元</ins>
                             </div>
-                            <div class="win-img icon-winning-grey"></div>
+                            <div class="win-img" ng-class="orders.status == 0?'icon-winning-red':'icon-winning-grey' "></div>
                         </div>
                         <div class="row row-bottom">
                             <div class="col">

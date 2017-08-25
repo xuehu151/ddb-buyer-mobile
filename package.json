@@ -1,46 +1,58 @@
 {
-    "name": "demoapp",
-    "version": "1.1.1",
-    "description": "demoapp: An Ionic project",
-    "devDependencies": {
-        "gulp": "^3.5.6",
-        "gulp-clean-css": "^3.7.0",
-        "gulp-rename": "^1.2.0",
-        "gulp-sass": "^3.1.0"
+  "name": "demoapp",
+  "version": "1.1.1",
+  "description": "demoapp: An Ionic project",
+  "devDependencies": {
+    "gulp": "^3.5.6",
+    "gulp-clean-css": "^3.7.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^3.1.0"
+  },
+  "cordovaPlugins": [
+    "cordova-plugin-device",
+    "cordova-plugin-console",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-statusbar",
+    "ionic-plugin-keyboard",
+    {
+      "locator": "https://github.com/wymsee/cordova-imagePicker",
+      "id": "cordova-plugin-image-picker"
     },
-    "cordovaPlugins": [
-        "cordova-plugin-device",
-        "cordova-plugin-console",
-        "cordova-plugin-whitelist",
-        "cordova-plugin-splashscreen",
-        "cordova-plugin-statusbar",
-        "ionic-plugin-keyboard"
-    ],
-    "cordovaPlatforms": [
-        "android"
-    ],
-    "dependencies": {
-        "cordova-android": "^6.2.3",
-        "cordova-plugin-console": "^1.0.5",
-        "cordova-plugin-device": "^1.1.4",
-        "cordova-plugin-splashscreen": "^4.0.3",
-        "cordova-plugin-statusbar": "^2.2.1",
-        "cordova-plugin-whitelist": "^1.3.1",
-        "cordova-plugin-x-toast": "git+https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
-        "ionic-plugin-keyboard": "^2.2.1"
+    {
+      "locator": "https://github.com/apache/cordova-plugin-camera",
+      "id": "cordova-plugin-camera"
     },
-    "cordova": {
-        "plugins": {
-            "cordova-plugin-console": {},
-            "cordova-plugin-device": {},
-            "cordova-plugin-splashscreen": {},
-            "cordova-plugin-statusbar": {},
-            "cordova-plugin-whitelist": {},
-            "ionic-plugin-keyboard": {},
-            "cordova-plugin-x-toast": {}
-        },
-        "platforms": [
-            "android"
-        ]
+    {
+      "locator": "https://github.com/apache/cordova-plugin-file-transfer",
+      "id": "cordova-plugin-file-transfer"
     }
+  ],
+  "cordovaPlatforms": [
+    "android"
+  ],
+  "dependencies": {
+    "cordova-android": "^6.2.3",
+    "cordova-plugin-console": "^1.0.5",
+    "cordova-plugin-device": "^1.1.4",
+    "cordova-plugin-splashscreen": "^4.0.3",
+    "cordova-plugin-statusbar": "^2.2.1",
+    "cordova-plugin-whitelist": "^1.3.1",
+    "cordova-plugin-x-toast": "git+https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+    "ionic-plugin-keyboard": "^2.2.1"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-console": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-whitelist": {},
+      "ionic-plugin-keyboard": {},
+      "cordova-plugin-x-toast": {}
+    },
+    "platforms": [
+      "android"
+    ]
+  }
 }

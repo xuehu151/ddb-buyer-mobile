@@ -62,41 +62,40 @@ angular.module ('starter.allOrdersCtrl', [])
                     var _createDate = $scope.requesArr[i].createDate;
                     $scope.requesArr[i].createDate = _createDate.split (' ')[0];
         
-                    var status = $scope.requesArr[i].status;
+                    $scope.status = $scope.requesArr[i].status;
                     var isReturn = $scope.requesArr[i].isReturn;
                     var ticketID = $scope.requesArr[i].ticketID;
                     var orderMoney = $scope.requesArr[i].money;
-//                    console.info(status);
-                    switch ( status ) {
+ 
+                    switch ( $scope.status ) {
                         case 1:
-//                            $scope.requesArr[i].status = '待出票';
-                            $scope.statusText = '待出票';
-                            $scope.titleText = '大乐透';
+                            $scope.requesArr[i].statusText = '待出票';
+                            $scope.requesArr[i].titleText = '大乐透';
                             $scope.requesArr[i].ticketID = ticketID;
                             $scope.requesArr[i].money = orderMoney;
                             break;
                         case 2:
-                            $scope.statusText = '待开奖';
-                            $scope.titleText = '大乐透';
+                            $scope.requesArr[i].statusText = '待开奖';
+                            $scope.requesArr[i].titleText = '大乐透';
                             $scope.requesArr[i].ticketID = ticketID;
                             $scope.requesArr[i].money = orderMoney;
                             break;
                         case 3:
-                            $scope.statusText = '待付款';
-                            $scope.titleText = '大乐透';
+                            $scope.requesArr[i].statusText = '待付款';
+                            $scope.requesArr[i].titleText = '大乐透';
                             break;
                         case 4:
                             switch ( isReturn ){
                                 case 0:
-                                    $scope.statusText = '待派奖';
+                                    $scope.requesArr[i].statusText = '未返奖';
                                     break;
                                 case 1:
-                                    $scope.statusText = '已返奖';
+                                    $scope.requesArr[i].statusText = '已返奖';
                                     break;
                                 default:
-                                    //。。。。。。。。
+                                //
                             }
-                            $scope.titleText = '大乐透';
+                            $scope.requesArr[i].titleText = '大乐透';
                             $scope.requesArr[i].ticketID = ticketID;
                             $scope.requesArr[i].money = orderMoney;
                             break;
@@ -112,8 +111,8 @@ angular.module ('starter.allOrdersCtrl', [])
         console.info($scope.localsArr);
         for (var i = 0; i < $scope.localsArr.length; i++) {
             if ($scope.localsArr[i].status == 5) {
-                $scope.statusText = '待付款';
-                $scope.titleText = '大乐透';
+                $scope.localsArr[i].statusText = '待付款';
+                $scope.localsArr[i].titleText = '大乐透';
                 $scope.totalSum = $scope.localsArr[i].totalSum;
             }
         }

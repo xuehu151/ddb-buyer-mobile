@@ -9,8 +9,8 @@ angular.module ('starter.SignInCtrl', [])
     .controller ('SignInCtrl', function ($scope, $state, $ionicPopup, $ionicLoading, $http, $cordovaToast, $util, $loginService) {
 
         $scope.users = {
-            userName : "",
-            password : ""
+            userName : "liqiang",
+            password : "000000"
         };
 
         $scope.signIn = function (user) {
