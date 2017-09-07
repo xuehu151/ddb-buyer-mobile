@@ -24,12 +24,13 @@ angular.module ('starter.SignInCtrl', [])
                    //.......
                 }
             };
-
-            if ($scope.users.userName == '' || $scope.users.userName.length < 6) {
+            
+            console.info(typeof $scope.users.userName);
+            if ($scope.users.userName == '' || $scope.users.userName == undefined) {
                 $cordovaToast.showShortCenter ("请输入账号");
                 return
             }
-            else if($scope.users.password == ''){
+            else if($scope.users.password == '' || $scope.users.password == undefined){
                 $cordovaToast.showShortCenter ("请输入密码");
                 return
             }
@@ -47,9 +48,9 @@ angular.module ('starter.SignInCtrl', [])
                     console.info (userInfo);
                     if(response.error == '0'){
                         $state.go ('tab.home');
-                        $cordovaToast.showShortCenter ("登陆成功");
+                        $cordovaToast.showShortBottom ("登陆成功");
                     }else {
-                        $cordovaToast.showShortCenter (userInfo.info);
+                        $cordovaToast.showShortCenter (response.info);
                     }
                 }, function (error) {
                     $cordovaToast.showShortCenter ("登陆失败，请重试!");

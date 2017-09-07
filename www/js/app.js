@@ -47,6 +47,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
             .state('register', {
                 url: '/register',
                 cache: 'false',
+                prefetchTemplate:false,
                 templateUrl: 'templates/register.html',
                 controller: 'registerCtrl'
             })
@@ -54,6 +55,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
             .state('verify', {
                 url: '/verify',
                 cache: 'false',
+                prefetchTemplate:false,
                 templateUrl: 'templates/verify.html',
                 controller: 'verifyCtrl'
             })
@@ -61,6 +63,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
             .state('forgetPassword', {
                 url: '/forgetPassword',
                 cache: 'false',
+                prefetchTemplate:false,
                 templateUrl: 'templates/forgetPassword.html',
                 controller: 'forgetPasswordCtrl'
             })
@@ -68,6 +71,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
             .state('signin', {
                 url: '/sign-in',
                 cache: 'false',
+                prefetchTemplate:false,
                 templateUrl: 'templates/sign-in.html',
                 controller: 'SignInCtrl'
             })

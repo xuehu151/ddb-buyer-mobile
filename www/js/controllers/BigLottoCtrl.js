@@ -3,7 +3,7 @@
  */
 angular.module ('starter.BigLottoCtrl', [])
 //***首页  大乐透下单详情
-    .controller ('BigLottoCtrl', function ($scope, $rootScope, $state, $ionicPopover, $interval, $ionicPopup, $cordovaToast) {
+    .controller ('BigLottoCtrl', function ($scope, $rootScope, $state, $ionicPopover, $interval, $ionicPopup, $cordovaToast, $getInfoService, $util) {
         //设置红球和篮球号码
         $scope.numDataRed = [];
         $scope.numDataBlue = [];
@@ -12,11 +12,30 @@ angular.module ('starter.BigLottoCtrl', [])
         $scope.Note = '0';  //初始化注数
         $scope.NoteMoney = '0';//初始化钱数
         
-        //时间获取
-        $scope.now = new Date;
-        var timer = $interval (function () {
-            $scope.now = new Date;
-        }, 1000);
+        //开奖时间、停售时间
+        var userInfo = $util.getUserInfo ();
+        var token = userInfo.token;
+        var data = {
+            data:{},
+            params:{
+                lotteryID : 2
+            }
+        };
+        $getInfoService.getWareIssue (data, token)
+            .then (function (response) {
+                //console.info(response);
+                var titleEnd_sale_time = response.data.end_sale_time;//停售
+                var yearend_sale_time = titleEnd_sale_time.split(' ')[0];
+                var monthend_sale_time = titleEnd_sale_time.split(' ')[1];
+                $scope.end_sale_time = yearend_sale_time.slice(5);
+                $scope.end_sale_hourAndMinute = monthend_sale_time.slice(0, 5);
+    
+                var titleDrawTime = response.data.drawTime;//开奖
+                var yearDrawTime = titleDrawTime.split(' ')[0];
+                var monthDrawTime = titleDrawTime.split(' ')[1];
+                $scope.drawTime = yearDrawTime.slice(5);
+                $scope.hourAndMinute = monthDrawTime.slice(0, 5);
+            });
         
         // Create the red items   红球
         for (var j = 1; j < 36; j++) {
@@ -188,8 +207,6 @@ angular.module ('starter.BigLottoCtrl', [])
                 filterDataBlue.push (randomBlue[i]);
             }
             noteCount ();//调取多少注以及多少钱函数
-            // console.log (filterDataRed);
-            // console.log (filterDataBlue);
         };
         //根据选中的多少注来确定  注数和金额数；
         function noteCount () {
@@ -202,7 +219,6 @@ angular.module ('starter.BigLottoCtrl', [])
                 $scope.NoteMoney = '0';
             }
         }
-        
         /* console.log(filterDataRed.length);
          console.log(filterDataBlue.length);*/
         

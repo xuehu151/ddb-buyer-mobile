@@ -42,9 +42,6 @@ angular.module ('starter.allOrdersCtrl', [])
                 }
             });
             
-            
-            
-            
         };
 
         //获取历史投注记录............
@@ -54,7 +51,7 @@ angular.module ('starter.allOrdersCtrl', [])
             data:{},
             params:{}
         };
-        $getInfoService.getOrderList(data, token)
+        /*$getInfoService.getOrderList(data, token)
             .then (function (response) {
                 $scope.requesArr = response.data;
                 console.info($scope.requesArr);
@@ -105,18 +102,21 @@ angular.module ('starter.allOrdersCtrl', [])
                 }
             },function (error) {
                 //.....
-            });
+            });*/
         //待付款
-        $scope.localsArr = locals.getObject ("localsArr");
-        console.info($scope.localsArr);
-        for (var i = 0; i < $scope.localsArr.length; i++) {
-            if ($scope.localsArr[i].status == 5) {
-                $scope.localsArr[i].statusText = '待付款';
-                $scope.localsArr[i].titleText = '大乐透';
-                $scope.totalSum = $scope.localsArr[i].totalSum;
-            }
-        }
-        
+        $getInfoService.getOrderList(data, token)
+            .then (function (response) {
+                console.info(response);
+                
+                for (var i = 0; i < response.data.length; i++) {
+                    //console.info(response.data[i].status);
+                    console.info(response.data[i].payType);
+                }
+            },function (error) {
+                //...
+            });
+       
+       
         //查看详情
         $scope.viewDetails = function (index) {
             console.info (index);

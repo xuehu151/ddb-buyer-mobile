@@ -101,11 +101,20 @@ angular.module('starter.services', [])
                 return $util.httpPostRequest($util.getHttpURL().rechargeUrl, data, token);
             },
     
-            //充值申请
+            //提现申请
             withdraw: function (data, token) {
                 return $util.httpPostRequest($util.getHttpURL().withdrawUrl, data, token);
-            }
+            },
+    
+            //获取记录详情
+            recordDetails: function (data, token) {
+                return $util.httpPostRequest($util.getHttpURL().getInfoUrl, data, token);
+            },
             
+            //获取记录列表
+            recordList: function (data, token) {
+                return $util.httpPostRequest($util.getHttpURL().getListUrl, data, token);
+            }
             
         };
     });

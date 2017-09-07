@@ -4,7 +4,7 @@
             <a href="#BigLotto" class="button button-icon icon ion-ios-arrow-left"></a>
         </ion-nav-buttons>
         <ion-nav-buttons side="right">
-            <button class="button button-clear" ng-click="showSaveAlert()">保存</button>
+            <button class="button button-clear" ng-click="showSaveAlert(0)">保存</button>
         </ion-nav-buttons>
     </ion-nav-bar>
 
@@ -48,12 +48,17 @@
             <p>
                 投注
                 <label class="padding-left">
-                    <input class="bigLotto-input1 " type="text" ng-model="multiple" ng-blur="blur($event)"  />
+                    <input class="bigLotto-input1 "
+                           placeholder=""
+                           type="tel"
+                           onKeyUp="value=value.replace(/\D/g,'')"
+                           ng-model="multiple"
+                           ng-blur="blur($event)"  />
                 </label> 倍
             </p>
             <p>
-                金额：<!--totalMoney * multiple * countMoney-->
-                <span class="font-red">{{totalMoney * multiple * countMoney}}</span> 元 &nbsp
+                金额:
+                <span class="font-red">{{totalMoney * multiple * countMoney}}</span> 元 &nbsp;
                 <label class="checkbox ">
                     <input
                         class="bigLotto-input2"
@@ -62,7 +67,7 @@
                         ng-click="onchange()"/>
                 </label>追加 (每注3元)
             </p>
-            <button class="button button-block button-assertive submitBtn" ng-click="showOrderAlertCms()" style="font-size: 16px;">
+            <button class="button button-block button-assertive submitBtn" ng-click="showOrderAlertCms(1)" style="font-size: 16px;">
                 提交彩店
             </button>
         </div>

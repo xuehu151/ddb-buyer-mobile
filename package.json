@@ -3,6 +3,8 @@
   "version": "1.1.1",
   "description": "demoapp: An Ionic project",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
     "gulp": "^3.5.6",
     "gulp-clean-css": "^3.7.0",
     "gulp-rename": "^1.2.0",

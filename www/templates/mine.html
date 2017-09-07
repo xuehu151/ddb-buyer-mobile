@@ -4,28 +4,28 @@
             <div class="row user-top">
                 <div class="col col-40 ">
                     <div class="user-portrait">
-                        <img src="../img/user.jpg" alt="">
+                        <img ng-src="{{users.userHead}}" alt="">
                     </div>
                 </div>
                 <div class="col col-60 ">
                     <div class="user-info">
-                        <h4><span>昵称:</span> 点石成金</h4>
-                        <p><span>手机号:</span> 151****1207</p>
+                        <h4 ng-cloak=""><span>昵称:</span>{{users.realName}}</h4>
+                        <p ng-cloak=""><span>手机号:</span>{{users.userIphone}}151****5689</p>
                     </div>
                 </div>
             </div>
             <div class="row user-bottom">
                 <div class="col col-33">
                     <p>账户总额</p>
-                    <p ng-cloak>{{accountTotalMoney}}</p>
+                    <p ng-cloak="">{{users.accountTotalMoney}}</p>
                 </div>
                 <div class="col col-33">
                     <p>可用金额</p>
-                    <p ng-cloak>{{usableMoney}}</p>
+                    <p ng-cloak="">{{users.usableMoney}}</p>
                 </div>
                 <div class="col col-33">
                     <p>公益金</p>
-                    <p ng-cloak>{{publicMoney}}</p>
+                    <p ng-cloak="">{{users.publicMoney}}</p>
                 </div>
             </div>
         </div>
@@ -62,7 +62,7 @@
                     <div class="row">
                         <div class="col col-25">
                             <a href="" ng-click="allListOrder(0)">
-                                <i class="icon icon-payment"><ins class="red-point" ng-show="bragePayment?true:false" ng-cloak>{{obligation}}</ins></i>
+                                <i class="icon icon-payment"><ins class="red-point" ng-show="bragePayment?true:false" ng-cloak="">{{obligation}}</ins></i>
                                 <p>待付款</p>
                             </a>
                         </div>

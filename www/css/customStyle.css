@@ -1765,6 +1765,12 @@ input.bigLotto-input2:checked:before {
 }
 
 /*  明细  */
+.dateTitle{
+    padding: 0;
+    height: 35px;
+    display: block;
+}
+
 .head-detail {
     line-height: 35px;
     height: 35px;
@@ -1779,6 +1785,10 @@ input.bigLotto-input2:checked:before {
     float: right;
     margin-right: 17px;
     margin-top: 10px;
+}
+
+.list-detail{
+    padding-top: 36px;
 }
 
 .list-detail .item {

@@ -5,7 +5,7 @@
 angular.module ('starter.util', [])
     .factory ('$util', function ($http, $q, $ionicLoading, $cordovaToast) {
        var ipUrl = 'http://121.42.253.149:18818';       //服务器ip地址或者域名
-        // var ipUrl = 'http://192.168.1.109:8080';      //本地ip地址或者域名
+//         var ipUrl = 'http://192.168.1.109:8080';      //本地ip地址或者域名
         /* 接口地址  */
         var httpURL = {
             registerUrl: ipUrl + '/buyer/auth/regist',   //注册
@@ -17,6 +17,8 @@ angular.module ('starter.util', [])
             getHistoryListUrl: ipUrl + '/buyer/order/getHistoryList',   //获取历史开奖记录
             rechargeUrl: ipUrl + '/buyer/bill/recharge',   //充值申请
             withdrawUrl: ipUrl + '/buyer/bill/cash',   //提现申请
+            getInfoUrl: ipUrl + '/buyer/bill/getInfo',   //获取记录详情
+            getListUrl: ipUrl + '/buyer/bill/getList',   //获取记录列表
         };
         return {
             /* 返回httpURL  */
@@ -43,11 +45,17 @@ angular.module ('starter.util', [])
             /* 格式化日期  */
             formatDate: function (date) {
                 var y = date.getFullYear ();
-                var m = date.getMonth () + 1;
-                m = m < 10 ? '0' + m : m;
+                var M = date.getMonth () + 1;
+                M = M < 10 ? '0' + M : M;
                 var d = date.getDate ();
                 d = d < 10 ? ('0' + d) : d;
-                return y + '-' + m + '-' + d;
+                var h = date.getHours();
+                h = h < 10 ? ('0' + h) : h;
+                var m = date.getMinutes();
+                m = m < 10 ? ('0' + m) : m;
+                var s = date.getSeconds();
+                s = s < 10 ? ('0' + s) : s;
+                return y + '-' + M + '-' + d + ' ' + h + ':' + m + ':' + s;
             },
 
             /*验证密码*/
@@ -76,7 +84,8 @@ angular.module ('starter.util', [])
                     headers: {
                         "content-type": "application/json;charset=UTF-8",
                         "Auth-Token": token
-                    }
+                    },
+                    timeout: 3000
                     /*transformRequest: function (obj) {
                         var str = [];
                         for (var s in obj) {

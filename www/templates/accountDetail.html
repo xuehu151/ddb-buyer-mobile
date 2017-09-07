@@ -9,45 +9,31 @@
         </ion-nav-buttons>
     </ion-nav-bar>
 
-    <ion-content>
+    <div class="bar bar-subheader dateTitle">
         <div class="head-detail">
             <span>本月</span>
             <i class="icon-calendar" ng-click="openDatePopover($event)"></i>
         </div>
-        <div class="list list-detail">
-            <a class="item" href="#mineDetails">
-                <div class="row">
-                    <div class="col col-20">
-                        <ul>
-                            <li>昨天</li>
-                            <li>19:04</li>
-                        </ul>
-                    </div>
-                    <div class="col col-80">
-                        <img src="../img/disburse.png">
-                        <h2>-13.00</h2>
-                        <p>购彩支出</p>
-                    </div>
-                </div>
-            </a>
+    </div>
 
-            <a class="item" href="#">
+    <ion-content>
+        <div class="list list-detail">
+            <a class="item" href="#mineDetails" ng-repeat="detailList in detailListItem track by $index"><!--mineDetails-->
                 <div class="row">
                     <div class="col col-20">
                         <ul>
-                            <li>昨天</li>
-                            <li>19:04</li>
+                            <li ng-cloak="">{{detailList.getDayDate}}</li>
+                            <li ng-cloak="">{{detailList.createDate}}</li>
                         </ul>
                     </div>
                     <div class="col col-80">
-                        <img src="../img/temporary.png">
-                        <h2>+1000</h2>
-                        <p>充值</p>
+                        <img ng-src="{{detailList.imgClass}}">
+                        <h2 ng-cloak=""><i>{{detailList.plusMinus}}</i>{{detailList.money}}</h2>
+                        <p ng-cloak="">{{detailList.detailType}}</p>
                     </div>
                 </div>
             </a>
         </div>
-
     </ion-content>
 </ion-view>
 

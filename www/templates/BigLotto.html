@@ -12,10 +12,10 @@
     <ion-content class="has-header padding PickAreaContent">
         <div class="row drawTime">
             <div class="col col-50">
-                <span>投注截至:<i>{{now|date: 'MM-dd '}}19:30</i></span>
+                <span>投注截至:<i ng-cloak="">{{end_sale_time}} {{end_sale_hourAndMinute}}</i></span>
             </div>
             <div class="col col-50">
-                <span>开奖:<i>{{now|date: 'MM-dd '}}20:30</i></span>
+                <span>开奖:<i ng-cloak="">{{drawTime}} {{hourAndMinute}}</i></span>
             </div>
         </div>
 
@@ -23,7 +23,8 @@
             <i
                 ng-repeat="redNumRed in numDataRed track by $index"
                 ng-class="{false: 'red-ball-bg-white', true: 'red-ball-bg-red'}[redNumRed.check]"
-                ng-click="addRedClick(redNumRed)">
+                ng-click="addRedClick(redNumRed)"
+                ng-cloak="">
                 {{redNumRed.num}}
             </i>
         </div>
@@ -32,7 +33,8 @@
                 ng-repeat="blueNumBlue in numDataBlue track by $index"
                 class="blue-ball-bg-white"
                 ng-class="{false: 'blue-ball-bg-white', true: 'blue-ball-bg-blue'}[blueNumBlue.check]"
-                ng-click="addBlueClick(blueNumBlue)">
+                ng-click="addBlueClick(blueNumBlue)"
+                ng-cloak="">
                 {{blueNumBlue.num}}
             </i>
         </div>
@@ -45,7 +47,10 @@
                ng-click="clearSelected()"><p>清空</p></a>
             <a href="" class="button button-light icon icon-machine" style="color: #db3939;font-size: .5em;" ng-click="randomBall()">
                 <p>机选</p></a>
-            <h1 class="title"><span>{{Note}}</span> 注<span>{{NoteMoney}}</span> 元</h1>
+            <h1 class="title">
+                <span ng-cloak="">{{Note}}</span> 注
+                <span ng-cloak="">{{NoteMoney}}</span> 元
+            </h1>
             <a href="" class="button button-assertive" ng-click="saveBallSelect()">确定</a>
         </div>
     </div>
