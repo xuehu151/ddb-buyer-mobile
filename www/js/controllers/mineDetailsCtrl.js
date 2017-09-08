@@ -4,7 +4,7 @@
 angular.module ('starter.mineDetailsCtrl', [])
     //明细详情
     .controller ('mineDetailsCtrl', function ($scope, $state, $rootScope, $ionicPopover) {
-        /*$scope.groups = [];//将来作为失败的多个凭证数组
+      /*  $scope.groups = [];//将来作为失败的多个凭证数组
         for (var i = 0; i < 1; i++) {//循环列表
             $scope.groups[i] = {
                 items : []

@@ -57,7 +57,24 @@ angular.module ('starter.util', [])
                 s = s < 10 ? ('0' + s) : s;
                 return y + '-' + M + '-' + d + ' ' + h + ':' + m + ':' + s;
             },
-
+    
+            /*根据日期 得到是周几*/
+            getWeekByDay : function (time) { //dayValue=“2014-01-01”
+                var day = new Date (Date.parse (time)); //将日期值格式化
+                var today = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]; //创建周数组
+                return today[day.getDay ()];  //返一个周中的某一天，其中0为周日
+            },
+            /*根据指定时间判定是前天、昨天、今天........*/
+            getDateStr : function (AddDayCount) {
+                var someDay = new Date ();
+                someDay.setDate (someDay.getDate () + AddDayCount);//获取AddDayCount天后的日期
+                var y = someDay.getFullYear ();
+                var M = someDay.getMonth () + 1;//获取当前月份的日期
+                M = M < 10 ? '0' + M : M;
+                var d = someDay.getDate ();
+                d = d < 10 ? ('0' + d) : d;
+                return y + "-" + M + "-" + d;
+            },
             /*验证密码*/
              /* 密码由数字 字母 特殊字符的其中两种组成 6到24位*/
              checkPassword: function (text) {
