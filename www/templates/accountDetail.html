@@ -18,7 +18,7 @@
 
     <ion-content>
         <div class="list list-detail">
-            <a class="item" href="" ng-repeat="detailList in detailListItem  track by $index" ng-click="goToMineDetails($index)"><!--mineDetails-->
+            <a class="item" href="" ng-repeat="detailList in detailListItem  | filter: YM_list track by $index" ng-click="goToMineDetails($index)">
                 <div class="row">
                     <div class="col col-20">
                         <ul>
@@ -28,7 +28,7 @@
                     </div>
                     <div class="col col-80">
                         <img ng-src="{{detailList.imgClass}}">
-                        <h2 ng-cloak=""><i>{{detailList.plusMinus}}</i>{{detailList.money}}</h2>
+                        <h2 ng-cloak=""><i ng-show="detailList.money == 0?false:true">{{detailList.plusMinus}}</i>{{detailList.money}}</h2>
                         <p ng-cloak="">{{detailList.detailType}}</p>
                     </div>
                 </div>

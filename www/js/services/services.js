@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module ('starter.services', [])
     
     .factory ('locals', ['$window', function ($window) {
         return {
@@ -21,99 +21,99 @@ angular.module('starter.services', [])
         }
     }])
     
-    .factory('$loginService', function ($http, $util) {
+    .factory ('$loginService', function ($http, $util) {
         return {
             //注册
-            register: function (data, token) {
-                return $util.httpPostRequest($util.getHttpURL().registerUrl, data, token);
+            register : function (data, token) {
+                return $util.httpPostRequest ($util.getHttpURL ().registerUrl, data, token);
             },
             //登录
-            login: function (user, token) {
-                return $util.httpPostRequest($util.getHttpURL().loginUrl, user, token);
+            login : function (user, token) {
+                return $util.httpPostRequest ($util.getHttpURL ().loginUrl, user, token);
             }
-
-
-
-
+            
+            
+            
+            
         };
     })
-
-    .factory('$getInfoService', function ($http, $util) {
+    
+    .factory ('$getInfoService', function ($http, $util) {
         return {
             //获取期号
-            getWareIssue: function (data, token) {
-                return $util.httpPostRequest($util.getHttpURL().getWareIssueUrl, data, token);
+            getWareIssue : function (data, token) {
+                return $util.httpPostRequest ($util.getHttpURL ().getWareIssueUrl, data, token);
             },
-
+            
             //获取投注记录
-            getOrderList: function (data, token) {
-                return $util.httpPostRequest($util.getHttpURL().getOrderListUrl, data, token);
+            getOrderList : function (data, token) {
+                return $util.httpPostRequest ($util.getHttpURL ().getOrderListUrl, data, token);
             },
-
+            
             //获取投注详情
-            getOrderInfo: function (data, token) {
-                return $util.httpPostRequest($util.getHttpURL().getOrderInfoUrl, data, token);
+            getOrderInfo : function (data, token) {
+                return $util.httpPostRequest ($util.getHttpURL ().getOrderInfoUrl, data, token);
             }
-
-
+            
+            
         };
     })
-
-    .factory('$bettingService', function ($http, $util) {
+    
+    .factory ('$bettingService', function ($http, $util) {
         return {
             //投注
-            dltadd: function (data, token) {
-                return $util.httpPostRequest($util.getHttpURL().dltaddUrl, data, token);
+            dltadd : function (data, token) {
+                return $util.httpPostRequest ($util.getHttpURL ().dltaddUrl, data, token);
             }
-
-
-
+            
+            
+            
         };
     })
-
-    .factory('$getListService', function ($http, $util) {
+    
+    .factory ('$getListService', function ($http, $util) {
         return {
             //获取订单投注记录
-            getOrderList: function (data, token) {
-                return $util.httpPostRequest($util.getHttpURL().getOrderListUrl, data, token);
+            getOrderList : function (data, token) {
+                return $util.httpPostRequest ($util.getHttpURL ().getOrderListUrl, data, token);
             },
-
+            
             //获取订单投注详情
-            getOrderInfo: function (data, token) {
-                return $util.httpPostRequest($util.getHttpURL().getOrderInfoUrl, data, token);
+            getOrderInfo : function (data, token) {
+                return $util.httpPostRequest ($util.getHttpURL ().getOrderInfoUrl, data, token);
             },
-
+            
             //获取历史开奖记录
-            getHistoryList: function (data, token) {
-                return $util.httpPostRequest($util.getHttpURL().getHistoryListUrl, data, token);
+            getHistoryList : function (data, token) {
+                return $util.httpPostRequest ($util.getHttpURL ().getHistoryListUrl, data, token);
             }
-
-
-
-
+            
+            
+            
+            
         };
     })
     
-    .factory('$rechargeService', function ($http, $util) {
+    .factory ('$rechargeService', function ($http, $util) {
         return {
             //充值申请
-            recharge: function (data, token) {
-                return $util.httpPostRequest($util.getHttpURL().rechargeUrl, data, token);
+            recharge : function (data, token) {
+                return $util.httpPostRequest ($util.getHttpURL ().rechargeUrl, data, token);
             },
-    
+            
             //提现申请
-            withdraw: function (data, token) {
-                return $util.httpPostRequest($util.getHttpURL().withdrawUrl, data, token);
+            withdraw : function (data, token) {
+                return $util.httpPostRequest ($util.getHttpURL ().withdrawUrl, data, token);
             },
-    
+            
             //获取记录详情
-            recordDetails: function (data, token) {
-                return $util.httpPostRequest($util.getHttpURL().getInfoUrl, data, token);
+            recordDetails : function (data, token) {
+                return $util.httpPostRequest ($util.getHttpURL ().getInfoUrl, data, token);
             },
             
             //获取记录列表
-            recordList: function (data, token) {
-                return $util.httpPostRequest($util.getHttpURL().getListUrl, data, token);
+            recordList : function (data, token) {
+                return $util.httpPostRequest ($util.getHttpURL ().getListUrl, data, token);
             }
             
         };
