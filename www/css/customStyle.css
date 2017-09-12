@@ -2027,11 +2027,13 @@ input.bigLotto-input2:checked:before {
 .show-red-balls i {
     border: solid 1px #d11d1d;
     background-color: #d11d1d;
+    margin: 4px 2px;
 }
 
 .show-blue-balls i {
     border: solid 1px #3f97d5;
     background-color: #3f97d5;
+    margin: 4px 2px;
 }
 
 

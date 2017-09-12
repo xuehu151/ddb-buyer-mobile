@@ -18,7 +18,7 @@ angular.module ('starter.accountDetailCtrl', [])
                 }
             };
             var reques = {};
-            $rechargeService.recordList (data, token)
+            $rechargeService.getBillList (data, token)
                 .then (function (response) {
                     console.info (response);
                     reques = response.data;
@@ -33,8 +33,8 @@ angular.module ('starter.accountDetailCtrl', [])
                         $scope.money = $scope.detailListItem[i].money;   //金额 提现 充值等
                         yearAndMonth = $scope.createDate.split (' ')[0];
                         hourAndMinute = $scope.createDate.split (' ')[1];
-//                        $scope.detailListItem[i].createDate = hourAndMinute.slice (0, 5);
-                        $scope.detailListItem[i].createDate = yearAndMonth;
+                        $scope.detailListItem[i].createDate = hourAndMinute.slice (0, 5);
+//                        $scope.detailListItem[i].createDate = yearAndMonth;
                         
                         //计算周几
                         getDay = $util.getWeekByDay ($scope.createDate);//判断周几
@@ -92,8 +92,7 @@ angular.module ('starter.accountDetailCtrl', [])
                     $scope.selectList = function (YM_listNum) {
                         $scope.popover.hide ();
                         $scope.YM_list = YM_listNum;
-    
-    
+                        
                         console.info($scope.detailListItem[i].createDate);
                     };
     
@@ -101,11 +100,6 @@ angular.module ('starter.accountDetailCtrl', [])
                     //...
                 });
         }
-        
-        //过滤
-        $scope.statusFilter = function(item){
-            return item.status == 'issued' || item.status == 'masked';
-        };
         
         function recordDetails (orderId) {
             var data = {
@@ -169,12 +163,13 @@ angular.module ('starter.accountDetailCtrl', [])
                         break;
                     case 3:
                         filtrateRecordList(3);
-                        filtrateRecordList(2);
+//                        filtrateRecordList(2);
                         break;
                     default:
                         filtrateRecordList(0);
                 }
             };
+     
         };
         //年月份模态框
         $ionicPopover.fromTemplateUrl ('templates/datePopOver.html', {

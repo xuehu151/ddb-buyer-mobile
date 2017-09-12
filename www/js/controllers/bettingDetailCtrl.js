@@ -90,7 +90,7 @@ angular.module ('starter.bettingDetailCtrl', [])
             $scope.deleteRow($index);
         };
 
-        // 方案保存成功提示框
+        // 保存
        /* var totalSum = $scope.totalMoney * $scope.multiple * $scope.countMoney;
         var localsArrs = locals.getObject ("localsArr");
         console.info (localsArrs);
@@ -133,9 +133,7 @@ angular.module ('starter.bettingDetailCtrl', [])
             var userInfo = $util.getUserInfo ();
             var token = userInfo.token;
             var data = {
-                data:{
-
-                },
+                data:{ },
                 params:{
                     lotteryID : 2
                 }
@@ -146,16 +144,11 @@ angular.module ('starter.bettingDetailCtrl', [])
                     $ionicLoading.hide ();
                     reques = response.data;
                     console.info (reques);
-                    console.info(response);
                     
                     if(response.error == '0'){//判断token过期 重新登录
                         getdltadd (payType);
                     }else if(response.error == '1110'){
-                        var alertPopup = $ionicPopup.alert ({
-                            template : '<div style="text-align:center">'+ response.info +'</div>',
-                            title : '<i class="icon ion-ios-checkmark-outline" style="font-size:26px"></i>'
-                        })
-                        //$cordovaToast.showShortCenter (response.info)   /*暂时注释掉为了测试浏览器*/
+                        $cordovaToast.showShortCenter (response.info)
                             .then (function (success) {
                                 $state.go ('signin');
                             }, function (error) {
@@ -197,18 +190,15 @@ angular.module ('starter.bettingDetailCtrl', [])
                      console.log (dataArrayBig);
                 }
                 var vid = '20170525170402702001';//先放这里 后面 在登录返回数据取
-                //var payType = '1';
                 var data = {
                     data: {
                         wareIssue: reques.wareIssue,
-                        payType: payType,
+                        payType: payType,//0 保存  1 投注
                         vid: vid,
                         addFlag: addFlag,
                         data: dataArrayBig
                     },
-                    params: {
-
-                    }
+                    params: {}
                 };
                 console.dir(data.data);
                 $ionicLoading.show ();
@@ -217,44 +207,28 @@ angular.module ('starter.bettingDetailCtrl', [])
                         $ionicLoading.hide ();
                         console.info(response);
                         if(response.error == '0'){
-                            console.info(payType+'+++++++++++++++++++++++++');
-                            if(payType == 0){
-                                alert('方案保存成功');
+                            if (payType == 0) {
+                                $cordovaToast.showShortCenter ("方案保存成功");
                                 return
-                            }
-                            alert ('订单提交成功55');
-                           /* $cordovaToast.showShortCenter ("订单提交成功")      /!* 暂时注释掉 为了测试浏览器*!/
-                                .then (function (success) {
-                                    // success
-                                    $state.go ('orderStatus');
-                                }, function (error) {
+                            }else {
+                                $cordovaToast.showShortCenter ("订单提交成功")
+                                    .then (function (success) {
+                                        $timeout(function () {
+                                            $state.go ('orderStatus');
+                                        },2000);
+                                    }, function (error) {
             
-                                });*/
-                            $state.go ('orderStatus');
+                                    });
+                            }
                         }
                         else {
-                            alert ('投注失败了');
-                           /* $cordovaToast.showShortCenter ("订单提交失败")    /!* 暂时注释掉为了测试浏览器 *!/
-                                .then (function (success) {
-                                    // success
-                                    $state.go ('orderStatus');
-                                }, function (error) {
-            
-                                });*/
+                            $ionicLoading.hide ();
+                            $cordovaToast.showShortCenter (response.info);
                         }
 
                     }, function (error) {
-                        //扫码后，所获赠注数的限制提示。
-                        var confirmPopup = $ionicPopup.confirm ({
-                            title : '<div class="confirmPopup-heads"><img src="./img/alert-img.png" alt=""  width = "30%"></div>',
-                            template : '<div style="color: #132d8e;">您只获赠了真龙赠与您的 3 注彩票,想多来几注，再来一包真龙香烟吧！</div>',
-                            okText : '确认',
-                            text: '取消',
-                            okType : 'button-darkBlue'
-                        })
-                            .then (function () {
-
-                            });
+                        $ionicLoading.hide ();
+                        $cordovaToast.showShortCenter ("投注失败!");
                     });
             }
         };

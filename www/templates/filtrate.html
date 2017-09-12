@@ -3,7 +3,7 @@
         <div class="top">筛选</div>
         <div class="middle">
             <button
-                ng-repeat="btnNum in btnArrText track by $index"
+                ng-repeat="btnNum in btnArrText  | filter: statusFilter track by $index"
                 ng-class="{false: 'addBtnClassGray', true: 'addBtnClassRed'}[btnNum.check]"
                 ng-cloak
                 ng-click="addClassClick(btnNum)" >

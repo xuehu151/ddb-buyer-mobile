@@ -11,6 +11,7 @@ angular.module ('starter.MineCtrl', [])
     
         var userInfo = $util.getUserInfo ();
         var token = userInfo.token;
+        //账户相关信息
         $scope.users = {
             realName :userInfo.customer.realName,
             userHead : userInfo.customer.headImg,

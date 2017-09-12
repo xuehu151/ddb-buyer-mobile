@@ -12,14 +12,17 @@ angular.module ('starter.util', [])
             loginUrl: ipUrl + '/buyer/auth/login',   //登录
             getWareIssueUrl: ipUrl + '/buyer/order/getWareIssue',   //获取期号
             dltaddUrl: ipUrl + '/buyer/order/dltadd',   //大乐透投注
-            getOrderListUrl: ipUrl + '/buyer/order/getList',   //获取投注记录
-            getOrderInfoUrl: ipUrl + '/buyer/order/getInfo',   //获取投注详情
+            getInfoUrl: ipUrl + '/buyer/order/getInfo',   //获取投注详情
+            getListUrl: ipUrl + '/buyer/order/getList',   //获取投注记录
+            getOrderInfoUrl: ipUrl + '/buyer/order/getOrderInfo',   //获取订单详情
+            getOrderListUrl: ipUrl + '/buyer/order/getOrderList',   //获取订单记录
             getHistoryListUrl: ipUrl + '/buyer/order/getHistoryList',   //获取历史开奖记录
             rechargeUrl: ipUrl + '/buyer/bill/recharge',   //充值申请
             withdrawUrl: ipUrl + '/buyer/bill/cash',   //提现申请
-            getInfoUrl: ipUrl + '/buyer/bill/getInfo',   //获取记录详情
-            getListUrl: ipUrl + '/buyer/bill/getList',   //获取记录列表
-        };
+            getBillInfoUrl: ipUrl + '/buyer/bill/getInfo',   //获取记录详情
+            getBillListUrl: ipUrl + '/buyer/bill/getList',   //获取记录列表
+            waitPayUrl: ipUrl + '/buyer/bill/waitPay',   //大乐透待付款点击立即付款
+    };
         return {
             /* 返回httpURL  */
             getHttpURL: function () {
@@ -102,7 +105,7 @@ angular.module ('starter.util', [])
                         "content-type": "application/json;charset=UTF-8",
                         "Auth-Token": token
                     },
-                    timeout: 3000
+                    timeout: 1000 * 10
                     /*transformRequest: function (obj) {
                         var str = [];
                         for (var s in obj) {

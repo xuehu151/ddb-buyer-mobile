@@ -2,40 +2,30 @@
  * Created by admin on 2017/8/17.
  */
 angular.module ('starter.orderStatusCtrl', [])
-    //订单状态order status
-    .controller ('orderStatusCtrl', function ($scope, $http, $util, $getInfoService) {
+//订单状态order status
+    .controller ('orderStatusCtrl', function ($scope, $state, $http, $util, $getInfoService) {
         $scope.statusList = [];
         $scope.makeSuerBtn = false;
         //$scope.iconClass = ['icon-photos','icon-Winning','icon-TicketCheck','icon-toDraw','icon-putIn];
-
         var userInfo = $util.getUserInfo ();
         var token = userInfo.token;
         var data = {
-            data:{},
-            params:{}
-
+            data : {},
+            params : {}
         };
-        /*$http ({
-            method : "POST",
-            url : ipUrl + '/buyer/order/getList',
-            data : data,
-            headers : {
-                "Content-Type" : "application/json",
-                "Auth-Token": userInfo.data.token
-            }
-        })*/
-        $getInfoService.getOrderList(data, token)
+        
+        $getInfoService.getList (data, token)
             .then (function (response) {
                 var reques = response.data;
                 $scope.orderStatus = reques;
-                // console.info($scope.orderStatus);
+                console.info ($scope.orderStatus);
                 for (var i = 0; i < reques.length; i++) {
                     $scope.createDate = reques.createDate;
                     var status = reques[i].status;
                     var statusIcon = reques[i];
-                    // console.info(status);
+                    console.info (status);
                     // console.info(statusIcon);
-                    switch (status) {
+                    switch ( status ) {
                         case 1:
                             reques[i].status = '出票中';
                             statusIcon.iconClass = 'icon-toDraw';
@@ -59,13 +49,14 @@ angular.module ('starter.orderStatusCtrl', [])
                         default:
                             reques[i].status = '已撤单';
                     }
-
                 }
-
-            },function (error) {
-
-            })
-
-
-
+            }, function (error) {
+            
+            });
+        //关闭
+        $scope.goToHome = function () {
+            $state.go ('tab.home');
+        }
+        
+        
     });

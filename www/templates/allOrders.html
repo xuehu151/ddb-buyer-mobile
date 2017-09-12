@@ -15,7 +15,8 @@
             </a>
         </div>
         <ion-scroll zooming="false" direction="y" class="allorders-scroll" ng-if="selectIndex==0"><!--待付款-->
-            <ion-list class="all-orders-list" ng-repeat="orders in localsArr">
+            <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+            <ion-list class="all-orders-list" ng-repeat="orders in requesArr">
                 <div class="each-order" ng-click="toOrderDetail()" >
                     <ion-item class="padding-h8">
                         <div class="row row-top">
@@ -39,6 +40,7 @@
                     </ion-item>
                 </div>
             </ion-list>
+            <ion-infinite-scroll ng-if="hasMore" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
         </ion-scroll>
 
         <ion-scroll zooming="false" direction="y" class="allorders-scroll" ng-if="selectIndex==1"><!--待出票-->
