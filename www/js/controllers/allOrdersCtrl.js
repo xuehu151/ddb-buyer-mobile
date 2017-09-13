@@ -3,13 +3,18 @@
  */
 angular.module ('starter.allOrdersCtrl', [])
 //全部订单
-    .controller ('allOrdersCtrl', function ($scope, $state, $rootScope, $ionicActionSheet, $timeout, locals, $util, $ionicLoading, $interval, $getInfoService) {
+    .controller ('allOrdersCtrl', function ($scope, $state, $rootScope, $ionicActionSheet, $timeout, locals, $util, $ionicLoading, $interval, $getInfoService, $cordovaToast) {
         $scope.tabNames = ['待付款', '待出票', '待开奖', '待派奖', '已取票'];
         $scope.selectIndex = 0;
         
         $scope.activeTab = function (index) {
             $scope.selectIndex = index;
-           // allOrdersList ($scope.selectIndex,0);
+            $scope.hasMore = true;
+            if($scope.selectIndex == 3){
+                allOrdersList (4,0);
+            }else {
+                allOrdersList ($scope.selectIndex);
+            }
         };
         $scope.selectIndex = $rootScope.tabIndex;//我的页面点击进入
         $scope.viewList = '全部订单';
@@ -44,93 +49,110 @@ angular.module ('starter.allOrdersCtrl', [])
             });
             
         };
+        allOrdersList ($scope.selectIndex);
     
-        allOrdersList ($scope.selectIndex, 0);
-    
-        $scope.hasMore = true;
-        $scope.bitLotto = [];
-        function allOrdersList (status,isReturn) {
+        function allOrdersList (status, isReturn) {
+            $scope.hasMore = true;
+            $scope.requesArr = [];
             //获取订单记录............
             var userInfo = $util.getUserInfo ();
             var token = userInfo.token;
             var pageSize = 8;
             var pageNumber = 1;
-            var data = {
-                data:{},
-                params:{
-                    pageSize : pageSize,
-                    pageNumber : pageNumber,
-                    lotteryID : 2,
-                    status : status,
-                    isReturn : isReturn
-                }
+            $scope.loadMore = function (status, isReturn) {
+                data = {
+                    data : {},
+                    params : {
+                        pageSize : pageSize,
+                        pageNumber : pageNumber,
+                        lotteryID : 2,
+                        status : status,
+                        isReturn : isReturn
+                    }
+                };
+                loadajax ();
             };
-            $getInfoService.getOrderList(data, token)
-                .then (function (response) {
-                    $scope.requesArr = response.data;
-                    console.info(response);
-                    for (var i = 0; i < $scope.requesArr.length; i++) {
-                        var _createDate = $scope.requesArr[i].createDate;
-                        $scope.requesArr[i].createDate = _createDate.split (' ')[0];
-    
-                        console.info($scope.requesArr[i].status);
-                
-                        $scope.status = $scope.requesArr[i].status;
-                        var isReturn = $scope.requesArr[i].isReturn;
-                        var ticketID = $scope.requesArr[i].ticketID;
-                        var orderMoney = $scope.requesArr[i].money;
-                
-                        switch ( $scope.status ) {
-                            case 0:
-                                $scope.requesArr[i].statusText = '待付款';
-                                $scope.requesArr[i].titleText = '大乐透';
-                                $scope.requesArr[i].ticketID = ticketID;
-                                $scope.requesArr[i].money = orderMoney;
-                                break;
-                            case 1:
-                                $scope.requesArr[i].statusText = '待出票';
-                                $scope.requesArr[i].titleText = '大乐透';
-                                $scope.requesArr[i].ticketID = ticketID;
-                                $scope.requesArr[i].money = orderMoney;
-                                break;
-                            case 2:
-                                $scope.requesArr[i].statusText = '待开奖';
-                                $scope.requesArr[i].titleText = '大乐透';
-                                $scope.requesArr[i].ticketID = ticketID;
-                                $scope.requesArr[i].money = orderMoney;
-                                break;
-                            case 3:
-                                $scope.requesArr[i].statusText = '待付款';
-                                $scope.requesArr[i].titleText = '大乐透';
-                                break;
-                            case 4:
-                                switch ( isReturn ){
+            
+            function loadajax () {
+                $getInfoService.getOrderList (data, token)
+                    .then (function (response) {
+                        
+                        if (response.data.length != 0 && response.error == 0) {
+                            $scope.requesArr = $scope.requesArr.concat (response.data);
+                            for (var i = 0; i < $scope.requesArr.length; i++) {
+                                var _createDate = $scope.requesArr[i].createDate;
+                                $scope.requesArr[i].createDate = _createDate.split (' ')[0];
+        
+                                console.info ($scope.requesArr[i]);
+                                
+                                $scope.status = $scope.requesArr[i].status;
+                                var isReturn = $scope.requesArr[i].isReturn;
+        
+                                switch ( $scope.status ) {
                                     case 0:
-                                        $scope.requesArr[i].statusText = '未返奖';
+                                        $scope.requesArr[i].statusText = '待付款';
+                                        $scope.requesArr[i].titleText = '大乐透';
                                         break;
                                     case 1:
-                                        $scope.requesArr[i].statusText = '已返奖';
+                                        $scope.requesArr[i].statusText = '待出票';
+                                        $scope.requesArr[i].titleText = '大乐透';
+                                        break;
+                                    case 2:
+                                        $scope.requesArr[i].statusText = '待开奖';
+                                        $scope.requesArr[i].titleText = '大乐透';
+                                        break;
+                                    case 3:
+                                        $scope.requesArr[i].statusText = '待付款';
+                                        $scope.requesArr[i].titleText = '大乐透';
+                                        break;
+                                    case 4:
+                                        switch ( isReturn ) {
+                                            case 0:
+                                                $scope.requesArr[i].statusText = '未返奖';
+                                                break;
+                                            case 1:
+                                                $scope.requesArr[i].statusText = '已返奖';
+                                                break;
+                                            default:
+                                            //
+                                        }
+                                        $scope.requesArr[i].titleText = '大乐透';
+                                        $scope.requesArr[i].ticketID = ticketID;
+                                        $scope.requesArr[i].money = orderMoney;
                                         break;
                                     default:
-                                    //
+                                    //$scope.requesArr[i].status = '已撤单';
                                 }
-                                $scope.requesArr[i].titleText = '大乐透';
-                                $scope.requesArr[i].ticketID = ticketID;
-                                $scope.requesArr[i].money = orderMoney;
-                                break;
-                            default:
-                            //$scope.requesArr[i].status = '已撤单';
+    
+                                drawTime = $scope.requesArr[i].lotteryList[0].drawTime.replace(/-/g,'/');
+                                var setTime = $util.countTime('2017/09/15');
+    
+                                console.info(drawTime);
+                                console.info(setTime);
+                            }
+                            pageNumber++;
+                        }else {
+                            $scope.hasMore = false;
+                            $cordovaToast.showShortBottom ("暂无更多了");
                         }
-                    }
-                },function (error) {
-                    //.....
-                });
+                        $scope.$broadcast ('scroll.refreshComplete');
+                        $scope.$broadcast ('scroll.infiniteScrollComplete');
+                    }, function (error) {
+                        //.....
+                    });
+            }
+            
+            $scope.doRefresh = function () {
+                pageNumber = 1;
+                $scope.requesArr = [];
+                if($scope.selectIndex == 3){
+                    $scope.loadMore (4, 0);
+                }else {
+                    $scope.loadMore ($scope.selectIndex);
+                }
+            };
         }
         
-        //待付款
-       
-       
-       
         //查看详情
         $scope.viewDetails = function (index) {
             console.info (index);
