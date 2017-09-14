@@ -10,15 +10,15 @@
             <div class="user-head">
                 <img src="./img/BigLotto.png" alt="大乐透">
             </div>
-            <h3>大乐透</h3>
-            <span>2017098期</span>
-            <i>金额: 10.00元</i>
+            <h3 ng>{{titleText}}</h3>
+            <span ng-cloak="">{{ordersInfo.wareIssue}}期</span>
+            <i ng-cloak="">金额: {{ordersInfo.money}}元</i>
         </div>
         <div class="list detailTitle-content">
             <ion-list>
                 <ion-item class="list-item">
                     <h2>订单状态:</h2>
-                    <span>待开奖</span>
+                    <span ng-cloak="">{{statusText}}</span>
                 </ion-item>
                 <ion-item class="list-item">
                     <h2>开奖号码:</h2>
@@ -30,16 +30,16 @@
                               ng-class="{active: isGroupShown(group)}" >
                         <i ng-class="isGroupShown(group) ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
                         <h2 style="font-weight: 600">选号详情:</h2>
-                        <span>5 条</span>
+                        <span ng-cloak="">{{lotteryListCount}} 条</span>
                     </ion-item>
                     <ion-item class="itemContent list-item" ng-show="isGroupShown(group)" >
                         <ul class="ball-content">
-                            <li ng-repeat="ball in ballContentArr track by $index" ng-cloak>
+                            <li ng-repeat="lotteryList in ordersInfo.investCode track by $index" ng-cloak = ''>
                                 <div class="way">
                                     <h3>单式:</h3>
-                                    <ins>1倍</ins>
+                                    <ins ng-cloak="">{{lotteryList.multiple}}倍</ins>
                                 </div>
-                                <span>10,13,13,13,13*22,03</span>
+                                <span ng-cloak="">{{lotteryList.investCode}}</span>
                             </li>
                         </ul>
                     </ion-item>
@@ -50,11 +50,11 @@
             <ul>
                 <li>
                     <h3>下单时间:</h3>
-                    <ins>2017-08-21 15:30:03</ins>
+                    <ins ng-cloak="">{{ordersInfo.createDate}}</ins>
                 </li>
                 <li>
                     <h3>订单编号:</h3>
-                    <ins>201702215522243513151578</ins>
+                    <ins ng-cloak="">{{ordersInfo.ticketID}}</ins>
                 </li>
                 <li>
                     <h3>温馨提示:</h3>

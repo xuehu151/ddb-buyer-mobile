@@ -15,8 +15,9 @@ angular.module ('starter.withdrawCtrl', [])
         
         //$ionicLoading.show ();
         var userInfo = $util.getUserInfo ();
-        $scope.widthdrawAble = userInfo.customer.money;
-      
+//        $scope.widthdrawAble = userInfo.customer.money - userInfo.customer.freeze;
+        $scope.widthdrawAble = $rootScope.users.usableMoney;
+        
         $scope.whetherOK = function () {
             if ($scope.widthdrawMoney.money > $scope.widthdrawAble) {
                 $scope.cantWidthdraw = '输入金额超出可提现余额';
@@ -56,14 +57,12 @@ angular.module ('starter.withdrawCtrl', [])
         $scope.confirmWidthdraw = function () {
             var token = userInfo.token;
             var data = {
-                data:{
-                
-                },
-                params:{
-                    money :  $scope.widthdrawMoney.money
+                data : {},
+                params : {
+                    money : $scope.widthdrawMoney.money
                 }
             };
-            
+            console.info(data);
             $rechargeService.recharge (data, token)
                 .then (function (response) {
                     $ionicLoading.hide ();

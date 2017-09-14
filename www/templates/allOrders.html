@@ -31,10 +31,10 @@
                         </div>
                         <div class="row row-bottom">
                             <div class="col">
-                                <a href="" ng-click="viewDetails($index)">查看详情</a>
+                                <a href="" ng-click="viewDetails(orders.id)">查看详情</a>
                             </div>
                             <div class="col col-right">
-                                <a href="" class="button button-assertive">点击付款</a>
+                                <a href="" class="button button-assertive" ng-click="oncePayment(orders.id, orders.payType)">点击付款</a>
                             </div>
                         </div>
                     </ion-item>
@@ -63,7 +63,7 @@
                                 <a href="">订单编号：<i ng-cloak>{{orders.ticketID}}</i></a>
                             </div>
                             <div class="col col-right">
-                                <a href="" class="button button-assertive"  ng-click="viewDetails($index)">查看详情</a>
+                                <a href="" class="button button-assertive"  ng-click="viewDetails(orders.ID)">查看详情</a>
                             </div>
                         </div>
                     </ion-item>
@@ -83,7 +83,7 @@
                                 <i ng-cloak>{{orders.statusText}}</i>
                             </div>
                             <div class="col col-right">
-                                <h3 style="color: #e02121">距离开奖: <span>{{drawTime}}</span></h3>
+                                <h3 style="color: #e02121">距离开奖: <span>{{orders.setTime}}</span></h3>
                                 <small>最高奖金:</small><ins>￥<span ng-cloak>{{orders.money}}</span>元</ins>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                                 <a href="">订单编号：<i ng-cloak>{{orders.ticketID}}</i></a>
                             </div>
                             <div class="col col-right">
-                                <a href="" class="button button-assertive"  ng-click="viewDetails($index)">查看详情</a>
+                                <a href="" class="button button-assertive"  ng-click="viewDetails(orders.ID)">查看详情</a>
                             </div>
                         </div>
                     </ion-item>
@@ -121,7 +121,7 @@
                                 <a href="">订单编号：<i ng-cloak>{{orders.ticketID}}</i></a>
                             </div>
                             <div class="col col-right">
-                                <a href="" class="button button-assertive"  ng-click="viewDetails($index)">查看详情</a>
+                                <a href="" class="button button-assertive"  ng-click="viewDetails(orders.ID)">查看详情</a>
                             </div>
                         </div>
                     </ion-item>
@@ -146,7 +146,7 @@
                         </div>
                         <div class="row row-bottom">
                             <div class="col">
-                                <a href=""  ng-click="viewDetails($index)">查看详情</a>
+                                <a href=""  ng-click="viewDetails(orders.ID)">查看详情</a>
                             </div>
                             <div class="col col-right">
                                 <a href="" class="button button-assertive">确认</a>

@@ -95,8 +95,15 @@ angular.module ('starter.services', [])
                 return $util.httpPostRequest ($util.getHttpURL ().waitPayUrl, data, token);
             },
             
-          
-            
+            //查询账户
+            accountMoney : function (data, token) {
+                return $util.httpPostRequest ($util.getHttpURL ().accountMoneyUrl, data, token);
+            },
+    
+            //显示角标
+            getOrderDataStatistics : function (data, token) {
+                return $util.httpPostRequest ($util.getHttpURL ().getOrderDataStatisticsUrl, data, token);
+            },
             
             
             

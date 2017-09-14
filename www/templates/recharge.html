@@ -35,15 +35,14 @@
                             <i class="icon" ng-class="isGroupShown(group) ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
                             上传凭证？
                         </ion-item>
-                        <ion-item class="item-accordion"
-                                  ng-show="isGroupShown(group)" >
+                        <ion-item class="item-accordion" ng-show="isGroupShown(group)" >
                             <div class="item-area">
                                 <textarea rows="6" cols="50" placeholder="请输入备注或凭证说明......"></textarea>
-                                <div class="item" ng-repeat="img in images_list">
+                                <div class="item imgItem" ng-repeat="img in images_list">
                                     <img src="{{img}}"   alt="" id="myImage">
-                                    <!--<img alt="" src="./img/user.jpg" id="myImage">-->
+                                    <span ng-if="img.imageSrc" ng-click="imgDelete($index)"></span>
+                                    <!--<img alt="" src="./img/user.jpg" id="">-->
                                 </div>
-                                <!--<span ng-if="item.imgSrc" ng-click="img_del($index)"></span>-->
                                 <div class="add-img" ng-click="picture()">
                                     <i class="add-img-icon ion-android-add"></i>
                                 </div>

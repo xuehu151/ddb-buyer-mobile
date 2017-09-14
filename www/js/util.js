@@ -17,11 +17,13 @@ angular.module ('starter.util', [])
             getOrderInfoUrl : ipUrl + '/buyer/order/getOrderInfo',   //获取订单详情
             getOrderListUrl : ipUrl + '/buyer/order/getOrderList',   //获取订单记录
             getHistoryListUrl : ipUrl + '/buyer/order/getHistoryList',   //获取历史开奖记录
+            waitPayUrl : ipUrl + '/buyer/order/waitPay',   //大乐透待付款点击立即付款
+            accountMoneyUrl : ipUrl + '/buyer/order/accountMoney',   //查询账户余额
+            getOrderDataStatisticsUrl : ipUrl + '/buyer/order/getOrderDataStatistics',   //查询账户余额
             rechargeUrl : ipUrl + '/buyer/bill/recharge',   //充值申请
             withdrawUrl : ipUrl + '/buyer/bill/cash',   //提现申请
             getBillInfoUrl : ipUrl + '/buyer/bill/getInfo',   //获取记录详情
             getBillListUrl : ipUrl + '/buyer/bill/getList',   //获取记录列表
-            waitPayUrl : ipUrl + '/buyer/bill/waitPay',   //大乐透待付款点击立即付款
         };
         return {
             /* 返回httpURL  */
@@ -88,17 +90,26 @@ angular.module ('starter.util', [])
                 
                 var leftTime = end - now;//计算时间差
                 var d, h, m, s;
-                if (leftTime <= 0) {//定义变量 d,h,m,s保存倒计时的时间
+                if (leftTime >= 0) {//定义变量 d,h,m,s保存倒计时的时间
                     d = Math.floor (leftTime / 1000 / 60 / 60 / 24);
                     h = Math.floor (leftTime / 1000 / 60 / 60 % 24);
                     m = Math.floor (leftTime / 1000 / 60 % 60);
                     s = Math.floor (leftTime / 1000 % 60);
+                    return {
+                        /*hours:checkTime (d*24 + h),
+                         minute:checkTime (m),
+                         second:checkTime (s)*/
+                        hours : (d * 24 + h),
+                        minute : m,
+                        second : s
+                    }
+                }else {
+                    return '已开奖'
                 }
 //                var days = checkTime (d);
-                var hours = checkTime (d*24 + h);
-                var minute = checkTime (m);
-                var second = checkTime (s);
-                return hours, minute, second;
+//                var hours = checkTime (d*24 + h);
+//                var minute = checkTime (m);
+//                var second = checkTime (s);
                 
                 function checkTime (i) { //将0-9的数字前面加上0，例1变为01
                     if (i < 10) {
@@ -106,6 +117,9 @@ angular.module ('starter.util', [])
                     }
                     return i;
                 }
+    
+                
+                //return hours, minute, second;
             },
             /*验证密码*/
             /* 密码由数字 字母 特殊字符的其中两种组成 6到24位*/

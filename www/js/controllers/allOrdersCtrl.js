@@ -3,11 +3,11 @@
  */
 angular.module ('starter.allOrdersCtrl', [])
 //全部订单
-    .controller ('allOrdersCtrl', function ($scope, $state, $rootScope, $ionicActionSheet, $timeout, locals, $util, $ionicLoading, $interval, $getInfoService, $cordovaToast) {
+    .controller ('allOrdersCtrl', function ($scope, $state, $rootScope, $ionicActionSheet, $timeout, locals, $util, $ionicLoading, $interval, $getInfoService, $cordovaToast, $paymentService) {
         $scope.tabNames = ['待付款', '待出票', '待开奖', '待派奖', '已取票'];
         $scope.selectIndex = 0;
         
-        $scope.activeTab = function (index) {
+        $scope.activeTab = function (index) {//0 1 2 3 4
             $scope.selectIndex = index;
             $scope.hasMore = true;
             if($scope.selectIndex == 3){
@@ -50,17 +50,17 @@ angular.module ('starter.allOrdersCtrl', [])
             
         };
         allOrdersList ($scope.selectIndex);
-    
+        
+        var userInfo = $util.getUserInfo ();
+        var token = userInfo.token;
         function allOrdersList (status, isReturn) {
             $scope.hasMore = true;
             $scope.requesArr = [];
             //获取订单记录............
-            var userInfo = $util.getUserInfo ();
-            var token = userInfo.token;
             var pageSize = 8;
             var pageNumber = 1;
             $scope.loadMore = function (status, isReturn) {
-                data = {
+                 data = {
                     data : {},
                     params : {
                         pageSize : pageSize,
@@ -85,10 +85,10 @@ angular.module ('starter.allOrdersCtrl', [])
         
                                 console.info ($scope.requesArr[i]);
                                 
-                                $scope.status = $scope.requesArr[i].status;
+                                var status = $scope.requesArr[i].status;
                                 var isReturn = $scope.requesArr[i].isReturn;
         
-                                switch ( $scope.status ) {
+                                switch ( status ) {
                                     case 0:
                                         $scope.requesArr[i].statusText = '待付款';
                                         $scope.requesArr[i].titleText = '大乐透';
@@ -117,23 +117,21 @@ angular.module ('starter.allOrdersCtrl', [])
                                             //
                                         }
                                         $scope.requesArr[i].titleText = '大乐透';
-                                        $scope.requesArr[i].ticketID = ticketID;
-                                        $scope.requesArr[i].money = orderMoney;
                                         break;
                                     default:
                                     //$scope.requesArr[i].status = '已撤单';
                                 }
     
                                 drawTime = $scope.requesArr[i].lotteryList[0].drawTime.replace(/-/g,'/');
-                                var setTime = $util.countTime('2017/09/15');
+                                $scope.requesArr[i].setTime = $util.countTime(drawTime);
     
-                                console.info(drawTime);
-                                console.info(setTime);
+//                                console.info(drawTime);
+//                                console.info( $scope.setTime);
                             }
                             pageNumber++;
                         }else {
                             $scope.hasMore = false;
-                            $cordovaToast.showShortBottom ("暂无更多了");
+                            $cordovaToast.showShortBottom ("暂无更多");
                         }
                         $scope.$broadcast ('scroll.refreshComplete');
                         $scope.$broadcast ('scroll.infiniteScrollComplete');
@@ -154,12 +152,34 @@ angular.module ('starter.allOrdersCtrl', [])
         }
         
         //查看详情
-        $scope.viewDetails = function (index) {
-            console.info (index);
+        $scope.viewDetails = function (orderId) {
+            console.info (orderId);
+            $rootScope.orderId = orderId;
+           
             $state.go ('allOrderdetail');
+        };
+        //点击付款
+        $scope.oncePayment = function (paymentId, payType) {
+            var data = {
+                data : {},
+                params : {
+                    id : paymentId,
+                    payType : payType
+                }
+            };
+            console.info(data);
+            $paymentService.waitPay(data, token)
+                .then(function (response) {
+                    console.info(response);
+                },function (error) {
+                
+                })
+            
+            
+            
+            
+            
         }
-        
-        
         
         
     });
