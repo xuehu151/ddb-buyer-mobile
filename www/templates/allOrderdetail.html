@@ -10,7 +10,7 @@
             <div class="user-head">
                 <img src="./img/BigLotto.png" alt="大乐透">
             </div>
-            <h3 ng>{{titleText}}</h3>
+            <h3 ng-cloak="">{{ordersInfo.titleText}}</h3>
             <span ng-cloak="">{{ordersInfo.wareIssue}}期</span>
             <i ng-cloak="">金额: {{ordersInfo.money}}元</i>
         </div>
@@ -18,21 +18,20 @@
             <ion-list>
                 <ion-item class="list-item">
                     <h2>订单状态:</h2>
-                    <span ng-cloak="">{{statusText}}</span>
+                    <span ng-cloak="">{{ordersInfo.statusText}}</span>
                 </ion-item>
                 <ion-item class="list-item">
                     <h2>开奖号码:</h2>
                     <span>未知</span>
                 </ion-item>
-                <div ng-repeat="group in groups track by $index">
+                <div >
                     <ion-item class="item-icon-right list-item"
-                              ng-click="toggleGroup(group)"
-                              ng-class="{active: isGroupShown(group)}" >
-                        <i ng-class="isGroupShown(group) ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+                              ng-click="toggleGroup()">
+                        <i ng-class="isGroupShown() ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
                         <h2 style="font-weight: 600">选号详情:</h2>
                         <span ng-cloak="">{{lotteryListCount}} 条</span>
                     </ion-item>
-                    <ion-item class="itemContent list-item" ng-show="isGroupShown(group)" >
+                    <ion-item class="itemContent list-item" ng-show="isGroupShown()" >
                         <ul class="ball-content">
                             <li ng-repeat="lotteryList in ordersInfo.investCode track by $index" ng-cloak = ''>
                                 <div class="way">
@@ -63,5 +62,5 @@
             </ul>
         </div>
     </ion-content>
-    <a href="" class="button button-assertive Continue-bet">继续投注本次号码</a>
+    <!--<a href="" class="button button-assertive Continue-bet">继续投注本次号码</a>-->
 </ion-view>

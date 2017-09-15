@@ -3,7 +3,7 @@
  */
 angular.module ('starter.rechargeCtrl', [])
 //充值
-    .controller ('rechargeCtrl', function ($scope, $state, $rootScope, $cordovaImagePicker, $rechargeService, $util, $ionicLoading, $cordovaToast, $ionicPopup, $interval, $ionicActionSheet, $cordovaCamera, $cordovaFileTransfer) {
+    .controller ('rechargeCtrl', function ($scope, $state, $rootScope, $cordovaImagePicker, $rechargeService, $util, $ionicLoading, $cordovaToast, $ionicPopup, $interval, $ionicActionSheet, $cordovaCamera, $cordovaFileTransfer, $timeout) {
         $scope.rechargeMoney = {
             money : ''
         };
@@ -21,66 +21,16 @@ angular.module ('starter.rechargeCtrl', [])
         $rootScope.describe = '';//文字提示
         $rootScope.signIconStatus = false;//标识图标
         
-        $scope.RechargeSure = function () {
-            //$cordovaToast.showShortCenter ('订单已提交')
-            var alertPopup = $ionicPopup.alert ({
-                template : '<div style="text-align:center">订单已提交</div>',
-                title : '<i class="icon ion-ios-checkmark-outline" style="font-size:26px"></i>'
-            })
-                .then (function (success) {
-                    $ionicLoading.show ();
-                    var userInfo = $util.getUserInfo ();
-                    var token = userInfo.token;
-                    var data = {
-                        data : {},
-                        params : {
-                            money : $scope.rechargeMoney.money
-                        }
-                    };
-                    $rechargeService.recharge (data, token)
-                        .then (function (response) {
-                            $ionicLoading.hide ();
-                            console.info (response);
-                            
-                            if (response.error == '0') {
-                                $rootScope.describe = '恭喜您，充值成功';
-                                $rootScope.signIconStatus = true;
-                                $cordovaToast.showShortBottom ('充值成功');
-                                /*  测试浏览器*/
-                                $state.go ('rechargeSuccess');
-                            }
-                            else {
-                                $rootScope.describe = '充值申请已提交成功，等待店主审核';
-                                $rootScope.signIconStatus = false;
-                                $cordovaToast.showShortBottom (response.info);
-                                /*  测试浏览器*/
-                                $state.go ('rechargeSuccess');
-                            }
-                            
-                        }, function (error) {
-                            //....
-                        })
-                }, function (error) {
-                    //.....
-                });
-        };
-        
-        $scope.groups = [];//将来作为失败的多个凭证数组
-        for (var i = 0; i < 1; i++) {//循环列表
-            $scope.groups[i] = {
-                items : []
-            };
-        }
-        $scope.toggleGroup = function (group) {//循环渲染出的列表实现折叠和收缩效果
-            if ($scope.isGroupShown (group)) {
+        $scope.toggleGroup = function () {
+            if ($scope.isGroupShown ()) {
                 $scope.shownGroup = null;
             }
             else {
-                $scope.shownGroup = group;
+                $scope.shownGroup = '';
             }
         };
-        $scope.isGroupShown = function (group) {
-            return $scope.shownGroup === group;
+        $scope.isGroupShown = function () {
+            return $scope.shownGroup === '';
         };
         
         //拍照
@@ -110,14 +60,14 @@ angular.module ('starter.rechargeCtrl', [])
             });
         };
         //image picker
+        $scope.images_list = [];
         var pickImage = function () {//从相册选择
             var options = {
-                maximumImagesCount : 5,
+                maximumImagesCount : 3,
                 width : 100,
                 height : 100,
                 quality : 80
             };
-            $scope.images_list = [];
             /*从相册获取照片*/
             $cordovaImagePicker.getPictures (options)
                 .then (function (results) {
@@ -128,7 +78,7 @@ angular.module ('starter.rechargeCtrl', [])
                         upImage (results[i]);
                     }
                     $scope.imgDelete = function (index) {
-                        alert(index);
+                        $scope.images_list.splice(index,1);
                     }
                 }, function (error) {
                     // error getting photos
@@ -152,15 +102,17 @@ angular.module ('starter.rechargeCtrl', [])
             };
             $cordovaCamera.getPicture (options)
                 .then (function (imageData) {
-                    
-                    //CommonJs.AlertPopup (imageData);
-                    var image = document.getElementById ('myImage');
-                    image.src = imageData;
-//                    image.src = "data:image/jpeg;base64," + imageData;
+//                    var image = document.getElementById ('myImage');
+//                    image.src = imageData;
+                    $scope.images_list.push (imageData);
+                    $scope.imageSrc = imageData;
+                    $scope.imgDelete = function (index) {
+                        $scope.images_list.splice(index,1);
+                    };
+                    //image.src = "data:image/jpeg;base64," + imageData;
                     upImage (imageData);
                 }, function (err) {
                     // error
-                    //CommonJs.AlertPopup (err.message);
                 });
         };
         
@@ -170,7 +122,7 @@ angular.module ('starter.rechargeCtrl', [])
             document.addEventListener ('deviceready', function () {
                 var url = "http://192.168.1.248/api/UserInfo/PostUserHead";//服务器地址
                 var options = {};
-                $cordovaFileTransfer.upload (url, imageUrl, options)
+                /*$cordovaFileTransfer.upload (url, imageUrl, options)
                     .then (function (result) {
                         alert (JSON.stringify (result.response+"********"));
                         alert ("success");
@@ -181,12 +133,61 @@ angular.module ('starter.rechargeCtrl', [])
                         alert ("fail");
                     }, function (progress) {
                         // constant progress updates
-                    });
+                    });*/
                 
             }, false);
             
         };
-        
+        //确认提交
+        $scope.recharge = {
+            remarks : ""
+        };
+        $scope.RechargeSure = function () {
+//            $cordovaToast.showShortBottom ('充值申请已提交')
+            var alertPopup = $ionicPopup.alert ({
+                template : '<div style="text-align:center">充值申请已提交</div>',
+                title : '<i class="icon ion-ios-checkmark-outline" style="font-size:26px"></i>'
+            })
+                .then (function (success) {
+                    $ionicLoading.show ();
+                    var userInfo = $util.getUserInfo ();
+                    var token = userInfo.token;
+                    var data = {
+                        data : {},
+                        params : {
+                            money : $scope.rechargeMoney.money,
+                            customerRemark : $scope.recharge.remarks,
+                            filedata : ''
+                        }
+                    };
+                    console.info(data);
+                    $rechargeService.recharge (data, token)
+                        .then (function (response) {
+                            $ionicLoading.hide ();
+                            console.info (response);
+                        
+                            if (response.error == '0') {
+                                $rootScope.describe = '恭喜您，充值成功';
+                                $rootScope.signIconStatus = true;
+                                $cordovaToast.showShortBottom ('充值成功');
+                                /*  测试浏览器*/
+                                $state.go ('rechargeSuccess');
+                            }
+                            else {
+                                $rootScope.describe = '充值申请已提交成功，等待店主审核';
+                                $rootScope.signIconStatus = false;
+                                $cordovaToast.showShortBottom (response.info);
+                                /*  测试浏览器*/
+                                $state.go ('rechargeSuccess');
+                            }
+                        
+                        }, function (error) {
+                            //....
+                        })
+                }, function (error) {
+                    //.....
+                });
+        };
         
         
     });

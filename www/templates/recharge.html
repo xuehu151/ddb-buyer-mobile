@@ -28,20 +28,20 @@
 
             <div class="proof">
                 <ion-list>
-                    <div ng-repeat="group in groups">
-                        <ion-item class="item-stable item-icon-right"
-                                  ng-click="toggleGroup(group)"
-                                  ng-class="{active: isGroupShown(group)}" >
-                            <i class="icon" ng-class="isGroupShown(group) ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+                    <div>
+                        <ion-item class="item-stable item-icon-right" ng-click="toggleGroup()">
+                            <i class="icon" ng-class="isGroupShown() ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
                             上传凭证？
                         </ion-item>
-                        <ion-item class="item-accordion" ng-show="isGroupShown(group)" >
+                        <ion-item class="item-accordion" ng-show="isGroupShown()" >
                             <div class="item-area">
-                                <textarea rows="6" cols="50" placeholder="请输入备注或凭证说明......"></textarea>
+                                <textarea rows="6" cols="50"  ng-model="recharge.remarks" placeholder="请输入备注或凭证说明......"></textarea>
                                 <div class="item imgItem" ng-repeat="img in images_list">
-                                    <img src="{{img}}"   alt="" id="myImage">
-                                    <span ng-if="img.imageSrc" ng-click="imgDelete($index)"></span>
-                                    <!--<img alt="" src="./img/user.jpg" id="">-->
+                                    <i class=" ion-ios-close"  ng-click="imgDelete($index)"></i>
+                                    <img src="{{img}}" alt="" id="myImage">
+                                    <!--<span  ng-click="imgDelete($index)">  ng-if="img.imageSrc"</span>-->
+                                    <!--<img alt="" src="./img/user.jpg">-->
+                                    <!--<img alt="" src="./img/0.jpg" >-->
                                 </div>
                                 <div class="add-img" ng-click="picture()">
                                     <i class="add-img-icon ion-android-add"></i>

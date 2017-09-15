@@ -18,10 +18,10 @@ angular.module ('starter.util', [])
             getOrderListUrl : ipUrl + '/buyer/order/getOrderList',   //获取订单记录
             getHistoryListUrl : ipUrl + '/buyer/order/getHistoryList',   //获取历史开奖记录
             waitPayUrl : ipUrl + '/buyer/order/waitPay',   //大乐透待付款点击立即付款
-            accountMoneyUrl : ipUrl + '/buyer/order/accountMoney',   //查询账户余额
             getOrderDataStatisticsUrl : ipUrl + '/buyer/order/getOrderDataStatistics',   //查询账户余额
             rechargeUrl : ipUrl + '/buyer/bill/recharge',   //充值申请
             withdrawUrl : ipUrl + '/buyer/bill/cash',   //提现申请
+            accountMoneyUrl : ipUrl + '/buyer/bill/accountMoney',   //查询账户余额
             getBillInfoUrl : ipUrl + '/buyer/bill/getInfo',   //获取记录详情
             getBillListUrl : ipUrl + '/buyer/bill/getList',   //获取记录列表
         };
@@ -104,7 +104,7 @@ angular.module ('starter.util', [])
                         second : s
                     }
                 }else {
-                    return '已开奖'
+                    return '0'
                 }
 //                var days = checkTime (d);
 //                var hours = checkTime (d*24 + h);

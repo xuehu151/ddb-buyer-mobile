@@ -3,7 +3,7 @@
  */
 angular.module ('starter.allOrdersCtrl', [])
 //全部订单
-    .controller ('allOrdersCtrl', function ($scope, $state, $rootScope, $ionicActionSheet, $timeout, locals, $util, $ionicLoading, $interval, $getInfoService, $cordovaToast, $paymentService) {
+    .controller ('allOrdersCtrl', function ($scope, $state, $rootScope, $ionicActionSheet, $timeout, locals, $util, $interval, $getInfoService, $cordovaToast, $paymentService) {
         $scope.tabNames = ['待付款', '待出票', '待开奖', '待派奖', '已取票'];
         $scope.selectIndex = 0;
         
@@ -50,7 +50,7 @@ angular.module ('starter.allOrdersCtrl', [])
             
         };
         allOrdersList ($scope.selectIndex);
-        
+       
         var userInfo = $util.getUserInfo ();
         var token = userInfo.token;
         function allOrdersList (status, isReturn) {
@@ -83,11 +83,14 @@ angular.module ('starter.allOrdersCtrl', [])
                                 var _createDate = $scope.requesArr[i].createDate;
                                 $scope.requesArr[i].createDate = _createDate.split (' ')[0];
         
-                                console.info ($scope.requesArr[i]);
+//                                console.info ($scope.requesArr[i].lotteryList[0].drawTime);
                                 
                                 var status = $scope.requesArr[i].status;
                                 var isReturn = $scope.requesArr[i].isReturn;
-        
+                                var end_sale_time = locals.getObject ("end_sale_time");
+                                var hours = $util.countTime(end_sale_time);
+                                $scope.requesArr[i].end_sale_time = hours.hours;
+                        
                                 switch ( status ) {
                                     case 0:
                                         $scope.requesArr[i].statusText = '待付款';
@@ -152,9 +155,10 @@ angular.module ('starter.allOrdersCtrl', [])
         }
         
         //查看详情
-        $scope.viewDetails = function (orderId) {
-            console.info (orderId);
+        $scope.viewDetails = function (orderId, statusText, titleText) {
             $rootScope.orderId = orderId;
+            $rootScope.statusText = statusText;
+            $rootScope.titleText = titleText;
            
             $state.go ('allOrderdetail');
         };
@@ -171,15 +175,21 @@ angular.module ('starter.allOrdersCtrl', [])
             $paymentService.waitPay(data, token)
                 .then(function (response) {
                     console.info(response);
+                    if(response.error == 0){
+                        $scope.doRefresh();
+                    }
+                    else  if(response.error == 1110){
+                        $cordovaToast.showShortBottom (response.info);
+                    }
+                    else {
+                        alert('支付失败');
+                    }
                 },function (error) {
-                
+                    alert('服务连接失败，请重试!');
                 })
-            
-            
-            
-            
-            
         }
-        
+      
+      
+      
         
     });

@@ -91,29 +91,9 @@ angular.module ('starter.bettingDetailCtrl', [])
         };
 
         // 保存
-       /* var totalSum = $scope.totalMoney * $scope.multiple * $scope.countMoney;
-        var localsArrs = locals.getObject ("localsArr");
-        console.info (localsArrs);
-        jsonWarpBall = [];
-        for (var i = 0; i < localsArrs.length; i++) {
-            jsonWarpBall.push (localsArrs[i]);
-        }*/
         $scope.showSaveAlert = function (payType) {
             $scope.showOrderAlertCms(payType);
             console.info(payType);
-            
-            /*var userInfo = $util.getUserInfo ();
-            var objBall = {
-                totalSum : totalSum,
-                ballList : $scope.sessionJsonWarp,
-                status: 5
-            };
-            jsonWarpBall.push(objBall);
-            locals.setObject("localsArr", jsonWarpBall);
-            console.info(jsonWarpBall);
-            console.info(userInfo);*/
-            
-            //$cordovaToast.showShortCenter ("方案保存成功");
         };
 
         //提交彩店
@@ -124,10 +104,6 @@ angular.module ('starter.bettingDetailCtrl', [])
                 //$cordovaToast.showShortCenter ("倍数设置错误");
                 return;
             }
-            console.info(payType);
-            $ionicLoading.show({
-                template: 'Loading...'
-            });
             //获取大乐透期号
             var reques = {};
             var userInfo = $util.getUserInfo ();
@@ -141,9 +117,9 @@ angular.module ('starter.bettingDetailCtrl', [])
             
             $getInfoService.getWareIssue (data, token)
                 .then (function (response) {
-                    $ionicLoading.hide ();
                     reques = response.data;
-                    console.info (reques);
+                    //console.info (reques);
+                    locals.setObject("end_sale_time", reques.end_sale_time);//保存订单的截止销售时间
                     
                     if(response.error == '0'){//判断token过期 重新登录
                         getdltadd (payType);
@@ -158,7 +134,6 @@ angular.module ('starter.bettingDetailCtrl', [])
                        alert('未知错误!');
                     }
                 }, function (error) {
-                    $ionicLoading.hide ();
                     alert ("期号获取失败，请检查网络");
                 });
             // 大乐透投注接口信息
@@ -200,16 +175,13 @@ angular.module ('starter.bettingDetailCtrl', [])
                     },
                     params: {}
                 };
-                console.dir(data.data);
-                $ionicLoading.show ();
                 $bettingService.dltadd(data, token)
                     .then (function (response) {
-                        $ionicLoading.hide ();
                         console.info(response);
                         if(response.error == '0'){
                             if (payType == 0) {
                                 $cordovaToast.showShortCenter ("方案保存成功");
-                                return
+                                return;
                             }else {
                                 $cordovaToast.showShortCenter ("订单提交成功")
                                     .then (function (success) {
@@ -222,12 +194,10 @@ angular.module ('starter.bettingDetailCtrl', [])
                             }
                         }
                         else {
-                            $ionicLoading.hide ();
                             $cordovaToast.showShortCenter (response.info);
                         }
 
                     }, function (error) {
-                        $ionicLoading.hide ();
                         $cordovaToast.showShortCenter ("投注失败!");
                     });
             }

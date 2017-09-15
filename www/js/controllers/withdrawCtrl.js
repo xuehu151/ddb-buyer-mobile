@@ -63,7 +63,7 @@ angular.module ('starter.withdrawCtrl', [])
                 }
             };
             console.info(data);
-            $rechargeService.recharge (data, token)
+            $rechargeService.withdraw (data, token)
                 .then (function (response) {
                     $ionicLoading.hide ();
                     console.info(response);
