@@ -2,8 +2,8 @@
  * Created by admin on 2017/7/24.
  */
 angular.module ('starter.bettingDetailCtrl', [])
-    //方案保存成功提示
-    .controller ('bettingDetailCtrl', function ($scope,$rootScope, $ionicPopup, $timeout, $state, $cordovaToast, $ionicLoading, $util, $http, $getInfoService, $bettingService, $ionicModal, locals) {
+//方案保存成功提示
+    .controller ('bettingDetailCtrl', function ($scope, $rootScope, $ionicPopup, $timeout, $state, $cordovaToast, $ionicLoading, $util, $http, $getInfoService, $bettingService, $ionicModal, locals) {
         $scope.multiple = '1';
         $scope.countMoney = '2';
 
@@ -41,7 +41,7 @@ angular.module ('starter.bettingDetailCtrl', [])
 
         $scope.autoAdd = function () {
             if ($scope.liAutoAdds[$scope.liAutoAdds.length - 1].num >= 5) { //当最后一个对象的num>=5时，push一个新对象
-                $scope.liAutoAdds.push ({ num : 1 });
+                $scope.liAutoAdds.push ({num: 1});
             }
             else {
                 $scope.liAutoAdds[$scope.liAutoAdds.length - 1].num++;
@@ -52,9 +52,9 @@ angular.module ('starter.bettingDetailCtrl', [])
 
         //点击删除一组机选号码
         $scope.machineDelete = function ($index) {
-            if($scope.liAutoAdds.length == 1){
+            if ($scope.liAutoAdds.length == 1) {
                 $scope.liAutoAdds[$scope.liAutoAdds.length - 1].num = 1;
-            }else {
+            } else {
                 $scope.liAutoAdds.splice ($index, 1);
             }
             addMachine = ($scope.liAutoAdds.length - 1) * 5 + $scope.liAutoAdds[$scope.liAutoAdds.length - 1].num;
@@ -87,20 +87,20 @@ angular.module ('starter.bettingDetailCtrl', [])
             // console.log(thisIndexOrder);
             $rootScope.editIndex = $index;
             $state.go ('BigLotto');
-            $scope.deleteRow($index);
+            $scope.deleteRow ($index);
         };
 
         // 保存
         $scope.showSaveAlert = function (payType) {
-            $scope.showOrderAlertCms(payType);
-            console.info(payType);
+            $scope.showOrderAlertCms (payType);
+            console.info (payType);
         };
 
         //提交彩店
         $scope.showOrderAlertCms = function (payType) {
             //处理默认的倍数
-            if($scope.multiple * 1 <= 0 || $scope.multiple * 1 == ''){
-                alert('倍数设置错误');
+            if ($scope.multiple * 1 <= 0 || $scope.multiple * 1 == '') {
+                alert ('倍数设置错误');
                 //$cordovaToast.showShortCenter ("倍数设置错误");
                 return;
             }
@@ -109,29 +109,32 @@ angular.module ('starter.bettingDetailCtrl', [])
             var userInfo = $util.getUserInfo ();
             var token = userInfo.token;
             var data = {
-                data:{ },
-                params:{
-                    lotteryID : 2
+                data: {},
+                params: {
+                    lotteryID: 2
                 }
             };
-            
+
             $getInfoService.getWareIssue (data, token)
                 .then (function (response) {
                     reques = response.data;
                     //console.info (reques);
-                    locals.setObject("end_sale_time", reques.end_sale_time);//保存订单的截止销售时间
-                    
                     if(response.error == '0'){//判断token过期 重新登录
+                        locals.setObject("end_sale_time", reques.end_sale_time);//保存订单的截止销售时间
                         getdltadd (payType);
-                    }else if(response.error == '1110'){
+                    }
+                    else if (response.error == '1110') {
                         $cordovaToast.showShortCenter (response.info)
                             .then (function (success) {
-                                $state.go ('signin');
+                                $timeout (function () {
+                                    $state.go ('orderStatus');
+                                }, 2000);
                             }, function (error) {
                                 //.....
                             });
-                    }else {
-                       alert('未知错误!');
+                    }
+                    else {
+                        alert ('未知错误!');
                     }
                 }, function (error) {
                     alert ("期号获取失败，请检查网络");
@@ -141,8 +144,8 @@ angular.module ('starter.bettingDetailCtrl', [])
                 var dataArrayBig = [];
                 for (var i in $scope.sessionJsonWarp) {
                     var dataObj = {
-                        investCode : "", //"investCode":"01,03,05,07,09*06,08"
-                        multiple : $scope.multiple
+                        investCode: "", //"investCode":"01,03,05,07,09*06,08"
+                        multiple: $scope.multiple
                     };
                     var investCode = '';
                     for (var j in $scope.sessionJsonWarp[i]) {
@@ -162,8 +165,13 @@ angular.module ('starter.bettingDetailCtrl', [])
                     //console.log (investCodeStr);
                     dataObj.investCode = investCodeStr;
                     dataArrayBig.push (dataObj);
-                     console.log (dataArrayBig);
+                    console.log (dataArrayBig);
                 }
+                if(dataArrayBig.length == '0'){//未选择号码提交失败
+                    $cordovaToast.showShortCenter ("请选择号码!");
+                    return;
+                }
+
                 var vid = '20170525170402702001';//先放这里 后面 在登录返回数据取
                 var data = {
                     data: {
@@ -175,23 +183,35 @@ angular.module ('starter.bettingDetailCtrl', [])
                     },
                     params: {}
                 };
-                $bettingService.dltadd(data, token)
+                console.info (data);
+                $bettingService.dltadd (data, token)
                     .then (function (response) {
-                        console.info(response);
-                        if(response.error == '0'){
+                        //console.info (response);
+                        if (response.error == '0') {
                             if (payType == 0) {
                                 $cordovaToast.showShortCenter ("方案保存成功");
                                 return;
-                            }else {
+                            }
+                            else {
                                 $cordovaToast.showShortCenter ("订单提交成功")
                                     .then (function (success) {
-                                        $timeout(function () {
+                                        $timeout (function () {
                                             $state.go ('orderStatus');
-                                        },2000);
+                                        }, 2000);
                                     }, function (error) {
-            
+
                                     });
                             }
+                        }
+                        else if (response.error == '1110') {
+                            $cordovaToast.showShortCenter (response.info)
+                                .then (function (success) {
+                                    $timeout (function () {
+                                        $state.go ('signin');
+                                    }, 2000);
+                                }, function (error) {
+
+                                });
                         }
                         else {
                             $cordovaToast.showShortCenter (response.info);
@@ -202,7 +222,6 @@ angular.module ('starter.bettingDetailCtrl', [])
                     });
             }
         };
-        
-        
-        
+
+
     });

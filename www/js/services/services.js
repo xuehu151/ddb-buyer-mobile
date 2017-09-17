@@ -1,5 +1,5 @@
 angular.module ('starter.services', [])
-    
+
     .factory ('locals', ['$window', function ($window) {
         return {
             //存储单个属性
@@ -20,7 +20,7 @@ angular.module ('starter.services', [])
             }
         }
     }])
-    
+    //登陆注册
     .factory ('$loginService', function ($http, $util) {
         return {
             //注册
@@ -32,11 +32,11 @@ angular.module ('starter.services', [])
                 return $util.httpPostRequest ($util.getHttpURL ().loginUrl, user, token);
             }
             //手机验证
-            
+
             //忘记密码
-            
-            
-            
+
+
+
         };
     })
     //订单相关
@@ -46,91 +46,103 @@ angular.module ('starter.services', [])
             getWareIssue : function (data, token) {
                 return $util.httpPostRequest ($util.getHttpURL ().getWareIssueUrl, data, token);
             },
-            
+
             //获取投注记录
             getList : function (data, token) {
                 return $util.httpPostRequest ($util.getHttpURL ().getListUrl, data, token);
             },
-            
+
             //获取投注详情
             getInfo : function (data, token) {
                 return $util.httpPostRequest ($util.getHttpURL ().getInfoUrl, data, token);
             },
-    
+
             //获取订单记录
             getOrderList : function (data, token) {
                 return $util.httpPostRequest ($util.getHttpURL ().getOrderListUrl, data, token);
             },
-            
+
             //获取订单详情
             getOrderInfo : function (data, token) {
                 return $util.httpPostRequest ($util.getHttpURL ().getOrderInfoUrl, data, token);
             },
-    
+
             //获取历史开奖记录
             getHistoryList : function (data, token) {
                 return $util.httpPostRequest ($util.getHttpURL ().getHistoryListUrl, data, token);
             }
-            
-            
+
+
         };
     })
-    
+    //投注下单
     .factory ('$bettingService', function ($http, $util) {
         return {
             //投注
             dltadd : function (data, token) {
                 return $util.httpPostRequest ($util.getHttpURL ().dltaddUrl, data, token);
             }
-            
-            
-            
+
+
+
         };
     })
-    
+    //账户模块
     .factory ('$paymentService', function ($http, $util) {
         return {
             //大乐透待付款点击立即付款
             waitPay : function (data, token) {
                 return $util.httpPostRequest ($util.getHttpURL ().waitPayUrl, data, token);
             },
-            
+
             //查询账户
             accountMoney : function (data, token) {
                 return $util.httpPostRequest ($util.getHttpURL ().accountMoneyUrl, data, token);
             },
-    
+
             //显示角标
             getOrderDataStatistics : function (data, token) {
                 return $util.httpPostRequest ($util.getHttpURL ().getOrderDataStatisticsUrl, data, token);
             },
-            
-            
-            
+
+
+
         };
     })
-    
+    //充值提现
     .factory ('$rechargeService', function ($http, $util) {
         return {
             //充值申请
             recharge : function (data, token) {
                 return $util.httpPostRequest ($util.getHttpURL ().rechargeUrl, data, token);
             },
-            
+
             //提现申请
             withdraw : function (data, token) {
                 return $util.httpPostRequest ($util.getHttpURL ().withdrawUrl, data, token);
             },
-            
+
             //获取记录详情
             getBillInfo : function (data, token) {
                 return $util.httpPostRequest ($util.getHttpURL ().getBillInfoUrl, data, token);
             },
-            
+
             //获取记录列表
             getBillList : function (data, token) {
                 return $util.httpPostRequest ($util.getHttpURL ().getBillListUrl, data, token);
             }
-            
+
+        };
+    })
+    //文件上传
+    .factory ('$uploadImgService', function ($http, $util) {
+        return {
+            //投注
+            uploadImg : function (data, token) {
+                return $util.httpPostRequest ($util.getHttpURL ().uploadImgUrl, data, token);
+            }
+
+
+
         };
     });

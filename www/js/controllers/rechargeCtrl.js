@@ -16,11 +16,11 @@ angular.module ('starter.rechargeCtrl', [])
                 $scope.Recharge = true;
             }
         };
-        
+
         //充值确定按钮
         $rootScope.describe = '';//文字提示
         $rootScope.signIconStatus = false;//标识图标
-        
+
         $scope.toggleGroup = function () {
             if ($scope.isGroupShown ()) {
                 $scope.shownGroup = null;
@@ -32,7 +32,7 @@ angular.module ('starter.rechargeCtrl', [])
         $scope.isGroupShown = function () {
             return $scope.shownGroup === '';
         };
-        
+
         //拍照
         $scope.picture = function () {
             $ionicActionSheet.show ({
@@ -71,7 +71,7 @@ angular.module ('starter.rechargeCtrl', [])
             /*从相册获取照片*/
             $cordovaImagePicker.getPictures (options)
                 .then (function (results) {
-    
+
                     for (var i = 0; i < results.length; i++) {
                         $scope.images_list.push (results[i]);
                         $scope.imageSrc = results[i];
@@ -83,7 +83,7 @@ angular.module ('starter.rechargeCtrl', [])
                 }, function (error) {
                     // error getting photos
                 });
-            
+
         };
         var takePhoto = function () {//相机
             var options = {
@@ -115,15 +115,16 @@ angular.module ('starter.rechargeCtrl', [])
                     // error
                 });
         };
-        
-        //图片上传upImage（图片路径）
+
+        //图片上传upImage（图片路径）uploadImg
         //http://ngcordova.com/docs/plugins/fileTransfer/  资料地址
         var upImage = function (imageUrl) {
-            document.addEventListener ('deviceready', function () {
-                var url = "http://192.168.1.248/api/UserInfo/PostUserHead";//服务器地址
+            // document.addEventListener ('deviceready', function () {
+                var url = "http://121.42.253.149:18818/buyer/bill/uploadImg";//服务器地址
                 var options = {};
-                /*$cordovaFileTransfer.upload (url, imageUrl, options)
+                $cordovaFileTransfer.upload (url, imageUrl, options)
                     .then (function (result) {
+                        alert (result);
                         alert (JSON.stringify (result.response+"********"));
                         alert ("success");
                         alert (result.message+'lfnlsdfnfdfs');
@@ -133,10 +134,10 @@ angular.module ('starter.rechargeCtrl', [])
                         alert ("fail");
                     }, function (progress) {
                         // constant progress updates
-                    });*/
-                
-            }, false);
-            
+                    });
+
+            // }, false);
+
         };
         //确认提交
         $scope.recharge = {
@@ -165,7 +166,7 @@ angular.module ('starter.rechargeCtrl', [])
                         .then (function (response) {
                             $ionicLoading.hide ();
                             console.info (response);
-                        
+
                             if (response.error == '0') {
                                 $rootScope.describe = '恭喜您，充值成功';
                                 $rootScope.signIconStatus = true;
@@ -180,7 +181,7 @@ angular.module ('starter.rechargeCtrl', [])
                                 /*  测试浏览器*/
                                 $state.go ('rechargeSuccess');
                             }
-                        
+
                         }, function (error) {
                             //....
                         })
@@ -188,6 +189,6 @@ angular.module ('starter.rechargeCtrl', [])
                     //.....
                 });
         };
-        
-        
+
+
     });

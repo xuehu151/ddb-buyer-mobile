@@ -10,7 +10,7 @@
 
     <ion-content class="h25">
        <div class="history-show">
-            <p><ins ng-cloak>{{wareIssue}} 期</ins><i ng-cloak>{{createDate}} 周三</i></p>
+            <p><ins ng-cloak>{{historyInfo.wareIssue}} 期</ins><i ng-cloak>{{historyInfo.drawTime}} {{getDay}}</i></p>
            <div class="row">
                <div class="col col-60 show-red-balls" style="text-align: right">
                    <i ng-repeat="ball in resultArrayRed track by $index" ng-cloak>{{ball}}</i>

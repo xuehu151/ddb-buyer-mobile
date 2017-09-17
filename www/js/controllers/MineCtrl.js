@@ -28,9 +28,9 @@ angular.module ('starter.MineCtrl', [])
                     publicMoney : response.data.redMoney    //公益金
                 };
             }, function (error) {
-            
+
             });
-        
+
         //待付款
         $paymentService.getOrderDataStatistics (data, token)
             .then (function (response) {
@@ -52,15 +52,18 @@ angular.module ('starter.MineCtrl', [])
                         $scope.brageRecord = true;
                     }
                 }
-                else {
+                else if(response.error == '1110'){
                     $cordovaToast.showShortCenter (response.info)
                         .then (function (success) {
                             $timeout (function () {
                                 $state.go ('signin');
                             }, 2000);
                         }, function (error) {
-                        
+
                         });
+                }
+                else {
+                    $cordovaToast.showShortCenter (response.info);
                 }
             }, function (error) {
                 alert ('网络连接失败,请重试!');
@@ -70,8 +73,8 @@ angular.module ('starter.MineCtrl', [])
             $rootScope.tabIndex = num;
             $state.go ('allOrders');
         };
-        
-        
-        
-        
+
+
+
+
     });

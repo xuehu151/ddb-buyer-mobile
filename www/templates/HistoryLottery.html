@@ -11,7 +11,7 @@
     <ion-content class="h25">
         <ion-list>
             <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
-            <ion-item class="history-time" ng-repeat="past in bitLotto track by $index" ng-click="goToHistory($index, past)">
+            <ion-item class="history-time" ng-repeat="past in bitLotto track by $index" ng-click="goToHistory(past)">
                 <p><span ng-cloak>{{past.wareIssue}}期</span><ins ng-cloak> {{past.createDate}} {{past.getDay}} </ins></p>
                 <div class="row">
                     <div class="col col-50 show-red-ball">

@@ -13,7 +13,7 @@ angular.module ('starter.orderStatusCtrl', [])
             data : {},
             params : {}
         };
-        
+
         $getInfoService.getList (data, token)
             .then (function (response) {
                 var reques = response.data;
@@ -51,12 +51,12 @@ angular.module ('starter.orderStatusCtrl', [])
                     }
                 }
             }, function (error) {
-            
+
             });
         //关闭
-        $scope.goToHome = function () {
+        $scope.goCloseToHome = function () {
             $state.go ('tab.home');
         }
-        
-        
+
+
     });

@@ -24,18 +24,19 @@ angular.module ('starter.util', [])
             accountMoneyUrl : ipUrl + '/buyer/bill/accountMoney',   //查询账户余额
             getBillInfoUrl : ipUrl + '/buyer/bill/getInfo',   //获取记录详情
             getBillListUrl : ipUrl + '/buyer/bill/getList',   //获取记录列表
+            uploadImgUrl : ipUrl + '/buyer/bill/uploadImg',     //充值凭证图片上传
         };
         return {
             /* 返回httpURL  */
             getHttpURL : function () {
                 return httpURL;
             },
-            
+
             /* 保存用户信息  */
             setUserInfo : function (userInfo) {
                 window.localStorage.setItem ("userInfo", JSON.stringify (userInfo));
             },
-            
+
             /* 获取用户信息  */
             getUserInfo : function () {
                 var localUserInfo = window.localStorage.getItem ("userInfo");
@@ -46,7 +47,7 @@ angular.module ('starter.util', [])
                 }
                 return userInfo;
             },
-            
+
             /* 格式化日期  */
             formatDate : function (date) {
                 var y = date.getFullYear ();
@@ -62,7 +63,7 @@ angular.module ('starter.util', [])
                 s = s < 10 ? ('0' + s) : s;
                 return y + '-' + M + '-' + d + ' ' + h + ':' + m + ':' + s;
             },
-            
+
             /*根据日期 得到是周几*/
             getWeekByDay : function (time) { //dayValue=“2014-01-01”
                 var day = new Date (Date.parse (time)); //将日期值格式化
@@ -84,10 +85,10 @@ angular.module ('starter.util', [])
             countTime : function (setTime) {
                 var date = new Date ();//获取当前时间
                 var now = date.getTime ();
-                
+
                 var endDate = new Date (setTime); //设置截止时间
                 var end = endDate.getTime ();
-                
+
                 var leftTime = end - now;//计算时间差
                 var d, h, m, s;
                 if (leftTime >= 0) {//定义变量 d,h,m,s保存倒计时的时间
@@ -110,15 +111,15 @@ angular.module ('starter.util', [])
 //                var hours = checkTime (d*24 + h);
 //                var minute = checkTime (m);
 //                var second = checkTime (s);
-                
+
                 function checkTime (i) { //将0-9的数字前面加上0，例1变为01
                     if (i < 10) {
                         i = "0" + i;
                     }
                     return i;
                 }
-    
-                
+
+
                 //return hours, minute, second;
             },
             /*验证密码*/
@@ -127,13 +128,13 @@ angular.module ('starter.util', [])
                 var myreg = /((?=.*[a-z])(?=.*\d)|(?=[a-z])(?=.*[.#@!~%^&*])|(?=.*\d)(?=.*[.#@!~%^&*]))[a-z\d.#@!~%^&*]{6,24}/i;
                 return myreg.test (text);
             },
-            
+
             /*验证手机号*/
             checkPhone : function (text) {
                 var myreg = /^1[3578]\d{9}$/;
                 return myreg.test (text);
             },
-            
+
             /* HTTP请求  */
             httpPostRequest : function (url, data, token) {
                 $ionicLoading.show ();

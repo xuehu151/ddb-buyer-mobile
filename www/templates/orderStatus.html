@@ -2,13 +2,14 @@
 	<ion-nav-bar class="bar bar-assertive">
 		<ion-nav-back-button class="button button-icon icon ion-ios-arrow-left"></ion-nav-back-button>
 		<ion-nav-buttons side="right">
-			 <button class="button button-clear " ng-click="goToHome()">关闭</button>
+			 <button class="button button-clear " ng-click="goCloseToHome()">关闭</button>
 		</ion-nav-buttons>
 	</ion-nav-bar>
 
 	<ion-content class="order-status-wrap">
 		<ul class="order-status-ul">
-			<li class="clearfix" ng-repeat="order in orderStatus">
+            <!--<ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>-->
+            <li class="clearfix" ng-repeat="order in orderStatus">
 				<div class="order-status-left">
 					<i class="order-start-icon " ng-class="order.iconClass" ></i>
 					<span class="order-status-line"></span>
@@ -21,6 +22,7 @@
 					<p><span ng-cloak>{{order.statusText}}</span><a href="" class="button fr" ng-show="makeSuerBtn?true:false">确认</a></p>
 				</div>
 			</li>
-		</ul>
+            <!--<ion-infinite-scroll ng-if="hasMore" on-infinite="loadMore(0)" distance="1%"></ion-infinite-scroll>-->
+        </ul>
 	</ion-content>
 </ion-view >
