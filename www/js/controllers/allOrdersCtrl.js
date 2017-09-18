@@ -84,7 +84,7 @@ angular.module ('starter.allOrdersCtrl', [])
                                 var _createDate = $scope.requesArr[i].createDate;
                                 $scope.requesArr[i].createDate = _createDate.split (' ')[0];
 
-//                                console.info ($scope.requesArr[i].lotteryList[0].drawTime);
+                                console.info ($scope.requesArr[i]);
 
                                 var status = $scope.requesArr[i].status;
                                 var isReturn = $scope.requesArr[i].isReturn;

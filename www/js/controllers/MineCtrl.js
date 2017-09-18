@@ -22,9 +22,9 @@ angular.module ('starter.MineCtrl', [])
                     realName : response.data.realName,
                     userHead : response.data.headImg,
                     userIphone : response.data.phone,
-                    freeze : response.data.money,   //冻结
-                    accountTotalMoney : response.data.money,    //总额
-                    usableMoney : response.data.money - response.data.freeze,  //可用金额
+                    freeze : response.data.freeze,   //冻结
+                    usableMoney : response.data.money,    //可用
+                    accountTotalMoney : response.data.money + response.data.freeze,  //总额
                     publicMoney : response.data.redMoney    //公益金
                 };
             }, function (error) {
