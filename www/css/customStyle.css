@@ -1605,6 +1605,83 @@ input.bigLotto-input2:checked:before {
     font-size: 9px;
 }
 
+.withdrawUser{
+    height: 50px;
+}
+
+.withdrawUser i{
+    font-size: 10px;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.drawMoney{
+    float: right;
+    color: #e4202b;
+    display: inline-block;
+    margin-right: 15px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 12px;
+}
+
+.userHead{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: bottom;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.userName{
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 10px;
+    vertical-align: bottom;
+}
+
+.drawContent{
+    margin-top: 25px;
+    padding: 0 10px;
+}
+
+.drawText{
+    font-size: 13px;
+    margin-top: 10px;
+    letter-spacing: 1px;
+}
+
+.imgContent{
+    margin-top: 20px;
+}
+
+.imgContent img{
+    width: 31%;
+    height: 30%;
+    margin: 0 1px;
+    display: inline-block;
+}
+
+
+/*提现详情*/
+.withdrawDetails{
+    height: 300px;
+    width: 100%;
+    padding-top: 15px;
+    background: white;
+}
+
+.withdrawDetails p{
+    color: #e4202b;
+    font-size: 10px;
+    padding: 0 15px;
+    display: inline-block;
+    margin-top: 12%;
+}
+
 /*明细详情*/
 .DetailInfo {
     background: white;

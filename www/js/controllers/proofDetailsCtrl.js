@@ -4,6 +4,13 @@
 
 angular.module ('starter.proofDetailsCtrl', [])
 //订单状态order status
-    .controller ('proofDetailsCtrl', function ($scope, $state, $http, $util, $getInfoService) {
-    
+    .controller ('proofDetailsCtrl', function ($scope, $state, $http, $util, $rootScope) {
+        var userInfo = $util.getUserInfo ();
+
+        $scope.accountInfo = {
+            userHead : userInfo.customer.headImg,
+            realName : userInfo.customer.realName,
+            cashMoney : $rootScope.money
+        };
+
     });

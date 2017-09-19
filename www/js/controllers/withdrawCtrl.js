@@ -4,20 +4,20 @@
 angular.module ('starter.withdrawCtrl', [])
 //提现
     .controller ('withdrawCtrl', function ($scope, $state, $rootScope, $ionicModal, $rechargeService, $ionicLoading, $util) {
-        
+
         $scope.widthdrawMoney = {//提现金额
             money : ''
         };
         $scope.whetherShow1 = true; //控制展示可提现余额
         $scope.whetherShow2 = true; //控制提现提交按钮disable
-        
+
         //账户余额  先定义后面取到数据替换
-        
+
         //$ionicLoading.show ();
         var userInfo = $util.getUserInfo ();
 //        $scope.widthdrawAble = userInfo.customer.money - userInfo.customer.freeze;
         $scope.widthdrawAble = $rootScope.users.usableMoney;
-        
+
         $scope.whetherOK = function () {
             if ($scope.widthdrawMoney.money > $scope.widthdrawAble) {
                 $scope.cantWidthdraw = '输入金额超出可提现余额';
@@ -51,7 +51,7 @@ angular.module ('starter.withdrawCtrl', [])
         for (var i=0; i < 6; i++){
             $scope.inputNum.push(i);
         }
-        
+
         //提现确定按钮  判断提现成功与否
         $rootScope.withdrawalState = false;
         $scope.confirmWidthdraw = function () {
@@ -63,11 +63,12 @@ angular.module ('starter.withdrawCtrl', [])
                 }
             };
             console.info(data);
+            $rootScope.money = data.params.money;//暂时保存提现金额
             $rechargeService.withdraw (data, token)
                 .then (function (response) {
                     $ionicLoading.hide ();
                     console.info(response);
-                    
+
                     if(response.error == '0'){
                         $rootScope.auditStatus = '恭喜您，提现成功';
                         $rootScope.withdrawalState = true;
@@ -82,7 +83,7 @@ angular.module ('starter.withdrawCtrl', [])
                 },function (error) {
                     //....
                 });
-            
+
             /*if (true) {
                 $ionicModal.fromTemplateUrl ('templates/modal.html', {
                     scope : $scope,
@@ -101,8 +102,8 @@ angular.module ('starter.withdrawCtrl', [])
                 //$state.go ('withDrawFailed');
             }*/
         };
-        
-        
-        
-        
+
+
+
+
     });

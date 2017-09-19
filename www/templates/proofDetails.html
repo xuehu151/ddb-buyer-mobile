@@ -7,9 +7,24 @@
     </ion-nav-bar>
 
     <ion-content style="background: #f7f5f5;">
-
-
-
-
+        <div class="withdrawDetails">
+            <div class="withdrawUser">
+                <div class="userHead">
+                    <img ng-src="{{accountInfo.userHead}}" alt="">
+                </div>
+                <div class="userName" ng-cloak="">{{accountInfo.realName}}</div>
+                <i>2017/04/15</i>
+                <span class="drawMoney">提现:{{accountInfo.cashMoney}}元</span>
+            </div>
+            <div class="drawContent">
+                <div class="drawText">提现金额已转账至支付宝,请查收</div>
+                <div class="imgContent">
+                    <img src="./img/0.jpg" alt="">
+                    <img src="./img/0.jpg" alt="">
+                    <img src="./img/0.jpg" alt="">
+                </div>
+            </div>
+            <p>*凭证有效期为3个月</p>
+        </div>
     </ion-content>
 </ion-view>
