@@ -16,15 +16,12 @@
         </div>
         <div class="proof">
             <ion-list>
-                <div ng-repeat="group in groups">
-                    <ion-item class="item-stable item-icon-right"
-                              ng-click="toggleGroup(group)"
-                              ng-class="{active: isGroupShown(group)}" >
-                        <i class="icon" ng-class="isGroupShown(group) ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
-                        查看凭证
+                <div class="withDrawProof">
+                    <a href="#proofDetails">查看凭证</a>
+                    <ion-item class="item-stable item-icon-right" ng-click="toggleGroup()">
+                        <i class="icon" ng-class="isGroupShown() ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
                     </ion-item>
-                    <ion-item class="item-accordion"
-                              ng-show="isGroupShown(group)" >
+                    <ion-item class="item-accordion" ng-show="isGroupShown()" >
                         <div class="item-area">
                             <textarea rows="6" cols="50" placeholder="{{placeholder}}"></textarea>
                             <div class="add-img">

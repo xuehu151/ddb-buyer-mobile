@@ -146,7 +146,7 @@ angular.module ('starter.util', [])
                     data : data.data,
                     params : data.params,
                     headers : {
-                        "content-type" : "application/json;charset=UTF-8",
+                        "content-type" : "application/json;multipart/form-data;charset=UTF-8",
                         "Auth-Token" : token
                     },
                     timeout : 1000 * 10

@@ -1510,6 +1510,19 @@ input.bigLotto-input2:checked:before {
     background: white;
 }
 
+.withDrawProof{
+    height: 55px;
+}
+
+.withDrawProof a{
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    height: 55px;
+    line-height: 55px;
+    color: #ca0a0a;
+}
+
 .item-area img {
     max-height: 100%;
 }
@@ -1549,6 +1562,8 @@ input.bigLotto-input2:checked:before {
     border-bottom: solid 1px #f7f5f5;
     color: #d21e1e;
     font-weight: 600;
+    width: 50%;
+    display: table-row;
 }
 
 .proof .item-stable i {

@@ -2,13 +2,11 @@
  * Created by admin on 2017/7/24.
  */
 angular.module ('starter.bettingDetailCtrl', [])
-//方案保存成功提示
+    
     .controller ('bettingDetailCtrl', function ($scope, $rootScope, $ionicPopup, $timeout, $state, $cordovaToast, $ionicLoading, $util, $http, $getInfoService, $bettingService, $ionicModal, locals) {
         $scope.multiple = '1';
         $scope.countMoney = '2';
-
         $scope.sessionJsonWarp = JSON.parse (sessionStorage.jsonWrap);//反解析
-        // console.log ($scope.sessionJsonWarp);
         $scope.totalMoney = $scope.sessionJsonWarp.length; //设置倍数及金额
 
         //是否追加  0未追加false   1 追加true
@@ -68,16 +66,15 @@ angular.module ('starter.bettingDetailCtrl', [])
             //删除本行后的数据保存到sessionStorage
             var changeToStr = JSON.stringify ($scope.sessionJsonWarp);
             sessionStorage.jsonWrap = changeToStr;
-            // console.log(sessionStorage.jsonWrap);
+             console.log(sessionStorage.jsonWrap);
             $scope.totalMoney--;
         };
 
         $scope.editThisOrder = function ($index) {
-            /**
-             * 1.先转成数组
-             * 2.数组中获取当前修改的一组
-             * 3.sessionStorage保存当前修改的一组
-             */
+            
+            /*1.先转成数组
+            2.数组中获取当前修改的一组
+            3.sessionStorage保存当前修改的一组*/
             var changeToArr = JSON.parse (sessionStorage.jsonWrap);
             var thisIndexOrder = changeToArr[$index];
 
@@ -119,7 +116,7 @@ angular.module ('starter.bettingDetailCtrl', [])
                 .then (function (response) {
                     reques = response.data;
                     //console.info (reques);
-                    if(response.error == '0'){//判断token过期 重新登录
+                    if(response.error == '0'){//判断token过期
                         locals.setObject("end_sale_time", reques.end_sale_time);//保存订单的截止销售时间
                         getdltadd (payType);
                     }
@@ -197,9 +194,13 @@ angular.module ('starter.bettingDetailCtrl', [])
                                     .then (function (success) {
                                         $timeout (function () {
                                             $state.go ('orderStatus');
+                                            jsonWrap = [];
+                                            $scope.sessionJsonWarp = [];
+                                            sessionStorage.jsonWrap = '';
                                         }, 2000);
+            
                                     }, function (error) {
-
+            
                                     });
                             }
                         }

@@ -183,7 +183,7 @@ angular.module ('starter.BigLottoCtrl', [])
 
         //随机选择   红蓝  色球
         $scope.randomBall = function () {
-            //处理随机选取红色球***********************
+            //处理随机选取红色球
             for (var i = 0; i < 35; i++) {//首先清空选中的号码效果
                 $scope.numDataRed[i].check = false;
                 filterDataRed = [];
@@ -203,7 +203,7 @@ angular.module ('starter.BigLottoCtrl', [])
                 filterDataRed.push (randomRed[i]);
             }
 
-            //处理随机选取蓝色球***********************
+            //处理随机选取蓝色球*
             for (var i = 0; i < 12; i++) {//首先清空选中的号码效果
                 $scope.numDataBlue[i].check = false;
                 filterDataBlue = [];
@@ -238,11 +238,9 @@ angular.module ('starter.BigLottoCtrl', [])
 
         /* console.log(filterDataRed.length);
          console.log(filterDataBlue.length);*/
-
-        /**
-         * 1.此if是用来判断是不是在投注详情页面点击修改后跳转过来的
-         * 2.如果是点击修改后跳转过来的需要渲染红篮球
-         */
+       /* 1.此if是用来判断是不是在投注详情页面点击修改后跳转过来的
+        2.如果是点击修改后跳转过来的需要渲染红篮球*/
+        
         if (sessionStorage.editThisOrderData) {
             var changeToArray1 = JSON.parse (sessionStorage.editThisOrderData);
             filterDataBlue = changeToArray1.blue;
@@ -258,12 +256,12 @@ angular.module ('starter.BigLottoCtrl', [])
             $scope.Note = '1'; // 判断如果点击修改查看按钮返回到详情投注页面后添加注数以及金额
             $scope.NoteMoney = '2';
         }
-        //确认按钮
+        //确定按钮
         $scope.saveBallSelect = function () {
             var filterDataRed1 = [];        //用来保存本次点击确定后的红球
             var filterDataBlue1 = [];       //用来保存本次点击确定后的蓝球
 
-            if (filterDataRed.length == 5 && filterDataBlue.length == 2) {//判断用户未选择号码时点击确定无效
+            if (filterDataRed.length == 5 && filterDataBlue.length == 2) {//用户是否已选择号码
                 var alertPopup = $ionicPopup.alert ({
                     template: '<p style="text-align: center; letter-spacing: 2px;">订单已提交到我的订单！</p>',
                     okText: "确定"
@@ -295,10 +293,8 @@ angular.module ('starter.BigLottoCtrl', [])
                             red: filterDataRed1,
                             blue: filterDataBlue1
                         };
-                        /**
-                         * 1.如果是在bettingDetail中点击修改订单过来的,则把这个序号的内容变成本次确定的号码
-                         * 2.如果不是则push新的号码
-                         */
+                        /*如果是在bettingDetail中点击修改订单过来的,则把这个序号的内容变成本次确定的号码
+                          如果不是则push新的号码*/
                         if ($rootScope.editIndex) {
                             jsonWrap[$rootScope.editIndex] = jsonInner;
                         }
@@ -306,9 +302,7 @@ angular.module ('starter.BigLottoCtrl', [])
                             jsonWrap.push (jsonInner);
                         }
                         var sessionJsonWarp = JSON.stringify (jsonWrap);//解析数组
-                        sessionStorage.jsonWrap = sessionJsonWarp;//保存解析后的数组
-
-                        // console.log (sessionStorage.jsonWrap);
+                        sessionStorage.jsonWrap = sessionJsonWarp;//保存解析后的字符串
                         $state.go ('bettingDetail');
                     }, function (error) {
                         // error
@@ -316,7 +310,7 @@ angular.module ('starter.BigLottoCtrl', [])
             }
             else {
                 $cordovaToast.showShortCenter ("您还未选择号码请正确选择号码");
-                return
+                return;
             }
         };
 
