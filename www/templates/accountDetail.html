@@ -18,7 +18,10 @@
 
     <ion-content>
         <div class="list list-detail">
-            <a class="item" href="" ng-repeat="detailList in detailListItem  | filter: YM_list track by $index" ng-click="goToMineDetails($index)">
+            <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+            <a class="item" href=""
+               ng-repeat="detailList in detailListItem  | filter: YM_list track by $index"
+               ng-click="goToMineDetails(detailList.id, detailList.detailType)">
                 <div class="row">
                     <div class="col col-20">
                         <ul>
@@ -33,6 +36,7 @@
                     </div>
                 </div>
             </a>
+            <ion-infinite-scroll ng-if="hasMore" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
         </div>
     </ion-content>
 </ion-view>

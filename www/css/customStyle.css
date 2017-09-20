@@ -1562,8 +1562,6 @@ input.bigLotto-input2:checked:before {
     border-bottom: solid 1px #f7f5f5;
     color: #d21e1e;
     font-weight: 600;
-    width: 50%;
-    display: table-row;
 }
 
 .proof .item-stable i {
@@ -2037,6 +2035,8 @@ input.bigLotto-input2:checked:before {
 .h25 .row{
     font-size: 13px;
     color: #999999;
+    display: flex;
+    align-items: center;
 }
 
 .h25 .button{
@@ -2052,7 +2052,7 @@ input.bigLotto-input2:checked:before {
 }
 
 .history-time .row {
-    padding: 0 5px;
+    padding: 5px 5px;
 }
 
 .history-time .row .col {
@@ -2070,18 +2070,14 @@ input.bigLotto-input2:checked:before {
     text-decoration: none;
 }
 
-.show-red-ball{
-    height: 40px;
-}
-
 .show-red-ball i,
 .show-blue-ball i {
-    width: 1.5em;
-    height: 1.5em;
+    width: 1.8em;
+    height: 1.8em;
     color: #fff4fb;
     border-radius: 50%;
     text-align: center;
-    line-height: 1.4em;
+    line-height: 1.8em;
     margin: 4px 0;
     display: inline-block;
 }

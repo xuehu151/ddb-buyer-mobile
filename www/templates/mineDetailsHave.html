@@ -1,0 +1,58 @@
+<ion-view view-title="明细详情">
+    <ion-nav-bar class="bar bar-assertive">
+        <ion-nav-buttons ng-click="" side="left">
+            <a class="button button-icon ion-ios-arrow-left light" href="#/accountDetail" style="font-size: 1.5em;line-height: 31px;">
+            </a>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-content style="background: #f7f5f5;">
+        <div class="DetailInfo">
+            <div class="detail-title">
+                <i class="icon-withdraw"></i>
+                <span>竞彩足球混合过关</span>
+            </div>
+            <div class="trading-status">
+                <p>-10.00</p>
+                <span>交易成功</span>
+            </div>
+            <div class="detail-list">
+                <span>付费方式</span>
+                <ins>余额</ins>
+            </div>
+            <div class="detail-list">
+                <span>创建时间</span>
+                <ins>2017-03-07 12:30</ins>
+            </div>
+            <div class="detail-list" style="border-top: 1px solid #f7f5f5;">
+                <span>订单编号</span>
+                <ins>2017-03-07 12:30</ins>
+            </div>
+
+             <div class="proof">
+                 <ion-list>
+                     <div>
+                         <ion-item class="item-stable item-icon-right" ng-click="toggleGroup()">
+                             <i class="icon" ng-class="isGroupShown() ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+                             查看凭证
+                         </ion-item>
+                         <ion-item class="item-accordion" ng-show="isGroupShown()" >
+                             <div class="drawContent">
+                                 <div class="drawText">提现金额已转账至支付宝,请查收</div>
+                                 <div class="imgContent">
+                                     <img src="./img/0.jpg" alt="">
+                                     <img src="./img/0.jpg" alt="">
+                                     <img src="./img/0.jpg" alt="">
+                                 </div>
+                             </div>
+                         </ion-item>
+                     </div>
+                 </ion-list>
+             </div>
+        </div>
+    </ion-content>
+
+
+</ion-view>
+
+

@@ -133,16 +133,4 @@ angular.module ('starter.services', [])
             }
 
         };
-    })
-    //文件上传
-    .factory ('$uploadImgService', function ($http, $util) {
-        return {
-            //投注
-            uploadImg : function (data, token) {
-                return $util.httpPostRequest ($util.getHttpURL ().uploadImgUrl, data, token);
-            }
-
-
-
-        };
     });

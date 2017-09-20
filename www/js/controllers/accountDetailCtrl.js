@@ -8,99 +8,132 @@ angular.module ('starter.accountDetailCtrl', [])
         var imgClass = ['../img/disburse.png', '../img/income.png', '../img/temporary.png'];
         var userInfo = $util.getUserInfo ();
         var token = userInfo.token;
-    
+        var pageSize = 8;
+        var pageNumber = 1;
+        
         filtrateRecordList(0);
         function filtrateRecordList (typeCount) {
-            var data = {
-                data : {},
-                params : {
-                    type : typeCount
-                }
+            $scope.hasMore = true;
+            $scope.detailListItem = [];
+            $scope.loadMore = function () {
+                data = {
+                    data : {},
+                    params : {
+                        type : typeCount,
+                        pageSize : pageSize,
+                        pageNumber : pageNumber,
+                        startDate : '',
+                        endDate : ''
+                    }
+                };
+                loadajax ();
             };
-            var reques = {};
-            $rechargeService.getBillList (data, token)
-                .then (function (response) {
-                    console.info (response);
-                    reques = response.data;
-                    $scope.detailListItem = reques;
-                    for (var i = 0; i < $scope.detailListItem.length; i++) {
-                        var hourAndMinute, getDay, yearAndMonth;
+            function loadajax () {
+                var reques = {};
+                $rechargeService.getBillList (data, token)
+                    .then (function (response) {
+                        console.info (response);
+                        reques = response.data;
+                        //$scope.detailListItem = reques;
+                        if (response.data.length != 0 && response.error == '0' ) {
+                            $scope.detailListItem = $scope.detailListItem.concat (response.data);
+                            for (var i = 0; i < $scope.detailListItem.length; i++) {
+                                var hourAndMinute, getDay, yearAndMonth;
+        
+                                $scope.createDate = $scope.detailListItem[i].createDate;
+                                $scope.filtrateType = $scope.detailListItem[i].type;
+                                //console.info ($scope.filtrateType);
     
-                        $scope.createDate = $scope.detailListItem[i].createDate;
-                        $scope.filtrateType = $scope.detailListItem[i].type;
-                        //console.info ($scope.filtrateType);
-                        
-                        $scope.money = $scope.detailListItem[i].money;   //金额 提现 充值等
-                        yearAndMonth = $scope.createDate.split (' ')[0];
-                        hourAndMinute = $scope.createDate.split (' ')[1];
-                        $scope.detailListItem[i].createDate = hourAndMinute.slice (0, 5);
-//                        $scope.detailListItem[i].createDate = yearAndMonth;
-                        
-                        //计算周几
-                        getDay = $util.getWeekByDay ($scope.createDate);//判断周几
-                        if ($util.getDateStr (0) == yearAndMonth) {
-                            $scope.detailListItem[i].getDayDate = '今天';
-                        }
-                        else if ($util.getDateStr (-1) == yearAndMonth) {
-                            $scope.detailListItem[i].getDayDate = '昨天';
-                        }
-                        else if ($util.getDateStr (-2) == yearAndMonth) {
-                            $scope.detailListItem[i].getDayDate = '前天';
+                                $scope.money = $scope.detailListItem[i].money;   //金额 提现 充值等
+                                yearAndMonth = $scope.createDate.split (' ')[0];
+                                hourAndMinute = $scope.createDate.split (' ')[1];
+                                console.info(hourAndMinute);
+                                $scope.detailListItem[i].createDate = hourAndMinute.substr (0, 5);
+//                                $scope.detailListItem[i].createDate = yearAndMonth;
+        
+                                //计算周几
+                                getDay = $util.getWeekByDay ($scope.createDate);//判断周几
+                                if ($util.getDateStr (0) == yearAndMonth) {
+                                    $scope.detailListItem[i].getDayDate = '今天';
+                                }
+                                else if ($util.getDateStr (-1) == yearAndMonth) {
+                                    $scope.detailListItem[i].getDayDate = '昨天';
+                                }
+                                else if ($util.getDateStr (-2) == yearAndMonth) {
+                                    $scope.detailListItem[i].getDayDate = '前天';
+                                }
+                                else {
+                                    $scope.detailListItem[i].getDayDate = getDay;
+                                }
+                                //console.info(yearAndMonth);
+                                switch ( $scope.detailListItem[i].type ) { //0全部 1充值 2提现 3投注 4出票失败退款
+                                    case 1:
+                                        $scope.detailListItem[i].detailType = '充值';
+                                        $scope.detailListItem[i].imgClass = imgClass[1];
+                                        $scope.detailListItem[i].plusMinus = '+';
+                                        break;
+                                    case 2:
+                                        $scope.detailListItem[i].detailType = '提现';
+                                        $scope.detailListItem[i].imgClass = imgClass[2];
+                                        $scope.detailListItem[i].plusMinus = '-';
+                                        break;
+                                    case 3:
+                                        $scope.detailListItem[i].detailType = '购彩支出';
+                                        $scope.detailListItem[i].imgClass = imgClass[0];
+                                        $scope.detailListItem[i].plusMinus = '-';
+                                        break;
+                                    case 4:
+                                        $scope.detailListItem[i].detailType = '临时额度';
+                                        $scope.detailListItem[i].imgClass = imgClass[2];
+                                        $scope.detailListItem[i].plusMinus = '+';
+                                        break;
+                                    default:
+                                }
+                                //进入详情页面
+                                $scope.goToMineDetails = function (billDetailsId, detailType) {
+                                    $rootScope.billDetailsId = billDetailsId;
+                                    $rootScope.detailType = detailType;
+                                    $state.go ('mineDetailsHave');
+                                };
+                                //recordDetails ($scope.detailListItem[i].id);
+                            }
+                            pageNumber++;
                         }
                         else {
-                            $scope.detailListItem[i].getDayDate = getDay;
+                            $scope.hasMore = false;
+                            $cordovaToast.showShortBottom ("暂无更多了");
                         }
-                        //console.info(yearAndMonth);
-                        switch ( $scope.detailListItem[i].type ) { //0全部 1充值 2提现 3投注 4出票失败退款
-                            case 1:
-                                $scope.detailListItem[i].detailType = '充值';
-                                $scope.detailListItem[i].imgClass = imgClass[1];
-                                $scope.detailListItem[i].plusMinus = '+';
-                                break;
-                            case 2:
-                                $scope.detailListItem[i].detailType = '提现';
-                                $scope.detailListItem[i].imgClass = imgClass[2];
-                                $scope.detailListItem[i].plusMinus = '-';
-                                break;
-                            case 3:
-                                $scope.detailListItem[i].detailType = '购彩支出';
-                                $scope.detailListItem[i].imgClass = imgClass[0];
-                                $scope.detailListItem[i].plusMinus = '-';
-                                break;
-                            case 4:
-                                $scope.detailListItem[i].detailType = '临时额度';
-                                $scope.detailListItem[i].imgClass = imgClass[2];
-                                $scope.detailListItem[i].plusMinus = '+';
-                                break;
-                            default:
-                        }
-                        //进入详情页面
-                        $scope.goToMineDetails = function (index) {
-                            console.info (index);
-                            $state.go ('mineDetails');
-                        };
-                        //recordDetails ($scope.detailListItem[i].id);
-                    }
-                    //年月份list 日历图标
-                    $scope.yearAndMonthDate = [];
-                    if(yearAndMonth){
-                        for (var i = 1; i < yearAndMonth.length; i++) {
-                            $scope.yearAndMonthDate.push (i);
-                        }
-                    }
-                    //日历点击事件
-                    $scope.selectList = function (YM_listNum) {
-                        $scope.popover.hide ();
-                        $scope.YM_list = YM_listNum;
-                        
-                        console.info($scope.detailListItem[i].createDate);
-                    };
+                        $scope.$broadcast ('scroll.refreshComplete');
+                        $scope.$broadcast ('scroll.infiniteScrollComplete');
     
-                }, function (error) {
-                    //...
-                });
+                        //年月份list 日历图标
+                        $scope.yearAndMonthDate = [];
+                        if(yearAndMonth){
+                            for (var i = 1; i < yearAndMonth.length; i++) {
+                                $scope.yearAndMonthDate.push (i);
+                            }
+                        }
+                        //日历点击事件
+                        $scope.selectList = function (YM_listNum) {
+                            $scope.popover.hide ();
+                            $scope.YM_list = YM_listNum;
+                
+                            console.info($scope.detailListItem[i].createDate);
+                        };
+            
+                    }, function (error) {
+                        //...
+                    });
+            }
         }
-        
+    
+        $scope.doRefresh = function () {
+            pageNumber = 1;
+            $scope.detailListItem = [];
+            $scope.loadMore ();
+        };
+    
+    
         function recordDetails (orderId) {
             var data = {
                 data : {},

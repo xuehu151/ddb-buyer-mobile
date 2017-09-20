@@ -1,6 +1,6 @@
 // Ionic Starter App
 var jsonWrap = [];//存放所有的注数
-angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services', 'starter.util', 'starter.SignInCtrl', 'starter.RaceColorFootballCtrl', 'starter.BigLottoCtrl', 'starter.bettingDetailCtrl', 'starter.RecommendCtrl', 'starter.InformationCtrl', 'starter.SuperLottoCtrl', 'starter.BiddingFootballCtrl', 'starter.MineCtrl', 'starter.registerCtrl', 'starter.verifyCtrl', 'starter.forgetPasswordCtrl', 'starter.allOrdersCtrl', 'starter.withdrawCtrl', 'starter.withDrawStatusCtrl', 'starter.rechargeCtrl', 'starter.accountDetailCtrl', 'starter.mineDetailsCtrl', 'starter.orderStatusCtrl', 'starter.HistoryLotteryCtrl', 'starter.HistoryLotteryDetailsCtrl', 'starter.allOrderdetailCtrl', 'starter.rechargeSuccessCtrl', 'starter.proofDetailsCtrl'])
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services', 'starter.getListServices', 'starter.util', 'starter.SignInCtrl', 'starter.RaceColorFootballCtrl', 'starter.BigLottoCtrl', 'starter.bettingDetailCtrl', 'starter.RecommendCtrl', 'starter.InformationCtrl', 'starter.SuperLottoCtrl', 'starter.BiddingFootballCtrl', 'starter.MineCtrl', 'starter.registerCtrl', 'starter.verifyCtrl', 'starter.forgetPasswordCtrl', 'starter.allOrdersCtrl', 'starter.withdrawCtrl', 'starter.withDrawStatusCtrl', 'starter.rechargeCtrl', 'starter.accountDetailCtrl', 'starter.mineDetailsCtrl', 'starter.orderStatusCtrl', 'starter.HistoryLotteryCtrl', 'starter.HistoryLotteryDetailsCtrl', 'starter.allOrderdetailCtrl', 'starter.rechargeSuccessCtrl', 'starter.proofDetailsCtrl', 'starter.mineDetailsHaveCtrl'])
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -281,13 +281,21 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
                 templateUrl: 'templates/accountDetail.html',
                 controller: 'accountDetailCtrl'
             })
-            //明细详情
+            //明细详情无凭证
             .state('mineDetails', {
                 url: '/mineDetails',
                 cache: 'false',
                 prefetchTemplate:false,
                 templateUrl: 'templates/mineDetails.html',
                 controller: 'mineDetailsCtrl'
+            })
+            //明细详情有凭证
+            .state('mineDetailsHave', {
+                url: '/mineDetailsHave',
+                cache: 'false',
+                prefetchTemplate:false,
+                templateUrl: 'templates/mineDetailsHave.html',
+                controller: 'mineDetailsHaveCtrl'
             });
     });
 
