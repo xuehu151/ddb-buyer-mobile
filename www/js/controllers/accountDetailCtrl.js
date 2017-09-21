@@ -3,7 +3,7 @@
  */
 angular.module ('starter.accountDetailCtrl', [])
 //我的
-    .controller ('accountDetailCtrl', function ($scope, $state, $rootScope, $ionicPopover, $ionicModal, $rechargeService, $util) {
+    .controller ('accountDetailCtrl', function ($scope, $state, $rootScope, $ionicPopover, $ionicModal, $rechargeService, $util, $cordovaToast) {
         //明细列表
         var imgClass = ['../img/disburse.png', '../img/income.png', '../img/temporary.png'];
         var userInfo = $util.getUserInfo ();
@@ -35,22 +35,22 @@ angular.module ('starter.accountDetailCtrl', [])
                         console.info (response);
                         reques = response.data;
                         //$scope.detailListItem = reques;
-                        if (response.data.length != 0 && response.error == '0' ) {
+                        if (response.data.length >= pageSize && response.error == '0' ) {
                             $scope.detailListItem = $scope.detailListItem.concat (response.data);
                             for (var i = 0; i < $scope.detailListItem.length; i++) {
                                 var hourAndMinute, getDay, yearAndMonth;
         
                                 $scope.createDate = $scope.detailListItem[i].createDate;
                                 $scope.filtrateType = $scope.detailListItem[i].type;
-                                //console.info ($scope.filtrateType);
-    
                                 $scope.money = $scope.detailListItem[i].money;   //金额 提现 充值等
-                                yearAndMonth = $scope.createDate.split (' ')[0];
-                                hourAndMinute = $scope.createDate.split (' ')[1];
-                                console.info(hourAndMinute);
-                                $scope.detailListItem[i].createDate = hourAndMinute.substr (0, 5);
-//                                $scope.detailListItem[i].createDate = yearAndMonth;
-        
+                                
+                                yearAndMonth = $scope.detailListItem[i].createDate.split (' ')[0];
+                                hourAndMinute = $scope.detailListItem[i].createDate.split (' ')[1];
+                                if (hourAndMinute) {
+                                    $scope.detailListItem[i].createDate = hourAndMinute.substr (0, 5);
+                                }
+                                //$scope.detailListItem[i].createDate = yearAndMonth;
+                                
                                 //计算周几
                                 getDay = $util.getWeekByDay ($scope.createDate);//判断周几
                                 if ($util.getDateStr (0) == yearAndMonth) {
@@ -101,7 +101,7 @@ angular.module ('starter.accountDetailCtrl', [])
                         }
                         else {
                             $scope.hasMore = false;
-                            $cordovaToast.showShortBottom ("暂无更多了");
+                            $cordovaToast.showShortBottom ("暂无更多");
                         }
                         $scope.$broadcast ('scroll.refreshComplete');
                         $scope.$broadcast ('scroll.infiniteScrollComplete');
@@ -110,7 +110,7 @@ angular.module ('starter.accountDetailCtrl', [])
                         $scope.yearAndMonthDate = [];
                         if(yearAndMonth){
                             for (var i = 1; i < yearAndMonth.length; i++) {
-                                $scope.yearAndMonthDate.push (i);
+                                $scope.yearAndMonthDate[i] = i;
                             }
                         }
                         //日历点击事件
@@ -118,7 +118,11 @@ angular.module ('starter.accountDetailCtrl', [])
                             $scope.popover.hide ();
                             $scope.YM_list = YM_listNum;
                 
-                            console.info($scope.detailListItem[i].createDate);
+//                            if($scope.YM_list){
+//                                startDate = yearAndMonth;
+//                                filtrateRecordList (0, startDate)
+//                            }
+                            console.info($scope.YM_list);
                         };
             
                     }, function (error) {
@@ -134,7 +138,7 @@ angular.module ('starter.accountDetailCtrl', [])
         };
     
     
-        function recordDetails (orderId) {
+       /* function recordDetails (orderId) {
             var data = {
                 data : {},
                 params : {
@@ -147,7 +151,7 @@ angular.module ('starter.accountDetailCtrl', [])
                 }, function (error) {
                     //....
                 })
-        }
+        }*/
         
         //筛选
         $scope.btnArrText = [
@@ -190,16 +194,20 @@ angular.module ('starter.accountDetailCtrl', [])
                 switch ( item.count ) {//0全部 1临时额度(退款4) 2收入(充值1)  3支出(提现2、彩金支出3)
                     case 1:
                         filtrateRecordList(4);
+                        $scope.doRefresh();
                         break;
                     case 2:
                         filtrateRecordList(1);
+                        $scope.doRefresh();
                         break;
                     case 3:
                         filtrateRecordList(3);
 //                        filtrateRecordList(2);
+                        $scope.doRefresh();
                         break;
                     default:
                         filtrateRecordList(0);
+                        $scope.doRefresh();
                 }
             };
      

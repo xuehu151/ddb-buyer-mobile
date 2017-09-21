@@ -14,6 +14,7 @@
                 <input
                     type="tel"
                     class="phone-number"
+                    onKeyUp="value=value.replace(/\D/g,'')"
                     ng-model="widthdrawMoney.money"
                     ng-change="whetherOK()" >
             </div>

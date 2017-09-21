@@ -2,43 +2,38 @@
  * Created by admin on 2017/7/27.
  */
 angular.module ('starter.withdrawCtrl', [])
-//提现
+    //提现
     .controller ('withdrawCtrl', function ($scope, $state, $rootScope, $ionicModal, $rechargeService, $ionicLoading, $util) {
-
+        var userInfo = $util.getUserInfo ();
         $scope.widthdrawMoney = {//提现金额
             money : ''
         };
         $scope.whetherShow1 = true; //控制展示可提现余额
         $scope.whetherShow2 = true; //控制提现提交按钮disable
-
-        //账户余额  先定义后面取到数据替换
-
-        //$ionicLoading.show ();
-        var userInfo = $util.getUserInfo ();
-//        $scope.widthdrawAble = userInfo.customer.money - userInfo.customer.freeze;
-        $scope.widthdrawAble = $rootScope.users.usableMoney;
+        $scope.widthdrawAble = $rootScope.users.usableMoney;//获取的可用余额
 
         $scope.whetherOK = function () {
-            if ($scope.widthdrawMoney.money > $scope.widthdrawAble) {
+            console.info($scope.widthdrawMoney.money[0] == 0);
+            if ($scope.widthdrawMoney.money > $scope.widthdrawAble) {//大于
                 $scope.cantWidthdraw = '输入金额超出可提现余额';
                 $scope.whetherShow1 = false;
                 $scope.whetherShow2 = true;
             }
             //小于1 disable
-            else if ($scope.widthdrawMoney.money < 1) {
+            else if ($scope.widthdrawMoney.money < 1) {//小于
                 $scope.cantWidthdraw = '';
                 $scope.whetherShow1 = true;
                 $scope.whetherShow2 = true;
             }
-            else if ($scope.widthdrawAble > $scope.widthdrawAble && $scope.widthdrawMoney.money != $scope.widthdrawAble) {
+            else if($scope.widthdrawMoney.money > 1 || $scope.widthdrawMoney.money[0] == 0){
                 $scope.cantWidthdraw = '';
                 $scope.whetherShow1 = true;
-                $scope.whetherShow2 = true;
+                $scope.whetherShow2 = false;
             }
             else {
                 $scope.cantWidthdraw = '';
                 $scope.whetherShow1 = true;
-                $scope.whetherShow2 = false;
+                $scope.whetherShow2 = true;
             }
         };
         //提现所有可用余额

@@ -3,6 +3,6 @@
  */
 angular.module ('starter.getListServices', [])
     
-    .factory ('$getListServices', ['$window', function ($window) {
-    
+    .factory ('$getListServices', ['$window', '$rootScope', function ($window, $rootScope) {
+        var data = {};
     }]);
