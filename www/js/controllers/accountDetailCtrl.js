@@ -90,9 +90,10 @@ angular.module ('starter.accountDetailCtrl', [])
                                     default:
                                 }
                                 //进入详情页面
-                                $scope.goToMineDetails = function (billDetailsId, detailType) {
+                                $scope.goToMineDetails = function (billDetailsId, detailType, plusMinus) {
                                     $rootScope.billDetailsId = billDetailsId;
                                     $rootScope.detailType = detailType;
+                                    $rootScope.plusMinus = plusMinus;
                                     $state.go ('mineDetailsHave');
                                 };
                                 //recordDetails ($scope.detailListItem[i].id);

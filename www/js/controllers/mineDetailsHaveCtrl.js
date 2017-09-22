@@ -27,6 +27,45 @@ angular.module ('starter.mineDetailsHaveCtrl', [])
         $rechargeService.getBillInfo (data, token)
             .then (function (response) {
                 console.info(response);
+                switch (response.data.type ){
+                    case 1:
+                        switch (response.data.status){
+                            case -1:
+                                $scope.dealStatus = '审核不通过';
+                                break;
+                            case 1:
+                                $scope.dealStatus = '交易成功';
+                                break;
+                            default:
+                                $scope.dealStatus = '等待审核';
+                        }
+                        break;
+                    case 2://提现
+                        switch (response.data.status){
+                            case -1:
+                                $scope.dealStatus = '审核不通过';
+                                break;
+                            case 1:
+                                $scope.dealStatus = '交易成功';
+                                break;
+                            default:
+                                $scope.dealStatus = '等待审核';
+                        }
+                        break;
+                    case 3://购彩支出
+                        $scope.dealStatus = '交易成功';
+                        break;
+                    default:
+                }
+                $scope.detailsInfo = {
+                    money : response.data.money,
+                    createDate : response.data.createDate,
+                    ticketID : response.data.ticketID,
+                    customerImg :response.data.customerImg,
+                    detailType : $rootScope.detailType,
+                    plusMinus : $rootScope.plusMinus,
+                    dealStatus  : $scope.dealStatus
+                };
             },function (error) {
             
             });

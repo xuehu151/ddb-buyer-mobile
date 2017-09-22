@@ -1642,7 +1642,7 @@ input.bigLotto-input2:checked:before {
 }
 
 .drawContent{
-    margin-top: 25px;
+    margin-top: 10px;
     padding: 0 10px;
 }
 
@@ -1716,7 +1716,7 @@ input.bigLotto-input2:checked:before {
 
 .trading-status {
     height: 100px;
-    margin: 15px 10px;
+    /*margin: 15px 10px;*/
 }
 
 .trading-status p {
@@ -1854,6 +1854,44 @@ input.bigLotto-input2:checked:before {
     background-color: #ccc;
 }
 
+
+.account-modal .passContainer {
+    border: 1px solid #ccc;
+    height: 55px;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    border-radius: 3px;
+    margin: 1.32rem auto 1.64rem;
+}
+.account-modal .passContainer .passItem {
+    width: 16.66666%;
+    height: 100%;
+    float: left;
+    margin: 0;
+    box-sizing: border-box;
+}
+.account-modal .passContainer .passItem:not(:last-child) {
+    border-right: inherit;
+}
+.account-modal .passContainer input {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    padding: 0;
+    text-indent: 1.2rem;
+    letter-spacing: 2rem;
+    background: transparent;
+    position: absolute;
+    border: none;
+    outline: none;
+    font-size: 40px;
+    font-family: "courier new", sans-serif;
+    text-align: left;
+    text-overflow: hidden;
+}
+
+/*
 .withdrawPawCode {
     margin: 15px 0;
 }
@@ -1877,6 +1915,7 @@ input.bigLotto-input2:checked:before {
     padding: 0 0 0;
     border: solid 1px #c6c6c6;
 }
+*/
 
 .account-modal a {
     display: block;

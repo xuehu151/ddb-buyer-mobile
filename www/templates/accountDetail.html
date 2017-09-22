@@ -21,7 +21,7 @@
             <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
             <a class="item" href=""
                ng-repeat="detailList in detailListItem  | filter: YM_list track by $index"
-               ng-click="goToMineDetails(detailList.id, detailList.detailType)">
+               ng-click="goToMineDetails(detailList.id, detailList.detailType, detailList.plusMinus)">
                 <div class="row">
                     <div class="col col-20">
                         <ul>

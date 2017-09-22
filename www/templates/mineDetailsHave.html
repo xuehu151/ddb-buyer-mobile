@@ -10,11 +10,11 @@
         <div class="DetailInfo">
             <div class="detail-title">
                 <i class="icon-withdraw"></i>
-                <span>竞彩足球混合过关</span>
+                <span ng-cloak="">{{detailsInfo.detailType}}</span>
             </div>
             <div class="trading-status">
-                <p>-10.00</p>
-                <span>交易成功</span>
+                <p ng-cloak="">{{detailsInfo.plusMinus}}{{detailsInfo.money}}</p>
+                <span>{{detailsInfo.dealStatus}}</span>
             </div>
             <div class="detail-list">
                 <span>付费方式</span>
@@ -22,11 +22,11 @@
             </div>
             <div class="detail-list">
                 <span>创建时间</span>
-                <ins>2017-03-07 12:30</ins>
+                <ins ng-cloak="">{{detailsInfo.createDate}}</ins>
             </div>
             <div class="detail-list" style="border-top: 1px solid #f7f5f5;">
                 <span>订单编号</span>
-                <ins>2017-03-07 12:30</ins>
+                <ins ng-cloak="">{{detailsInfo.ticketID}}</ins>
             </div>
 
              <div class="proof">

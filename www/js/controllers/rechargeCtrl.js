@@ -3,7 +3,9 @@
  */
 angular.module ('starter.rechargeCtrl', [])
 //充值
-    .controller ('rechargeCtrl', function ($scope, $state, $rootScope, $cordovaImagePicker, $rechargeService, $util, $ionicLoading, $cordovaToast, $ionicPopup, $interval, $ionicActionSheet, $cordovaCamera, $cordovaFileTransfer, $timeout) {
+    .controller ('rechargeCtrl', function ($scope, $state, $rootScope, $cordovaImagePicker, $rechargeService, $util, $ionicLoading, $cordovaToast, $ionicPopup, $interval, $ionicActionSheet, $cordovaCamera, $cordovaFileTransfer, $timeout, PicMethods) {
+        var userInfo = $util.getUserInfo ();
+        var token = userInfo.token;
         $scope.rechargeMoney = {
             money : ''
         };
@@ -33,34 +35,56 @@ angular.module ('starter.rechargeCtrl', [])
             return $scope.shownGroup === '';
         };
         
-        //拍照
-        $scope.picture = function () {
-            $ionicActionSheet.show ({
-                buttons : [
-                    { text : '相机' },
-                    { text : '从相册选择' }
-                ],
-                cancelText : '关闭',
-                cancel : function () {
-                    return true;
-                },
-                buttonClicked : function (index) {
-                    switch ( index ) {
-                        case 0:
-                            takePhoto ();//相机
-                            break;
-                        case 1:
-                            pickImage ();//从相册选择
-                            break;
-                        default:
-                            break;
-                    }
-                    return true;
-                }
-            });
-        };
-        //image picker
+        //添加照片
         $scope.images_list = [];
+        var editImgArr = [];
+        $scope.showPictureAction = function () {
+            if($scope.images_list.length < 3){
+                $ionicActionSheet.show ({
+                    buttons : [
+                        { text : '相机' },
+                        { text : '从相册选择' }
+                    ],
+                    cancelText : '取消',
+                    cancel : function () {
+                        return true;
+                    },
+                    buttonClicked : function (index) {
+                        switch ( index ) {
+                            case 0:
+                                PicMethods.takePhoto (token, afterUploadDo);//相机
+                                break;
+                            case 1:
+                                PicMethods.pickImage (token, afterUploadDo);//从相册选择
+                                break;
+                            default:
+                                break;
+                        }
+                        return true;
+                    }
+                });
+            }else {
+                $cordovaToast.showShortBottom ('最多只能上传3张图片哦');
+            }
+        };
+    
+        /*定义照片上传后要做的事情 imageUrl 本地图片地址*/
+        function afterUploadDo (response, imageUrl) {
+            if (response.error === '0') {
+                editImgArr.push(response.data); //push图片上传成功后返回的服务器中图片地址
+                $scope.images_list.push (imageUrl); //push本地路径,渲染本地照片
+                $cordovaToast.showShortBottom (JSON.stringify ($scope.images_list));
+                $ionicLoading.hide ();
+            }
+            else {
+                $cordovaToast.showShortBottom (response.info);
+            }
+            if ($scope.images_list.length < 3) {
+                $cordovaToast.showShortBottom ('最多只能上传3张图片哦');
+            }
+        }
+        
+        /*//image picker
         var pickImage = function () {//从相册选择
             var options = {
                 maximumImagesCount : 3,
@@ -68,7 +92,7 @@ angular.module ('starter.rechargeCtrl', [])
                 height : 100,
                 quality : 80
             };
-            /*从相册获取照片*/
+            /*从相册获取照片*!/
             $cordovaImagePicker.getPictures (options)
                 .then (function (results) {
                     
@@ -155,7 +179,7 @@ angular.module ('starter.rechargeCtrl', [])
                 }, function (progress) {
                     // constant progress updates
                 });
-        };
+        };*/
 
         //确认提交
         $scope.recharge = {
@@ -168,14 +192,12 @@ angular.module ('starter.rechargeCtrl', [])
                 title : '<i class="icon ion-ios-checkmark-outline" style="font-size:26px"></i>'
             })
                 .then (function (success) {
-                    var userInfo = $util.getUserInfo ();
-                    var token = userInfo.token;
                     var data = {
                         data : {},
                         params : {
                             money : $scope.rechargeMoney.money,
                             customerRemark : $scope.recharge.remarks,
-                            buyerImg : $rootScope.imgages.join(',')
+                            buyerImg : editImgArr.join(',')
                         }
                     };
                     $rechargeService.recharge (data, token)

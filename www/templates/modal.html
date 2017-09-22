@@ -3,11 +3,17 @@
         <ion-item class="item-icon-left ">
             <i class="icon ion-ios-close-empty" ng-click="closeModal()"></i>
             请输入密码
-            <div class="withdrawPawCode">
-                <label class="item item-input">
-                    <input type="password" maxlength="1" ng-repeat="inpNum in inputNum" >
-                </label>
-            </div>
+            <form>
+                <div class="passContainer">
+                    <input type="password" id="chargePass" maxlength="6" ng-model="withDrawPassWord.password" class="password" ng-change="confirmVerify()"/>
+                    <div class="passItem"></div>
+                    <div class="passItem"></div>
+                    <div class="passItem"></div>
+                    <div class="passItem"></div>
+                    <div class="passItem"></div>
+                    <div class="passItem"></div>
+                </div>
+            </form>
             <a href="">忘记密码？</a>
         </ion-item>
 

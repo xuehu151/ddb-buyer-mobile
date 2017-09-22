@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+    //获取新闻列表
+    /* .factory ('newsListFactory', [' ', '$rootScope', 'ENV', function ($resource, $rootScope, ENV) {
+     var APIUrl = ENV.api,
+     newsList = {
+     'classid' : 'classid',
+     'page' : 'page',
+     'hasNextPage' : 'false',
+     'data' : ''
+     };
+     var resource = $resource (APIUrl, {}, {
+     query : {
+     method : 'get',
+     params : {
+     a : 'getNewsList',
+     classid : '@classid',
+     page : '@page'
+     },
+     timeout : 20000
+     }
+     });
+     return {
+     get : function (classid, page) {
+     newsList.classid = classid;
+     return resource.query ({
+     classid : classid,
+     page : 1
+     }, function (r) {
+     newsList.hasNextPage = true;
+     if (r.result.length < 5) {  //来判断是否有下一页数据
+     newsList.hasNextPage = false;
+     }
+     newsList.page = 2;
+     newsList.data = r.result;
+     $rootScope.$broadcast ('newsListFactory.threadUpdated');
+     });
+     },
+     getResult : function () {
+     return newsList.data;
+     },
+     loadMore : function () {//加载更多
+     if (newsList.data.length === 0)
+     return false;
+     newsList.hasNextPage = false;//调用加载更多方法时 置为false,避免ion-infinite-scroll显示的时候重复调用此方法
+     return resource.query ({
+     classid : newsList.classid,
+     page : newsList.page
+     }, function (r) {
+     newsList.page++;
+     newsList.hasNextPage = true;
+     if (r.result.length < 5) {
+     newsList.hasNextPage = false;
+     }
+     var data = newsList.data.concat (r.result);
+     newsList.data = data;
+     $rootScope.$broadcast ('LoadMorenewsListFactory.threadUpdated');
+     });
+     },
+     hasNext : function () {//判断是否有下一页
+     if (newsList.data.length === 0)
+     return false;
+     return newsList.hasNextPage;
+     }
+     };
+     }])*/
+
+
+    //1、下拉刷新
+    $scope.doRefresh = function () {
+        $ionicLoading.show ();
+        // var param={code:$window.localStorage['code']};
+        chaXunListFactory.getChaxunList (param)
+            .then (function (callback) {
+                if (callback.status = 200) {
+                    $scope.chaxunList = callback.data.content;
+                    $ionicLoading.hide ();
+                    $scope.$broadcast ('scroll.refreshComplete');
+                    load ();
+                }
+            })
+    }
+    load ();
+    //将上拉加载更多放到此方法里，下拉刷新后重新调用此方法，否则：下拉刷新后不能上拉加载
+    function load () {
+        //获取总页数
+        var param = { code : $window.localStorage['code'] };
+        chaXunListPageFactory.getChaxunListPage (param)
+            .then (function (callback) {
+                if (callback.status = 200) {
+                    // debugger
+                    var totalPage = callback.data.content;
+                    if (totalPage >= 2) {
+                        /*用于激活上拉加载的变量*/
+                        $scope.state = true;
+                        var page = 2;//如果激活上拉，从第二页开始查询
+                        $scope.loadMore = function () {
+                            // debugger
+                            var param2 = { code : $window.localStorage['code'], page : page };
+                            chaXunListFactory.getChaxunList (param2)
+                                .then (function (callback) {
+                                    if (callback.status == 200) {
+                                        // debugger
+                                        if (callback.data.content == "") {
+                                            $scope.state = false;
+                                        }
+                                        else {
+                                            page += 1;
+                                            // debugger
+                                            try {
+                                                $scope.chaxunList = $scope.chaxunList.concat (callback.data.content);
+                                            } catch ( e ) {
+                                            }
+                                            $scope.$broadcast ('scroll.infiniteScrollComplete');
+                                            console.log ("上拉加载");
+                                        }
+                                    }
+                                });
+                        }
+                    }
+                    else {//如果只有一页数据，则不激活上拉加载更多
+                        $scope.state = false;
+                    }
+                }
+            })
+    }
+
+</script>
+<body>
+
+</body>
+</html>

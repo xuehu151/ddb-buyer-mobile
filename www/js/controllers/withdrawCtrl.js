@@ -3,8 +3,9 @@
  */
 angular.module ('starter.withdrawCtrl', [])
     //提现
-    .controller ('withdrawCtrl', function ($scope, $state, $rootScope, $ionicModal, $rechargeService, $ionicLoading, $util) {
+    .controller ('withdrawCtrl', function ($scope, $state, $rootScope, $ionicModal, $rechargeService, $ionicLoading, $util, $timeout) {
         var userInfo = $util.getUserInfo ();
+        var token = userInfo.token;
         $scope.widthdrawMoney = {//提现金额
             money : ''
         };
@@ -25,7 +26,7 @@ angular.module ('starter.withdrawCtrl', [])
                 $scope.whetherShow1 = true;
                 $scope.whetherShow2 = true;
             }
-            else if($scope.widthdrawMoney.money > 1 || $scope.widthdrawMoney.money[0] == 0){
+            else if($scope.widthdrawMoney.money >= 1 || $scope.widthdrawMoney.money[0] == 0){
                 $scope.cantWidthdraw = '';
                 $scope.whetherShow1 = true;
                 $scope.whetherShow2 = false;
@@ -41,16 +42,9 @@ angular.module ('starter.withdrawCtrl', [])
             $scope.widthdrawMoney.money = $scope.widthdrawAble;
             $scope.whetherOK ();
         };
-        //password
-        $scope.inputNum = [];
-        for (var i=0; i < 6; i++){
-            $scope.inputNum.push(i);
-        }
-
-        //提现确定按钮  判断提现成功与否
+        //提现确定按钮
         $rootScope.withdrawalState = false;
         $scope.confirmWidthdraw = function () {
-            var token = userInfo.token;
             var data = {
                 data : {},
                 params : {
@@ -58,44 +52,50 @@ angular.module ('starter.withdrawCtrl', [])
                 }
             };
             console.info(data);
-            $rootScope.money = data.params.money;//暂时保存提现金额
-            $rechargeService.withdraw (data, token)
-                .then (function (response) {
-                    $ionicLoading.hide ();
-                    console.info(response);
-
-                    if(response.error == '0'){
-                        $rootScope.auditStatus = '恭喜您，提现成功';
-                        $rootScope.withdrawalState = true;
-                        $rootScope.placeholder = '提现成功，至转账至支付宝，请查收;';
-                        $state.go('withDrawStatus');
-                    }else {
-                        $rootScope.auditStatus = '申请未通过审核，请重新申请';
-                        $rootScope.withdrawalState = false;
-                        $rootScope.placeholder = '提现失败的原因......';
-                        $state.go('withDrawStatus');
-                    }
-                },function (error) {
-                    //....
-                });
-
-            /*if (true) {
-                $ionicModal.fromTemplateUrl ('templates/modal.html', {
-                    scope : $scope,
-                    animation : 'slide-in-up'
-                })
-                    .then (function (modal) {
-                        modal.show ();
-                        //关闭模态框
-                        $scope.closeModal = function () {
-                            modal.hide();
+            $rootScope.money = data.params.money;//保存提现金额
+            $scope.withDrawPassWord = {
+                password : ''
+            };
+            $ionicModal.fromTemplateUrl ('templates/modal.html', {
+                scope : $scope,
+                animation : 'slide-in-up'
+            })
+                .then (function (modal) {
+                    $scope.passWord = modal;
+                    $scope.passWord.show ();
+                    var oChargePass = document.getElementById('chargePass');
+                    oChargePass.focus();//自动获得焦点
+                    $scope.confirmVerify = function () {
+                        if ($scope.withDrawPassWord.password.toString().length === 6) {
+                            oChargePass.blur();//自动失去焦点
+                            $scope.closeModal();
+                            
+                            $rechargeService.withdraw (data, token)
+                                .then (function (response) {
+                                    $ionicLoading.hide ();
+                                    console.info(response);
+            
+                                    if(response.error == '0'){
+                                        $rootScope.auditStatus = '恭喜您，提现成功';
+                                        $rootScope.withdrawalState = true;
+                                        $rootScope.placeholder = '提现成功，至转账至支付宝，请查收';
+                                        $state.go('withDrawStatus');
+                                    }else {
+                                        $rootScope.auditStatus = '申请未通过审核，请重新申请';
+                                        $rootScope.withdrawalState = false;
+                                        $rootScope.placeholder = '提现失败的原因......';
+                                        $state.go('withDrawStatus');
+                                    }
+                                },function (error) {
+                                    //....
+                                });
                         }
-                    });
-                //$state.go ('withDrawSuccess');
-            }
-            else {
-                //$state.go ('withDrawFailed');
-            }*/
+                    };
+                    //关闭模态框
+                    $scope.closeModal = function () {
+                        modal.hide ();
+                    }
+                });
         };
 
 
