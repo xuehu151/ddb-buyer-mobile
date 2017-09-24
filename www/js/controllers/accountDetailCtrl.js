@@ -10,7 +10,7 @@ angular.module ('starter.accountDetailCtrl', [])
         var token = userInfo.token;
         var pageSize = 8;
         var pageNumber = 1;
-        
+
         filtrateRecordList(0);
         function filtrateRecordList (typeCount) {
             $scope.hasMore = true;
@@ -39,18 +39,18 @@ angular.module ('starter.accountDetailCtrl', [])
                             $scope.detailListItem = $scope.detailListItem.concat (response.data);
                             for (var i = 0; i < $scope.detailListItem.length; i++) {
                                 var hourAndMinute, getDay, yearAndMonth;
-        
+
                                 $scope.createDate = $scope.detailListItem[i].createDate;
                                 $scope.filtrateType = $scope.detailListItem[i].type;
                                 $scope.money = $scope.detailListItem[i].money;   //金额 提现 充值等
-                                
+
                                 yearAndMonth = $scope.detailListItem[i].createDate.split (' ')[0];
                                 hourAndMinute = $scope.detailListItem[i].createDate.split (' ')[1];
                                 if (hourAndMinute) {
                                     $scope.detailListItem[i].createDate = hourAndMinute.substr (0, 5);
                                 }
                                 //$scope.detailListItem[i].createDate = yearAndMonth;
-                                
+
                                 //计算周几
                                 getDay = $util.getWeekByDay ($scope.createDate);//判断周几
                                 if ($util.getDateStr (0) == yearAndMonth) {
@@ -106,7 +106,7 @@ angular.module ('starter.accountDetailCtrl', [])
                         }
                         $scope.$broadcast ('scroll.refreshComplete');
                         $scope.$broadcast ('scroll.infiniteScrollComplete');
-    
+
                         //年月份list 日历图标
                         $scope.yearAndMonthDate = [];
                         if(yearAndMonth){
@@ -118,27 +118,27 @@ angular.module ('starter.accountDetailCtrl', [])
                         $scope.selectList = function (YM_listNum) {
                             $scope.popover.hide ();
                             $scope.YM_list = YM_listNum;
-                
+
 //                            if($scope.YM_list){
 //                                startDate = yearAndMonth;
 //                                filtrateRecordList (0, startDate)
 //                            }
                             console.info($scope.YM_list);
                         };
-            
+
                     }, function (error) {
                         //...
                     });
             }
         }
-    
+
         $scope.doRefresh = function () {
             pageNumber = 1;
             $scope.detailListItem = [];
             $scope.loadMore ();
         };
-    
-    
+
+
        /* function recordDetails (orderId) {
             var data = {
                 data : {},
@@ -153,7 +153,7 @@ angular.module ('starter.accountDetailCtrl', [])
                     //....
                 })
         }*/
-        
+
         //筛选
         $scope.btnArrText = [
             {
@@ -177,7 +177,7 @@ angular.module ('starter.accountDetailCtrl', [])
                 check : false
             }
         ];
-        
+
         //给筛选模态框添加点击事件
         $scope.addClassClick = function (item) {
             for (var i = 0; i < $scope.btnArrText.length; i++) {
@@ -189,7 +189,7 @@ angular.module ('starter.accountDetailCtrl', [])
             else {
                 item.check = false;
             }
-      
+
             $scope.makeSureFilter = function () {// 确定按钮
                 $scope.filtrModal.hide ();
                 switch ( item.count ) {//0全部 1临时额度(退款4) 2收入(充值1)  3支出(提现2、彩金支出3)
@@ -211,7 +211,7 @@ angular.module ('starter.accountDetailCtrl', [])
                         $scope.doRefresh();
                 }
             };
-     
+
         };
         //年月份模态框
         $ionicPopover.fromTemplateUrl ('templates/datePopOver.html', {
@@ -223,7 +223,7 @@ angular.module ('starter.accountDetailCtrl', [])
         $scope.openDatePopover = function ($event) {
             $scope.popover.show ($event);
         };
-        
+
         //筛选模态框
         $ionicModal.fromTemplateUrl ('templates/filtrate.html', {
             scope : $scope
@@ -231,7 +231,7 @@ angular.module ('starter.accountDetailCtrl', [])
             .then (function (modal) {
                 $scope.filtrModal = modal;
             });
-        
+
         $scope.openFilterModal = function () {
             $scope.filtrModal.show ();
         };
@@ -241,5 +241,5 @@ angular.module ('starter.accountDetailCtrl', [])
         $scope.makeSureFilter = function () {// 确定按钮 当按钮不被点击时点击确定 隐藏
             $scope.filtrModal.hide ();
         }
-        
+
     });

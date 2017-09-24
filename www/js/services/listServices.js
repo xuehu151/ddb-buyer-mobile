@@ -2,7 +2,7 @@
  * Created by admin on 2017/9/20.
  */
 angular.module ('starter.getListServices', [])
-    
+
     .factory ('$getListServices', ['$window', '$rootScope', function ($window, $rootScope) {
         var data = {};
     }])
@@ -19,29 +19,23 @@ angular.module ('starter.getListServices', [])
                     'Auth-Token' : token
                 }
             };
-            alert(JSON.stringify(imageUrl));
-            alert(JSON.stringify(token));
-            alert(JSON.stringify(afterUploadDo));
-            
-            
+
             $ionicLoading.show ({
                 template : '<p class="spinner-icon"><ion-spinner icon="bubbles" class="spinner-balanced"></ion-spinner><span>上传中...'
             });
             $cordovaFileTransfer.upload (url, imageUrl, options)
                 .then (function (result) {
-                    alert(13131321112);
                     var response = JSON.parse (result.response);
-                    $cordovaToast.showShortBottom (response);
                     afterUploadDo (response, imageUrl);
                 }, function (error) {
                     $cordovaToast.showShortBottom ('部分图片上传失败' + error);
                     $cordovaToast.showShortBottom (error);
                     $ionicLoading.hide ();
                 }, function (progress) {
-                
+
                 });
         }
-        
+
         //相机
         this.takePhoto = function (token, afterUploadDo) {
             var options = {
@@ -49,7 +43,7 @@ angular.module ('starter.getListServices', [])
                 quality : 100, //相片质量0-100
                 destinationType : Camera.DestinationType.FILE_URI, //返回类型：DATA_URL= 0，返回作为 base64 編碼字串。 FILE_URI=1，返回影像档的 URI。NATIVE_URI=2，返回图像本机URI
                 sourceType : Camera.PictureSourceType.CAMERA, //从哪里选择图片：PHOTOLIBRARY=0，相机拍照=1，SAVEDPHOTOALBUM=2。0和1其实都是本地图库
-                allowEdit : false, //在选择之前允许修改截图
+                allowEdit : true, //在选择之前允许修改截图
                 encodingType : Camera.EncodingType.JPEG, //保存的图片格式： JPEG = 0, PNG = 1
                 /*targetWidth : 100,                                        //照片宽度
                  targetHeight : 100,  */ //照片高度
@@ -78,10 +72,8 @@ angular.module ('starter.getListServices', [])
             // 从相册获取照片
             $cordovaImagePicker.getPictures (options)
                 .then (function (results) {
-                    for (var oneSrc in results) {
-                        // createUploadImg([elementAddFather, oneSrc]);
-                        upImage(oneSrc,token,afterUploadDo);
-                        alert('pickImage');
+                    for (var photo = 0; photo < results.length;photo++) {
+                        upImage( results[photo],token,afterUploadDo);
                     }
                 }, function (error) {
                     alert (error);

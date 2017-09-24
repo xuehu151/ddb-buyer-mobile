@@ -18,11 +18,11 @@ angular.module ('starter.rechargeCtrl', [])
                 $scope.Recharge = true;
             }
         };
-        
+
         //充值确定按钮
         $rootScope.describe = '';//文字提示
         $rootScope.signIconStatus = false;//标识图标
-        
+
         $scope.toggleGroup = function () {
             if ($scope.isGroupShown ()) {
                 $scope.shownGroup = null;
@@ -34,7 +34,6 @@ angular.module ('starter.rechargeCtrl', [])
         $scope.isGroupShown = function () {
             return $scope.shownGroup === '';
         };
-        
         //添加照片
         $scope.images_list = [];
         var editImgArr = [];
@@ -67,23 +66,25 @@ angular.module ('starter.rechargeCtrl', [])
                 $cordovaToast.showShortBottom ('最多只能上传3张图片哦');
             }
         };
-    
+
         /*定义照片上传后要做的事情 imageUrl 本地图片地址*/
         function afterUploadDo (response, imageUrl) {
             if (response.error === '0') {
                 editImgArr.push(response.data); //push图片上传成功后返回的服务器中图片地址
                 $scope.images_list.push (imageUrl); //push本地路径,渲染本地照片
-                $cordovaToast.showShortBottom (JSON.stringify ($scope.images_list));
+                $scope.imgDelete = function (index) {
+                    $scope.images_list.splice (index, 1);
+                };
                 $ionicLoading.hide ();
             }
             else {
                 $cordovaToast.showShortBottom (response.info);
             }
-            if ($scope.images_list.length < 3) {
+            if ($scope.images_list.length > 3) {
                 $cordovaToast.showShortBottom ('最多只能上传3张图片哦');
             }
         }
-        
+
         /*//image picker
         var pickImage = function () {//从相册选择
             var options = {
@@ -95,7 +96,7 @@ angular.module ('starter.rechargeCtrl', [])
             /*从相册获取照片*!/
             $cordovaImagePicker.getPictures (options)
                 .then (function (results) {
-                    
+
                     for (var i = 0; i < results.length; i++) {
                         $scope.images_list.push (results[i]);
                         $scope.imageSrc = results[i];
@@ -107,7 +108,7 @@ angular.module ('starter.rechargeCtrl', [])
                 }, function (error) {
                     // error getting photos
                 });
-            
+
         };
         var takePhoto = function () {//相机
             var options = {
@@ -138,7 +139,7 @@ angular.module ('starter.rechargeCtrl', [])
                 });
             return true
         };
-        
+
         //图片上传upImage（图片路径）uploadImg
         //http://ngcordova.com/docs/plugins/fileTransfer/  资料地址
         $rootScope.imgages = [];
@@ -203,7 +204,6 @@ angular.module ('starter.rechargeCtrl', [])
                     $rechargeService.recharge (data, token)
                         .then (function (response) {
                             //console.info (response);
-                            
                             if (response.error == '0') {
                                 $rootScope.describe = '恭喜您，充值成功';
                                 $rootScope.signIconStatus = true;
@@ -224,7 +224,7 @@ angular.module ('starter.rechargeCtrl', [])
                                 $cordovaToast.showShortBottom (response.info);
                                 $state.go ('rechargeSuccess');
                             }
-                            
+
                         }, function (error) {
                             $cordovaToast.showShortBottom (error);
                         })
@@ -232,6 +232,6 @@ angular.module ('starter.rechargeCtrl', [])
                     //.....
                 });
         };
-        
-        
+
+
     });
